@@ -23,7 +23,7 @@ int main(int ac, char **argv)
 			printstr("\nExiting...");
 			exit(EXIT_FAILURE);
 		}
-		cmds = tokenizer(lineptr);
+		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv);
 	}
 

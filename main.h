@@ -32,7 +32,7 @@ char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
 int buildincmd(char **cmds);
-char **tokenizer(char *lineptr);
+char **tokenizer(char *lineptr, char *delim);
 int execute(char **cmds, char **argv);
 
 #endif /* MAIN_H */
