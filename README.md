@@ -7,6 +7,6 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | File | Description |
 | ---- | ----------- |
 | [main.c](./main.c) |  |
-|  |  |
-|  |  |
-|  |  |
+| [get_cmd.c](./get_cmd.c) |  |
+| [get_path.c](./get_path.c) |  |
+| [exec_func.c](./exec_func.c) |  |
