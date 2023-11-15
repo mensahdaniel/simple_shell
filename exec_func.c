@@ -19,26 +19,32 @@ int execute(char **cmds, char **argv)
 	(void)cmd;
 
 	if (buildincmd(cmds) == -1)
+	{
 		pid = fork();
 
-	if (pid == -1)
-	{
-		perror("fork");
-		return (1);
-	}
-	else if (pid == 0)
-	{
-		exeerr = execve(cmds[0], cmds, envp);
-		if (exeerr == -1)
+		if (pid == -1)
 		{
-			printstr(argv[0]);
-			printstr(cmds[0]);
-			perror(": ");
+			perror("fork");
+			return (1);
+		}
+		else if (pid == 0)
+		{
+			exeerr = execve(cmds[0], cmds, envp);
+			if (exeerr == -1)
+			{
+				printstr(argv[0]);
+				printstr(cmds[0]);
+				perror(": ");
+			}
+		}
+		else
+		{
+			wait(NULL);
 		}
 	}
 	else
 	{
-		wait(NULL);
+		printstr("Not Found");
 	}
 
 	return (0);
