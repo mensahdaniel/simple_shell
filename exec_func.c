@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * execute- execute specific command by calling fork to start child process
+ *
+ * @argv: array of arguments
+ */
 int execute(char **argv)
 {
 	int exeerr;
