@@ -11,6 +11,7 @@ int main(int ac, char **argv)
 	char *lineptr, **cmds;
 	size_t n_size;
 	ssize_t n_chars;
+	int i;
 
 	(void)ac;
 	while (1)
@@ -23,6 +24,9 @@ int main(int ac, char **argv)
 			printstr("\nExiting...");
 			exit(EXIT_FAILURE);
 		}
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+		lineptr[i] = '\0';
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv);
 	}

@@ -12,10 +12,6 @@ char **tokenizer(char *buffer, char *delim)
 	int i;
 	char *command, **tokens = NULL, *args[SIZE] = {NULL, NULL};
 
-	for (i = 0; buffer[i] != '\n'; i++)
-		;
-	buffer[i] = '\0';
-
 	command = _strtok(buffer, delim);
 	i = 0;
 	tokens = args;
