@@ -34,7 +34,7 @@ int execute(char **cmds, char **argv)
 			{
 				printstr(argv[0]);
 				printstr(cmds[0]);
-				perror(": ");
+				perror(":");
 			}
 		}
 		else
