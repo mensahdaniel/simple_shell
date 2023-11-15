@@ -14,9 +14,7 @@ int execute(char **cmds, char **argv)
 	char *cmd;
 	pid_t pid;
 
-	cmd = get_cmdpath("PATH=");
-
-	(void)cmd;
+	cmd = get_cmdpath(cmds[0]);
 
 	if (builtincmd(cmds) == -1)
 	{
@@ -29,7 +27,7 @@ int execute(char **cmds, char **argv)
 		}
 		else if (pid == 0)
 		{
-			exeerr = execve(cmds[0], cmds, envp);
+			exeerr = execve(cmd, cmds, envp);
 			if (exeerr == -1)
 			{
 				printstr(argv[0]);
