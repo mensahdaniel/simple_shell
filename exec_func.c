@@ -24,7 +24,7 @@ int execute(char **args)
 	}
 	else if (pid == 0)
 	{
-		exeerr = execve(args[1], args, NULL);
+		exeerr = execve(args[1], NULL, NULL);
 		if (exeerr == -1)
 		{
 			printstr(args[0]);
