@@ -10,11 +10,11 @@
 char **tokenizer(char *buffer, char *delim)
 {
 	int i;
-	char *command, **tokens = NULL;
+	char *command, **tokens;
 
 	command = _strtok(buffer, delim);
 	i = 0;
-	// tokens = malloc(_strlen(buffer) + 1);
+	tokens = malloc(_strlen(buffer) + 1);
 	while (command != NULL)
 	{
 		tokens[i] = command;
