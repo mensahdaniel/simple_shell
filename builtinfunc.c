@@ -9,5 +9,5 @@ int buildincmd(char **cmds)
 		exit(EXIT_FAILURE);
 	}
 
-	return (0);
+	return (-1);
 }
