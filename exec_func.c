@@ -13,6 +13,8 @@ int execute(char **args)
 
 	cmd = get_cmdpath("PATH=");
 
+	(void)cmd;
+
 	pid = fork();
 
 	if (pid == -1)
