@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * _strlen - Get the length of a string
@@ -15,6 +16,29 @@ unsigned int long _strlen(char *str)
 	return (i);
 }
 
+int _strcmp(char *str1, char *str2)
+{
+	int def = 0, i, len1, len2;
+
+	len1 = (int)_strlen(str1);
+	len2 = (int)_strlen(str2);
+
+	if (str1 == NULL || str2 == NULL)
+		return (1);
+	if (len1 != len2)
+		return (1);
+	for (i = 0; str1[i]; i++)
+	{
+		if (str1[i] != str2[i])
+		{
+			def = str1[i] - str2[i];
+			return (def);
+		}
+		else
+			continue;
+	}
+	return (def);
+}
 /**
  * _strncmp - Compare two strings
  *
@@ -71,15 +95,13 @@ char *_strcat(char *dest, char *src)
  * @c: The character to search for
  * Return: char* The pointer to the first occurrence of the character
  */
-const char *_strchr(const char *str, char c)
+char *_strchr(const char *str, char c)
 {
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
+	for (; *str != '\0'; str++)
 	{
-		if (str[i] == c)
+		if (*str == c)
 		{
-			return (str + i);
+			return (char *)(str);
 		}
 	}
 	return (NULL);

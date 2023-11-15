@@ -8,8 +8,7 @@
  */
 int main(int ac, char **argv)
 {
-	int i;
-	char *lineptr /*command,*args[256] = {NULL, NULL}*/;
+	char *lineptr, **cmds;
 	size_t n_size;
 	ssize_t n_chars;
 
@@ -24,11 +23,8 @@ int main(int ac, char **argv)
 			printstr("\nExiting...");
 			exit(EXIT_FAILURE);
 		}
-		for (i = 0; lineptr[i] != '\n'; i++)
-			;
-		lineptr[i] = '\0';
-
-		execute(&lineptr, argv);
+		cmds = tokenizer(lineptr);
+		execute(cmds, argv);
 	}
 
 	return (0);

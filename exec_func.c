@@ -7,10 +7,11 @@
  * @argv: array of program name
  * Return: 0
  */
-int execute(char **args, char **argv)
+int execute(char **cmds, char **argv)
 {
+	char **envp = environ;
 	int exeerr;
-	char *cmd, **arg = NULL;
+	char *cmd;
 	pid_t pid;
 
 	cmd = get_cmdpath("PATH=");
@@ -26,11 +27,12 @@ int execute(char **args, char **argv)
 	}
 	else if (pid == 0)
 	{
-		exeerr = execve(args[0], arg, NULL);
+		exeerr = execve(cmds[0], cmds, envp);
 		if (exeerr == -1)
 		{
 			printstr(argv[0]);
-			perror(": Not Found");
+			printstr(cmds[0]);
+			perror(": ");
 		}
 	}
 	else

@@ -9,28 +9,34 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	char *nextToken = NULL, *token;
+	static char *nextToken = NULL, *tokenStart;
+
+	if (str == NULL && nextToken == NULL)
+		return (NULL);
 
 	if (str != NULL)
 		nextToken = str;
 
-	if (nextToken == NULL)
-		return (NULL);
+	while (_strchr(delim, *nextToken) != NULL)
+		nextToken++;
 
-	token = nextToken;
-
-	while (*nextToken != '\0')
+	if (*nextToken == '\0')
 	{
-		if (_strchr(delim, *nextToken) != NULL)
-		{
-			*nextToken++ = '\0';
-			return (token);
-		}
+		nextToken = NULL;
+		return (NULL);
+	}
+	tokenStart = nextToken;
+
+	while (*nextToken != '\0' && _strchr(delim, *nextToken) == NULL)
+		nextToken++;
+
+	if (*nextToken != '\0')
+	{
+		*nextToken = '\0';
 		nextToken++;
 	}
 
-	nextToken = NULL;
-	return (token);
+	return (tokenStart);
 }
 
 /**
