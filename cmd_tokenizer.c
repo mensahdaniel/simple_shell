@@ -2,17 +2,19 @@
 
 /**
  * tokenizer - breaks the lineptr into tokens based on the specidifed delimiter
+ *
+ * @buffer:
  */
-char **tokenizer(char *lineptr, char *delim)
+char **tokenizer(char *buffer, char *delim)
 {
 	int i;
 	char *command, **cmds, *args[SIZE] = {NULL, NULL};
 
-	for (i = 0; lineptr[i] != '\n'; i++)
+	for (i = 0; buffer[i] != '\n'; i++)
 		;
-	lineptr[i] = '\0';
+	buffer[i] = '\0';
 
-	command = _strtok(lineptr, delim);
+	command = _strtok(buffer, delim);
 	i = 0;
 	cmds = args;
 	while (command != NULL)
