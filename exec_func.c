@@ -16,7 +16,7 @@ int execute(char **cmds, char **argv)
 
 	cmd = get_cmdpath(cmds[0]);
 
-	if (builtincmd(cmds) == -1)
+	if (builtincmd(cmds[0]) == -1)
 	{
 		pid = fork();
 

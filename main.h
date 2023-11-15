@@ -32,7 +32,7 @@ char *_strcpy(char *dest, const char *src);
 char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
-int builtincmd(char **cmds);
+int builtincmd(char *cmds);
 char **tokenizer(char *lineptr, char *delim);
 int execute(char **cmds, char **argv);
 

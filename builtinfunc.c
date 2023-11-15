@@ -6,9 +6,9 @@
  * @cmds: built in command to run
  * Return: -1 if built-in command not found
  */
-int builtincmd(char **cmds)
+int builtincmd(char *cmds)
 {
-	if (_strcmp(cmds[0], "exit") == 0)
+	if (_strcmp(cmds, "exit") == 0)
 	{
 
 		printstr("Exiting...");
