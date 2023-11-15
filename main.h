@@ -12,7 +12,7 @@
 #define SIZE 256
 
 extern char **environ;
-extern char *args;
+extern char *args[SIZE];
 
 void isatty_handler(void);
 
