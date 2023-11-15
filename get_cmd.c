@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 #include <unistd.h>
 
 /**
@@ -9,7 +10,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmds = NULL, *cmd;
+	char *cmdpath = NULL, **cmds = args, *cmd;
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -18,6 +19,8 @@ char *get_cmdpath(char *command)
 	{
 		return (NULL);
 	}
+
+	cmd = malloc(_strlen(command) + _strlen(cmds[0]) + 2);
 
 	cmds = tokenizer(cmdpath, ":");
 	for (i = 0; cmd[i]; i++)
