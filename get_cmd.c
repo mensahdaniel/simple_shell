@@ -10,7 +10,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmds, *cmd;
+	char *cmdpath = NULL, **cmds, *cmdp;
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -21,17 +21,17 @@ char *get_cmdpath(char *command)
 	}
 
 	cmds = tokenizer(cmdpath, ":");
-	cmd = malloc(_strlen(command));
+	cmdp = malloc(_strlen(command));
 
 	for (i = 0; cmds[i]; i++)
 	{
-		_strcpy(cmd, cmds[i]);
-		_strcat(cmd, "/");
-		_strcat(cmd, command);
-		_strcat(cmd, "\0");
+		_strcpy(cmdp, cmds[i]);
+		_strcat(cmdp, "/");
+		_strcat(cmdp, command);
+		_strcat(cmdp, "\0");
 
-		if (access(cmd, X_OK))
-			return (cmd);
+		if (access(cmdp, X_OK))
+			return (cmdp);
 	}
 
 	return (NULL);
