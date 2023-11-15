@@ -31,6 +31,7 @@ int _strncmp(char *str1, char *str2, int count);
 char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
+int buildincmd(char **cmds);
 char **tokenizer(char *lineptr);
 int execute(char **cmds, char **argv);
 
