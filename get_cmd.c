@@ -24,7 +24,7 @@ char *get_cmdpath(char *command)
 
 	for (i = 0; cmds[i]; i++)
 	{
-		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[0]) + 2));
+		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
 		_strcpy(cmdp, cmds[i]);
 		_strcat(cmdp, "/");
 		_strcat(cmdp, command);
