@@ -10,8 +10,9 @@ char *get_cmdpath(char *command)
 {
 	char *cmdpath = NULL, **cmd;
 	(void)command;
+	3 `
 
-	cmdpath = get_path("PATH=");
+			cmdpath = get_path("PATH=");
 
 	if (cmdpath == NULL)
 	{
