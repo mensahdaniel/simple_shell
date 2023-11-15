@@ -9,9 +9,10 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-extern char **environ;
+#define SIZE 256
 
-#define args (char *[256])
+extern char **environ;
+extern char *args;
 
 void isatty_handler(void);
 
