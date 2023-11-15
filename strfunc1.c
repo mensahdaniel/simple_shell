@@ -66,16 +66,24 @@ char *_strdup(char *str)
 	return (dupstr);
 }
 
+/**
+ * _strcpy - Copy a string to another
+ *
+ * @dest: The destination string
+ * @src: The source string to be copied
+ * Return: char* The copied string
+ */
 char *_strcpy(char *dest, const char *src)
 {
 	if (src != NULL)
 	{
 		int i;
+
 		for (i = 0; src[i] != '\0'; i++)
 		{
 			dest[i] = src[i];
 		}
 		dest[i] = '\0';
 	}
-	return dest;
+	return (dest);
 }
