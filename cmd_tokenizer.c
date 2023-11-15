@@ -10,6 +10,7 @@ char **tokenizer(char *lineptr)
 
 	command = _strtok(lineptr, " ");
 	i = 0;
+	cmds = args;
 	while (command != NULL)
 	{
 		cmds[i] = command;
