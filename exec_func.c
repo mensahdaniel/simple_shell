@@ -42,10 +42,6 @@ int execute(char **cmds, char **argv)
 			wait(NULL);
 		}
 	}
-	else
-	{
-		printstr("Not Found");
-	}
 
 	return (0);
 }
