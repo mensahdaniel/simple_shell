@@ -11,7 +11,7 @@
 
 extern char **environ;
 
-#define args ((char *[256]){NULL, NULL})
+#define args (char *[256])
 
 void isatty_handler(void);
 
