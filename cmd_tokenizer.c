@@ -10,18 +10,18 @@
 char **tokenizer(char *buffer, char *delim)
 {
 	int i;
-	char *command, **tokens, *args[SIZE] = {NULL, NULL};
+	char *command, /**tokens,*/ *args[SIZE] = {NULL, NULL};
 
 	command = _strtok(buffer, delim);
 	i = 0;
-	tokens = args;
+	/*tokens = args;*/
 	while (command != NULL)
 	{
-		tokens[i] = command;
+		args[i] = command;
 		command = _strtok(NULL, delim);
 		i++;
 	}
-	tokens[i] = NULL;
+	args[i] = NULL;
 
-	return (tokens);
+	return (args);
 }
