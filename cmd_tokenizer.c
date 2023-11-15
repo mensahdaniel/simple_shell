@@ -10,7 +10,7 @@
 char **tokenizer(char *buffer, char *delim)
 {
 	int i;
-	char *command, **tokens = NULL, *args[SIZE] = {NULL, NULL};
+	char *command, **tokens, *args[SIZE] = {NULL, NULL};
 
 	command = _strtok(buffer, delim);
 	i = 0;
