@@ -9,7 +9,7 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	char *nextToken = NULL;
+	char *nextToken = NULL, *token;
 
 	if (str != NULL)
 		nextToken = str;
@@ -17,7 +17,7 @@ char *_strtok(char *str, const char *delim)
 	if (nextToken == NULL)
 		return (NULL);
 
-	char *token = nextToken;
+	token = nextToken;
 
 	while (*nextToken != '\0')
 	{
