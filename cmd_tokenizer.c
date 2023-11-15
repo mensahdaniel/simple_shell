@@ -3,12 +3,14 @@
 /**
  * tokenizer - breaks the lineptr into tokens based on the specidifed delimiter
  *
- * @buffer:
+ * @buffer: string to be tokenized
+ * @delim: the delimiter to be used to tokenize the string
+ * Return: the tokenized string as an array of tokens (cmds)
  */
 char **tokenizer(char *buffer, char *delim)
 {
 	int i;
-	char *command, **cmds, *args[SIZE] = {NULL, NULL};
+	char *command, **tokens, *args[SIZE] = {NULL, NULL};
 
 	for (i = 0; buffer[i] != '\n'; i++)
 		;
@@ -16,14 +18,14 @@ char **tokenizer(char *buffer, char *delim)
 
 	command = _strtok(buffer, delim);
 	i = 0;
-	cmds = args;
+	tokens = args;
 	while (command != NULL)
 	{
-		cmds[i] = command;
+		tokens[i] = command;
 		command = _strtok(NULL, delim);
 		i++;
 	}
-	cmds[i] = NULL;
+	tokens[i] = NULL;
 
-	return (cmds);
+	return (tokens);
 }
