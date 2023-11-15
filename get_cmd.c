@@ -10,8 +10,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	extern char *args[];
-	char *cmdpath = NULL, **cmds = args, *cmd;
+	char *cmdpath = NULL, **cmds, *cmd;
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -21,6 +20,7 @@ char *get_cmdpath(char *command)
 		return (NULL);
 	}
 
+	cmds = args;
 	cmd = malloc(_strlen(command) + _strlen(cmds[0]) + 2);
 
 	cmds = tokenizer(cmdpath, ":");
