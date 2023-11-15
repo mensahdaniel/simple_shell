@@ -9,7 +9,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmds, *cmd;
+	char *cmdpath = NULL, **cmds = NULL, *cmd;
 	int i;
 
 	cmdpath = get_path("PATH=");
