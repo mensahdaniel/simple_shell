@@ -17,7 +17,6 @@ char *get_cmdpath(char *command)
 
 	if (cmdpath == NULL)
 	{
-		free(cmdpath);
 		return (NULL);
 	}
 
