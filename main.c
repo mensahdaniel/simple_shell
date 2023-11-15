@@ -1,5 +1,4 @@
 #include "main.h"
-#include <sys/types.h>
 
 /**
  * main - Entry point
@@ -10,7 +9,7 @@
 int main(int ac, char **argv)
 {
 	int i;
-	char *lineptr, *command;
+	char *lineptr, *command, *args[256] = {NULL, NULL};
 
 	size_t n_size;
 	ssize_t n_chars;
@@ -32,17 +31,18 @@ int main(int ac, char **argv)
 			;
 		lineptr[i] = '\0';
 
+		args[0] = argv[0];
 		command = _strtok(lineptr, " ");
 		i = 1;
 		while (command != NULL)
 		{
-			argv[i] = command;
+			args[i] = command;
 			i++;
 			command = _strtok(NULL, " ");
 		}
-		argv[i] = NULL;
+		args[i] = NULL;
 
-		execute(argv);
+		execute(args);
 	}
 
 	return (0);

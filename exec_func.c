@@ -5,7 +5,7 @@
  *
  * @argv: array of arguments
  */
-int execute(char **argv)
+int execute(char **args)
 {
 	int exeerr;
 	char *cmd;
@@ -22,10 +22,10 @@ int execute(char **argv)
 	}
 	else if (pid == 0)
 	{
-		exeerr = execve(argv[1], argv, NULL);
+		exeerr = execve(args[1], args, NULL);
 		if (exeerr == -1)
 		{
-			printstr(argv[0]);
+			printstr(args[0]);
 			perror(":Not Found");
 		}
 	}
@@ -33,8 +33,6 @@ int execute(char **argv)
 	{
 		wait(NULL);
 	}
-
-	printstr(cmd);
 
 	return (0);
 }
