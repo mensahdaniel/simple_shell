@@ -8,17 +8,15 @@
  */
 int main(int ac, char **argv)
 {
-	int i;
-	char *lineptr, *command, *args[256] = {NULL, NULL};
-
+	int i, new;
+	char *lineptr /*command,*args[256] = {NULL, NULL}*/;
 	size_t n_size;
 	ssize_t n_chars;
 
 	(void)ac;
 	while (1)
 	{
-		printstr("(HSH)>>$ ");
-
+		isatty_handler();
 		n_chars = getline(&lineptr, &n_size, stdin);
 
 		if (n_chars == -1)
@@ -26,23 +24,17 @@ int main(int ac, char **argv)
 			printstr("\nExiting...");
 			exit(EXIT_FAILURE);
 		}
-
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 		lineptr[i] = '\0';
 
-		args[0] = argv[0];
-		command = _strtok(lineptr, " ");
-		i = 1;
-		while (command != NULL)
+		new = execve(lineptr, argv, NULL);
+		if (new == -1)
 		{
-			args[i] = command;
-			i++;
-			command = _strtok(NULL, " ");
+			printstr(argv[0]);
+			perror(": Not Found");
 		}
-		args[i] = NULL;
-
-		execute(args);
+		/*execute(args); */
 	}
 
 	return (0);

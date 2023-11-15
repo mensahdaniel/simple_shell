@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +10,8 @@
 #include <unistd.h>
 
 extern char **environ;
+
+void isatty_handler(void);
 
 char *get_path(char *path);
 char *get_cmdpath(char *command);

@@ -3,12 +3,13 @@
 /**
  * execute- execute specific command by calling fork to start child process
  *
- * @argv: array of arguments
+ * @args: array of arguments
+ * Return: 0
  */
 int execute(char **args)
 {
 	int exeerr;
-	char *cmd;
+	char *cmd, **arg = NULL;
 	pid_t pid;
 
 	cmd = get_cmdpath("PATH=");
@@ -24,7 +25,7 @@ int execute(char **args)
 	}
 	else if (pid == 0)
 	{
-		exeerr = execve(args[1], NULL, NULL);
+		exeerr = execve(args[1], arg, NULL);
 		if (exeerr == -1)
 		{
 			printstr(args[0]);
