@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
  * get_cmdpath - the absolute path of a command
@@ -8,18 +9,22 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmd;
+	char *cmdpath = NULL, **cmds, *cmd;
+	int i;
 	(void)command;
-	3 `
 
-			cmdpath = get_path("PATH=");
+	cmdpath = get_path("PATH=");
 
 	if (cmdpath == NULL)
 	{
 		return (NULL);
 	}
 
-	cmd = tokenizer(cmdpath, ":");
+	cmds = tokenizer(cmdpath, ":");
+	for (i = 0; cmd[i]; i++)
+	{
+		_strcat(cmd, cmds[i]);
+	}
 
-	return (cmdpath);
+	return (cmds[i]);
 }
