@@ -27,6 +27,6 @@ int _strncmp(char *str1, char *str2, int count);
 char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
-int execute(char **args);
+int execute(char **args, char **argv);
 
 #endif /* MAIN_H */

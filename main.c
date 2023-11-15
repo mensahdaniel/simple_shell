@@ -8,7 +8,7 @@
  */
 int main(int ac, char **argv)
 {
-	int i, new;
+	int i;
 	char *lineptr /*command,*args[256] = {NULL, NULL}*/;
 	size_t n_size;
 	ssize_t n_chars;
@@ -28,13 +28,7 @@ int main(int ac, char **argv)
 			;
 		lineptr[i] = '\0';
 
-		new = execve(lineptr, argv, NULL);
-		if (new == -1)
-		{
-			printstr(argv[0]);
-			perror(": Not Found");
-		}
-		/*execute(args); */
+		execute(&lineptr, argv);
 	}
 
 	return (0);

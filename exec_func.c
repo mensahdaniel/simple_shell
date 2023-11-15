@@ -3,10 +3,11 @@
 /**
  * execute- execute specific command by calling fork to start child process
  *
- * @args: array of arguments
+ * @args: array of commnd and arguments
+ * @argv: array of program name
  * Return: 0
  */
-int execute(char **args)
+int execute(char **args, char **argv)
 {
 	int exeerr;
 	char *cmd, **arg = NULL;
@@ -25,11 +26,11 @@ int execute(char **args)
 	}
 	else if (pid == 0)
 	{
-		exeerr = execve(args[1], arg, NULL);
+		exeerr = execve(args[0], arg, NULL);
 		if (exeerr == -1)
 		{
-			printstr(args[0]);
-			perror(":Not Found");
+			printstr(argv[0]);
+			perror(": Not Found");
 		}
 	}
 	else
