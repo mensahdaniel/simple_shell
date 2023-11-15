@@ -30,7 +30,7 @@ char *get_cmdpath(char *command)
 		_strcat(cmdp, command);
 		_strcat(cmdp, "\0");
 
-		if (access(cmdp, X_OK))
+		if (access(cmdp, X_OK) == 0)
 			return (cmdp);
 	}
 
