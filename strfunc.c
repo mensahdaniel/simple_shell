@@ -16,6 +16,13 @@ unsigned int long _strlen(char *str)
 	return (i);
 }
 
+/**
+ * _strcmp - Compares two strings
+ *
+ * @str1: first string
+ * @str2: second string to be compare
+ * Return: 0 if equal
+ */
 int _strcmp(char *str1, char *str2)
 {
 	int def = 0, i, len1, len2;
