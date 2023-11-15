@@ -8,7 +8,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL;
+	char *cmdpath = NULL, **cmd;
 	(void)command;
 
 	cmdpath = get_path("PATH=");
@@ -17,6 +17,8 @@ char *get_cmdpath(char *command)
 	{
 		return (NULL);
 	}
+
+	cmd = tokenizer(cmdpath, ":");
 
 	return (cmdpath);
 }
