@@ -26,6 +26,3 @@ GitHub: [mensahdaniel](https://github.com/mensahdaniel)
 Author's File: [AUTHORS](./AUTHORS)
 
 - - -
-
-<br>
-<br>
