@@ -35,5 +35,5 @@ char *get_cmdpath(char *command)
 		free(cmdp);
 	}
 
-	return (NULL);
+	return (command);
 }
