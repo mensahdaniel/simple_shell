@@ -15,3 +15,6 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | [cmd_tokenizer.c](./cmd_tokenizer.c) |  |
 | [builtinfunc.c](./builtinfunc.c) |  |
 | [isatty.c](./isatty.c) |  |
+
+# Authors
+[1.] Mensah Daniel: <mensahdaniel@gmail.com>
