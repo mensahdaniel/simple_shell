@@ -65,3 +65,12 @@ char *_strdup(char *str)
 
 	return (dupstr);
 }
+
+char *_strcpy(char *dest, char *src)
+{
+	if (src != NULL)
+	{
+		dest = src;
+	}
+	return (NULL);
+}
