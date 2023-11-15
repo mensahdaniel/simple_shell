@@ -7,14 +7,15 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | File | Description |
 | ---- | ----------- |
 | [main.c](./main.c) |  |
-| [get_cmd.c](./get_cmd.c) |  |
-| [get_path.c](./get_path.c) |  |
-| [exec_func.c](./exec_func.c) |  |
-| [print_func.c](./print_func.c) |  |
+| [get\_cmd.c](./get_cmd.c) |  |
+| [get\_path.c](./get_path.c) |  |
+| [exec\_func.c](./exec_func.c) |  |
+| [print\_func.c](./print_func.c) |  |
 | [main.h](./main.h) |  |
-| [cmd_tokenizer.c](./cmd_tokenizer.c) |  |
+| [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
 | [builtinfunc.c](./builtinfunc.c) |  |
 | [isatty.c](./isatty.c) |  |
 
 # Authors
-[1.] Mensah Daniel: <mensahdaniel@gmail.com>
+
+1. Mensah Daniel: [mensahdaniel@gmail.com](mailto:mensahdaniel@gmail.com)
