@@ -3,7 +3,7 @@
 char **tokenizer(char *lineptr)
 {
 	int i;
-	char *command, **cmds = args;
+	char *command, **cmds = args{NULL, NULL};
 	for (i = 0; lineptr[i] != '\n'; i++)
 		;
 	lineptr[i] = '\0';
