@@ -18,7 +18,8 @@ int execute(char **cmds, char **argv)
 
 	(void)cmd;
 
-	pid = fork();
+	if (buildincmd(cmds) == -1)
+		pid = fork();
 
 	if (pid == -1)
 	{
