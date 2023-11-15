@@ -14,7 +14,7 @@ char **tokenizer(char *buffer, char *delim)
 
 	command = _strtok(buffer, delim);
 	i = 0;
-	tokens = args;
+	tokens = malloc(_strlen(buffer));
 	while (command != NULL)
 	{
 		tokens[i] = command;
