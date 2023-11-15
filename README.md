@@ -3,7 +3,7 @@
 This is a Project by ALX Software Engineering School, this is to equip studens with the basics and understanding of how a Linux Shell works.
 
 ## Files and Discription
-<br>
+
 | File | Description |
 | ---- | ----------- |
 | [main.c](./main.c) |  |
@@ -16,7 +16,7 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | [builtinfunc.c](./builtinfunc.c) |  |
 | [isatty.c](./isatty.c) |  |
 
-# Authors
+## Authors
 
 1. Mensah Daniel: [mensahdaniel5858910@gmail.com](mailto:mensahdaniel5858910@gmail.com) GitHub: [mensahdaniel](https://github.com/mensahdaniel)
 
