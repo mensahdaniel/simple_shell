@@ -21,7 +21,7 @@ char *get_cmdpath(char *command)
 	}
 
 	cmds = tokenizer(cmdpath, ":");
-	cmd = malloc(_strlen(command) + sizeof(char **) + 256 + 2);
+	cmd = malloc(_strlen(command) + 256 + 2);
 
 	for (i = 0; cmds[i]; i++)
 	{
