@@ -18,4 +18,4 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 # Authors
 
-1. Mensah Daniel: [mensahdaniel@gmail.com](mailto:mensahdaniel@gmail.com)
+1. Mensah Daniel: [mensahdaniel5858910@gmail.com](mailto:mensahdaniel5858910@gmail.com)  GitHub: [mensahdaniel](https://github.com/mensahdaniel)
