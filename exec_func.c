@@ -3,7 +3,7 @@
 /**
  * execute- execute specific command by calling fork to start child process
  *
- * @args: array of commnd and arguments
+ * @cmds: array of commnd and arguments
  * @argv: array of program name
  * Return: 0
  */
