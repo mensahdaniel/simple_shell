@@ -66,11 +66,16 @@ char *_strdup(char *str)
 	return (dupstr);
 }
 
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dest, const char *src)
 {
 	if (src != NULL)
 	{
-		dest = src;
+		int i;
+		for (i = 0; src[i] != '\0'; i++)
+		{
+			dest[i] = src[i];
+		}
+		dest[i] = '\0';
 	}
-	return (dest);
+	return dest;
 }
