@@ -41,6 +41,5 @@ int execute(char **cmds, char **argv)
 		}
 	}
 
-	free(cmds);
 	return (0);
 }
