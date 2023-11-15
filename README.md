@@ -4,17 +4,17 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 ## Files and Discription
 
-| File |  | Description |
-| ---- | --- | ----------- |
-|  | [main.c](./main.c) |  |
-|  | [get\_cmd.c](./get_cmd.c) |  |
-|  | [get\_path.c](./get_path.c) |  |
-|  | [exec\_func.c](./exec_func.c) |  |
-|  | [print\_func.c](./print_func.c) |  |
-|  | [main.h](./main.h) |  |
-| [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |  |
-| [builtinfunc.c](./builtinfunc.c) |  |  |
-| [isatty.c](./isatty.c) |  |  |
+| SN | File | Description |
+| --- | ---- | ----------- |
+| 1. | [main.c](./main.c) |  |
+| 2. | [get\_cmd.c](./get_cmd.c) |  |
+| 3. | [get\_path.c](./get_path.c) |  |
+| 4. | [exec\_func.c](./exec_func.c) |  |
+| 5. | [print\_func.c](./print_func.c) |  |
+| 6. | [main.h](./main.h) |  |
+| 7. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
+| 8. | [builtinfunc.c](./builtinfunc.c) |  |
+| 9. | [isatty.c](./isatty.c) |  |
 
 ## Authors
 
