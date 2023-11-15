@@ -4,9 +4,9 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 ## Files and Discription
 <br>
-| File | Link | Description |
-| ---- | ---- | ----------- |
-| main.c | [main.c](./main.c) |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| File | Description |
+| ---- | ----------- |
+| [main.c](./main.c) |  |
+|  |  |
+|  |  |
+|  |  |
