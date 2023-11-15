@@ -10,6 +10,7 @@
  */
 char *get_cmdpath(char *command)
 {
+	extern char *args[];
 	char *cmdpath = NULL, **cmds = args, *cmd;
 	int i;
 
