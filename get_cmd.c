@@ -24,7 +24,6 @@ char *get_cmdpath(char *command)
 
 	for (i = 0; cmds[i] != NULL; i++)
 	{
-		printstr(cmds[i]);
 		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
 
 		if (cmdp == NULL)
@@ -46,6 +45,7 @@ char *get_cmdpath(char *command)
 
 		free(cmdp); // Free cmdp if access fails
 	}
+	printstr(cmds[i]);
 
 	free(cmds); // Free cmds array before returning NULL
 	return NULL;
