@@ -8,8 +8,8 @@
  */
 int main(int ac, char **argv)
 {
-	char *lineptr, **cmds;
-	size_t n_size;
+	char *lineptr = NULL;
+	size_t n_size = 0;
 	ssize_t n_chars;
 	int i;
 
@@ -21,15 +21,21 @@ int main(int ac, char **argv)
 
 		if (n_chars == -1)
 		{
-			printstr("\nExiting...");
+			printstr("\nExiting...\n");
+			free(lineptr); // Free memory allocated by getline
 			exit(EXIT_FAILURE);
 		}
+
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
+
 		lineptr[i] = '\0';
+
+		char **cmds;
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv);
+		free(lineptr); // Free memory allocated by getline after processing
 	}
 
-	return (0);
+	return 0;
 }
