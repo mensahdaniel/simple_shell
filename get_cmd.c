@@ -25,10 +25,11 @@ char *get_cmdpath(char *command)
 		strcat(cmdp, "/");
 		strcat(cmdp, command);
 
-		printf("%s\n", cmdp);
+		printf("full path: %s\n", cmdp);
 		if (access(cmdp, X_OK) == 0)
 			return (cmdp);
 		dir = strtok(NULL, delim);
+		printf("token path: %s\n", dir);
 	}
 
 	return (NULL);
