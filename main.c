@@ -22,7 +22,7 @@ int main(int ac, char **argv)
 		if (n_chars == -1)
 		{
 			free(lineptr); // Free memory allocated by getline
-			exit(EXIT_FAILURE);
+			exit(0);
 		}
 
 		for (i = 0; lineptr[i] != '\n'; i++)
