@@ -24,9 +24,10 @@ long int _putchar(char c)
 int printstr(char *str)
 {
 	int i;
-	for (i = 0; *str != '\0'; str++, i++)
+
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		_putchar(*str);
+		_putchar(str[i]);
 	}
 	return (i);
 }
