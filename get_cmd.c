@@ -8,7 +8,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmds = NULL, *cmdp = NULL;
+	char *cmdpath = NULL, *dir = NULL, *cmdp = NULL, *delim = ":";
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -18,7 +18,18 @@ char *get_cmdpath(char *command)
 		return NULL;
 	}
 
-	cmdp = full_path(command, cmdpath);
+	dir = strtok(cmdpath, delim);
+	while (dir != NULL)
+	{
+		cmdp = malloc(sizeof(char *) * (strlen(command) + strlen(dir) + 2));
+		strcpy(cmdp, dir);
+		strcat(cmdp, "/");
+		strcat(cmdp, command);
 
-	return (cmdp);
+		if (access(cmdp, X_OK) == 0)
+			return (cmdp);
+		dir = strtok(NULL, delim);
+	}
+
+	return (NULL);
 }

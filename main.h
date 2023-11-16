@@ -34,7 +34,6 @@ char *_strdup(char *str);
 
 int _printerror(char *cmd, char *argv, int count);
 
-char *full_path(char *cmd, char *path);
 char *_itoa(int num);
 int _free(char **args);
 
