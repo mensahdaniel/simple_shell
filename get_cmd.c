@@ -37,13 +37,13 @@ char *get_cmdpath(char *command)
 		if (access(cmdp, X_OK) == 0)
 		{
 			// Free memory allocated for cmds array
-			free(cmds);
+			_free(cmds);
 			return cmdp;
 		}
 
 		free(cmdp); // Free cmdp if access fails
 	}
 
-	free(cmds); // Free cmds array before returning NULL
+	_free(cmds); // Free cmds array before returning NULL
 	return NULL;
 }
