@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 char *_itoa(int num)
 {
@@ -37,4 +39,19 @@ char *_itoa(int num)
 
 char *full_path(char *cmd, char *path)
 {
+	char *dir, *token, *delim = ":";
+	dir = _strtok(path, delim);
+	while (dir != NULL)
+	{
+		token = malloc(sizeof(char *) * (_strlen(cmd) + _strlen(dir) + 2));
+		_strcpy(token, dir);
+		_strcat(token, "/");
+		_strcat(token, cmd);
+
+		if (access(token, X_OK) == 0)
+			return (token);
+		dir = _strtok(NULL, delim);
+	}
+
+	return (NULL);
 }
