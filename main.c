@@ -26,16 +26,16 @@ int main(int ac, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+
+		lineptr[i] = '\0';
+
 		if (n_chars == 2 && (lineptr[0] == ' ' || lineptr[0] == '\t'))
 		{
 			free(lineptr);
 			continue;
 		}
-
-		for (i = 0; lineptr[i] != '\n'; i++)
-			;
-
-		lineptr[i] = '\0';
 
 		while (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
