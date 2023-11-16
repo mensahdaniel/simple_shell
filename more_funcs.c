@@ -3,7 +3,7 @@
 char *_itoa(int num)
 {
 	int temp = num, n_digits = 0;
-	int isNegative = 0;
+	int isNegative = 0, dex;
 
 	if (num < 0)
 	{
@@ -25,11 +25,12 @@ char *_itoa(int num)
 	if (isNegative)
 		str[0] = '-';
 
-	str[n_digits + isNegative] = '\0';
+	dex = n_digits + isNegative;
+	str[dex] = '\0';
 
 	do
 	{
-		str[--n_digits + isNegative] = (num % 10) + '0';
+		str[--dex] = (num % 10) + '0';
 		num /= 10;
 	} while (num != 0);
 
