@@ -21,7 +21,6 @@ int main(int ac, char **argv)
 
 		if (n_chars == -1)
 		{
-			printstr("\nExiting...\n");
 			free(lineptr); // Free memory allocated by getline
 			exit(EXIT_FAILURE);
 		}
