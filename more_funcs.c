@@ -11,11 +11,11 @@ char *_itoa(int num)
 		temp = -temp;
 	}
 
-	do
+	while (temp != 0)
 	{
 		n_digits++;
 		temp /= 10;
-	} while (temp != 0);
+	}
 
 	char *str = malloc((n_digits + isNegative + 1) * sizeof(char));
 
