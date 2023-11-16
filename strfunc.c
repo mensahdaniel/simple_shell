@@ -8,14 +8,11 @@
  */
 size_t _strlen(const char *str)
 {
-	size_t length = 0;
+	size_t i;
 
-	while (str[length] != '\0')
-	{
-		length++;
-	}
-
-	return length;
+	for (i = 1; str[i]; i++)
+		;
+	return i;
 }
 
 /**
