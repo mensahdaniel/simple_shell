@@ -17,6 +17,12 @@ int execute(char **cmds, char **argv)
 
 	cmd = get_cmdpath(cmds[0]);
 
+	if (cmd == NULL)
+	{
+		// Handle command not found
+		return 1;
+	}
+
 	if (builtincmd(cmds[0]) == -1)
 	{
 		pid = fork();
@@ -24,16 +30,20 @@ int execute(char **cmds, char **argv)
 		if (pid == -1)
 		{
 			perror("fork");
-			return (1);
+			free(cmd); // Free cmd in case of fork failure
+			return 1;
 		}
 		else if (pid == 0)
 		{
 			exeerr = execve(cmd, cmds, envp);
+
 			if (exeerr == -1)
 			{
 				printstr(argv[0]);
 				printstr(cmds[0]);
 				perror(":");
+				free(cmd); // Free cmd if execve fails
+				exit(EXIT_FAILURE);
 			}
 		}
 		else
@@ -41,6 +51,7 @@ int execute(char **cmds, char **argv)
 			wait(NULL);
 		}
 	}
+
 	free(cmd);
-	return (0);
+	return 0;
 }
