@@ -26,6 +26,12 @@ int main(int ac, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
+		if (n_chars == 2 && (lineptr[0] == ' ' || lineptr[0] == '\t'))
+		{
+			free(lineptr);
+			continue;
+		}
+
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 
