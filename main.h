@@ -22,7 +22,7 @@ char *get_cmdpath(char *command);
 long int _putchar(char c);
 int printstr(char *str);
 
-unsigned int long _strlen(char *str);
+size_t _strlen(const char *str);
 int _strcmp(char *str1, char *str2);
 char *_strchr(const char *str, char c);
 char *_strcat(char *dest, char *src);
