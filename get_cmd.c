@@ -24,6 +24,8 @@ char *get_cmdpath(char *command)
 
 	for (i = 0; cmds[i] != NULL; i++)
 	{
+		printf("%s", cmds[i]);
+
 		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
 
 		if (cmdp == NULL)
