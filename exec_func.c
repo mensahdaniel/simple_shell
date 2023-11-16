@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * execute- execute specific command by calling fork to start child process
@@ -40,6 +41,6 @@ int execute(char **cmds, char **argv)
 			wait(NULL);
 		}
 	}
-
+	free(cmd);
 	return (0);
 }
