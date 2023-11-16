@@ -35,6 +35,7 @@ char *_strdup(char *str);
 int _printerror(char *cmd, char *argv, int count);
 
 char *_itoa(int num);
+void _free(char **args);
 
 int builtincmd(char *cmds);
 char **tokenizer(char *lineptr, char *delim);

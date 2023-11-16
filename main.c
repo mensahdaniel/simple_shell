@@ -41,7 +41,7 @@ int main(int ac, char **argv)
 
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv, count);
-		free(cmds);
+		_free(cmds);
 	}
 	free(lineptr); // Free memory allocated by getline after processing
 	return 0;
