@@ -1,9 +1,9 @@
 #include "main.h"
 
-void _free(char **args)
+int _free(char **args)
 {
+	if (*args == NULL)
+		return (0);
 	while (*args != NULL)
-		if (*args == NULL)
-			break;
-	free(*args++);
+		free(*args++);
 }
