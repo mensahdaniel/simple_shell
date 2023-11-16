@@ -2,8 +2,8 @@
 
 char *_itoa(int num)
 {
-	int temp = num, n_digits = 0;
-	int isNegative = 0, dex;
+	int temp, n_digits = 0;
+	int isNegative = 0, dex = 10;
 	char *str = (char *)malloc(12 * sizeof(char));
 
 	if (str == NULL)
@@ -11,18 +11,26 @@ char *_itoa(int num)
 
 	if (num < 0)
 	{
-		temp = -temp;
+		temp = -num;
 		str[0] = '-';
 	}
 	else
 	{
+		temp = num;
+		str[0] = '\0';
 	}
 
-	while (temp != 0)
+	if (temp == 0)
 	{
-		n_digits++;
-		temp /= 10;
+		str[dex--] = '0';
 	}
-
+	else
+	{
+		while (temp != 0)
+		{
+			str[dex--] = (temp % 10) + '0';
+			temp /= 10;
+		}
+	}
 	return (str);
 }
