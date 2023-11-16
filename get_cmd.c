@@ -8,7 +8,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, *cmds = NULL, *cmdp = NULL;
+	char *cmdpath = NULL, **cmds = NULL, *cmdp = NULL;
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -18,12 +18,11 @@ char *get_cmdpath(char *command)
 		return NULL;
 	}
 
-	// cmds = tokenizer(cmdpath, ":");
-	cmds = _strtok(cmdpath, ":");
+	cmds = tokenizer(cmdpath, ":");
 
-	for (i = 0; cmds != NULL; i++)
+	for (i = 0; cmds[i] != NULL; i++)
 	{
-		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds) + 2));
+		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
 
 		if (cmdp == NULL)
 		{
@@ -31,19 +30,20 @@ char *get_cmdpath(char *command)
 			return NULL;
 		}
 
-		_strcpy(cmdp, cmds);
+		_strcpy(cmdp, cmds[i]);
 		_strcat(cmdp, "/");
 		_strcat(cmdp, command);
 
 		if (access(cmdp, X_OK) == 0)
 		{
 			// Free memory allocated for cmds array
+			free(cmds);
 			return cmdp;
 		}
 
 		free(cmdp); // Free cmdp if access fails
-		cmds = _strtok(NULL, ":");
 	}
 
+	free(cmds); // Free cmds array before returning NULL
 	return NULL;
 }
