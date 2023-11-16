@@ -25,6 +25,7 @@ char *get_cmdpath(char *command)
 		strcat(cmdp, "/");
 		strcat(cmdp, command);
 
+		printf("%s\n", cmdp);
 		if (access(cmdp, X_OK) == 0)
 			return (cmdp);
 		dir = strtok(NULL, delim);
