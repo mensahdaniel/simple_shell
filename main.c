@@ -11,7 +11,7 @@ int main(int ac, char **argv)
 	char *lineptr = NULL;
 	size_t n_size = 0;
 	ssize_t n_chars;
-	int i;
+	int i, count = 0;
 
 	(void)ac;
 	while (1)
@@ -37,9 +37,10 @@ int main(int ac, char **argv)
 			continue;
 
 		char **cmds;
+		count++;
 
 		cmds = tokenizer(lineptr, " ");
-		execute(cmds, argv);
+		execute(cmds, argv, count);
 	}
 
 	free(lineptr); // Free memory allocated by getline after processing
