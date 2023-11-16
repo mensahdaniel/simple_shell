@@ -37,7 +37,7 @@ int main(int ac, char **argv)
 			continue;
 		}
 
-		while (*lineptr == ' ' || *lineptr == '\t')
+		while (*lineptr == ' ' || *lineptr == '\t' || lineptr == NULL)
 			lineptr++;
 
 		char **cmds;
