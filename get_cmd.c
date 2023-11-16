@@ -28,6 +28,8 @@ char *get_cmdpath(char *command)
 		printf("full path: %s\n", cmdp);
 		if (access(cmdp, X_OK) == 0)
 			return (cmdp);
+
+		free(cmdp);
 		dir = strtok(NULL, delim);
 		printf("token path: %s\n", dir);
 	}
