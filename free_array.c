@@ -3,5 +3,7 @@
 void _free(char **args)
 {
 	while (*args != NULL)
-		free(*args++);
+		if (*args == NULL)
+			break;
+	free(*args++);
 }
