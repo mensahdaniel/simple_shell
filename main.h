@@ -32,6 +32,8 @@ char *_strcpy(char *dest, const char *src);
 char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
+int _printerror(char *cmd, char *argv, int count);
+
 int builtincmd(char *cmds);
 char **tokenizer(char *lineptr, char *delim);
 int execute(char **cmds, char **argv);

@@ -40,4 +40,6 @@ int _printerror(char *cmd, char *argv, int count)
 	printstr(": ");
 	printstr(cmd);
 	printstr(": not found\n");
+
+	return (0);
 }
