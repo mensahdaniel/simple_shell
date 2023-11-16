@@ -10,7 +10,7 @@
 int execute(char **cmds, char **argv)
 {
 	char **envp = environ;
-	int exeerr;
+	int exeerr, count = 1;
 	char *cmd;
 	pid_t pid;
 
@@ -24,9 +24,7 @@ int execute(char **cmds, char **argv)
 		// Handle command not found
 		if (builtincmd(cmds[0]) == -1)
 		{
-			printstr(argv[0]);
-			printstr(cmds[0]);
-			printstr(": Command not found\n");
+			_printerror(cmds[0], argv[0], count);
 		}
 	}
 	else
@@ -45,9 +43,8 @@ int execute(char **cmds, char **argv)
 
 			if (exeerr == -1)
 			{
-				printstr(argv[0]);
-				printstr(cmds[0]);
-				perror(":");
+				_printerror(cmds[0], argv[0], count);
+
 				free(cmd); // Free cmd if execve fails
 				exit(EXIT_FAILURE);
 			}
