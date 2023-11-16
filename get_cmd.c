@@ -18,7 +18,7 @@ char *get_cmdpath(char *command)
 		return NULL;
 	}
 
-	cmds = tokenizer(cmdpath, ":");
+	// cmds = tokenizer(cmdpath, ":");
 
 	for (i = 0; cmds[i]; i++)
 	{
