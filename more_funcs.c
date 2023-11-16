@@ -28,11 +28,12 @@ char *_itoa(int num)
 	dex = n_digits + isNegative;
 	str[dex] = '\0';
 
-	do
+	while (n_digits != 0)
 	{
 		str[--dex] = (num % 10) + '0';
 		num /= 10;
-	} while (num != 0);
+		n_digits--;
+	}
 
 	return (str);
 }
