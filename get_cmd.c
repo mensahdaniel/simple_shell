@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 /**
  * get_cmdpath - the absolute path of a command
