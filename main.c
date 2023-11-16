@@ -26,6 +26,8 @@ int main(int ac, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
+		if (lineptr == NULL)
+			continue;
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 
