@@ -31,8 +31,8 @@ int main(int ac, char **argv)
 
 		lineptr[i] = '\0';
 
-		if (_strcmp(lineptr, "") == 0)
-			continue;
+		while (*lineptr == ' ' || *lineptr == '\t')
+			lineptr++;
 
 		char **cmds;
 
