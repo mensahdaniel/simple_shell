@@ -26,14 +26,16 @@ int main(int ac, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
-		if (_strcmp(lineptr, "") == 0)
-			continue;
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 
 		lineptr[i] = '\0';
 
+		if (_strcmp(lineptr, "") == 0)
+			continue;
+
 		char **cmds;
+
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv);
 	}
