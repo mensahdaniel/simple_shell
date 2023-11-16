@@ -14,7 +14,8 @@ int execute(char **cmds, char **argv)
 	char *cmd;
 	pid_t pid;
 
-	cmd = get_cmdpath(cmds[0]);
+	if (*cmds[0] != '/')
+		cmd = get_cmdpath(cmds[0]);
 
 	if (cmd == NULL)
 	{
