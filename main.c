@@ -31,11 +31,11 @@ int main(int ac, char **argv)
 
 		lineptr[i] = '\0';
 
-		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
-			continue;
-
 		while (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
+
+		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
+			continue;
 
 		char **cmds;
 
