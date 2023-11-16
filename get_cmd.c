@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
  * get_cmdpath - the absolute path of a command
@@ -9,8 +8,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, *cmdp = NULL;
-	char **cmds = malloc(sizeof(char) * SIZE);
+	char *cmdpath = NULL, **cmds = NULL, *cmdp = NULL;
 	int i;
 
 	cmdpath = get_path("PATH=");
