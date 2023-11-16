@@ -2,8 +2,7 @@
 
 char *_itoa(int num)
 {
-	int temp, n_digits = 0;
-	int isNegative = 0, dex = 10;
+	int temp, dex = 10;
 	char *str = (char *)malloc(12 * sizeof(char));
 
 	if (str == NULL)
@@ -32,5 +31,5 @@ char *_itoa(int num)
 			temp /= 10;
 		}
 	}
-	return (str);
+	return (&str[dex + 1]);
 }
