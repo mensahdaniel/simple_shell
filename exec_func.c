@@ -56,5 +56,6 @@ int execute(char **cmds, char **argv, int count)
 	}
 
 	free(cmd);
+	_free(cmds);
 	return 0;
 }
