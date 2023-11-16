@@ -16,6 +16,8 @@ int execute(char **cmds, char **argv)
 
 	if (*cmds[0] != '/')
 		cmd = get_cmdpath(cmds[0]);
+	else
+		cmd = cmds[0];
 
 	if (cmd == NULL)
 	{
