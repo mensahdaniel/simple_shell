@@ -45,7 +45,6 @@ char *get_cmdpath(char *command)
 
 		free(cmdp); // Free cmdp if access fails
 	}
-	printstr(cmds[i]);
 
 	free(cmds); // Free cmds array before returning NULL
 	return NULL;
