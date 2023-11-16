@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * get_cmdpath - the absolute path of a command
@@ -8,7 +9,8 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, **cmds, *cmdp = NULL;
+	char *cmdpath = NULL, *cmdp = NULL;
+	char **cmds = malloc(sizeof(char) * SIZE);
 	int i;
 
 	cmdpath = get_path("PATH=");
@@ -22,8 +24,6 @@ char *get_cmdpath(char *command)
 
 	for (i = 0; cmds[i] != NULL; i++)
 	{
-		printf("%s", cmds[i]);
-
 		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
 
 		if (cmdp == NULL)
