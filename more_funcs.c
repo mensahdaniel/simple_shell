@@ -38,18 +38,6 @@ char *_itoa(int num)
 char *full_path(char *cmd, char *path)
 {
 	char *dir, *token, *delim = ":";
-	dir = strtok(path, delim);
-	while (dir != NULL)
-	{
-		token = malloc(sizeof(char *) * (strlen(cmd) + strlen(dir) + 2));
-		strcpy(token, dir);
-		strcat(token, "/");
-		strcat(token, cmd);
-
-		if (access(token, X_OK) == 0)
-			return (token);
-		dir = strtok(NULL, delim);
-	}
 
 	return (NULL);
 }
