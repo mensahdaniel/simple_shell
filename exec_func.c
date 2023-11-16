@@ -43,7 +43,7 @@ int execute(char **cmds, char **argv, int count)
 
 			if (exeerr == -1)
 			{
-				_printerror(cmds[0], argv[0], count);
+				_printerror(cmd, argv[0], count);
 
 				free(cmd); /* Free cmd if execve fails*/
 				exit(EXIT_FAILURE);
