@@ -43,6 +43,7 @@ char *get_cmdpath(char *command)
 		}
 
 		free(cmdp); // Free cmdp if access fails
+		cmds = _strtok(NULL, ":");
 	}
 
 	free(cmds); // Free cmds array before returning NULL
