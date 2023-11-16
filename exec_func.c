@@ -20,10 +20,14 @@ int execute(char **cmds, char **argv)
 	if (cmd == NULL)
 	{
 		// Handle command not found
-		return 1;
+		if (builtincmd(cmds[0]) == -1)
+		{
+			printstr(argv[0]);
+			printstr(cmds[0]);
+			printstr(": Command not found\n");
+		}
 	}
-
-	if (builtincmd(cmds[0]) == -1)
+	else
 	{
 		pid = fork();
 
