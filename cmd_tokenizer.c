@@ -9,7 +9,6 @@
  */
 char **tokenizer(char *buffer, char *delim)
 {
-	int i = 0;
 	char *command;
 	char **tokens = malloc(SIZE * sizeof(char *)); // Allocate memory for tokens dynamically
 
@@ -18,6 +17,8 @@ char **tokenizer(char *buffer, char *delim)
 		// Handle allocation failure
 		return NULL;
 	}
+
+	int i = 0;
 
 	command = _strtok(buffer, delim);
 	while (command != NULL)
