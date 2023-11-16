@@ -27,7 +27,8 @@ char *_itoa(int num)
 	{
 		while (temp != 0)
 		{
-			str[dex--] = (temp % 10) + '0';
+			char digit = (temp % 10) + '0';
+			str[dex--] = digit;
 			temp /= 10;
 		}
 	}
