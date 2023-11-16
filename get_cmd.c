@@ -45,6 +45,5 @@ char *get_cmdpath(char *command)
 		cmds = _strtok(NULL, ":");
 	}
 
-	free(cmds); // Free cmds array before returning NULL
 	return NULL;
 }
