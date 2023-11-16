@@ -26,7 +26,7 @@ int main(int ac, char **argv)
 			exit(EXIT_FAILURE);
 		}
 
-		if (lineptr == " ")
+		if (_strcmp(lineptr, "") == 0)
 			continue;
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
