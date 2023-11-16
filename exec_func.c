@@ -7,10 +7,10 @@
  * @argv: array of program name
  * Return: 0
  */
-int execute(char **cmds, char **argv)
+int execute(char **cmds, char **argv, int count)
 {
 	char **envp = environ;
-	int exeerr, count = 1;
+	int exeerr;
 	char *cmd;
 	pid_t pid;
 

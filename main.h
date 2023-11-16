@@ -38,6 +38,6 @@ char *_itoa(int num);
 
 int builtincmd(char *cmds);
 char **tokenizer(char *lineptr, char *delim);
-int execute(char **cmds, char **argv);
+int execute(char **cmds, char **argv, int count);
 
 #endif /* MAIN_H */
