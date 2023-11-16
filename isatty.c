@@ -8,6 +8,6 @@ void isatty_handler(void)
 	if (isatty(STDIN_FILENO))
 	{
 		printstr("(HSH)>>$ ");
-		// fflush(stdout);
+		/* fflush(stdout); */
 	}
 }
