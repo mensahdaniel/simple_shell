@@ -2,7 +2,6 @@
 
 void _free(char **args)
 {
-	int i = 0;
-	while (args[i] != NULL)
-		free(args[i++]);
+	while (*args != NULL)
+		free(*args++);
 }
