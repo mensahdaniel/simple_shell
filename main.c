@@ -31,7 +31,7 @@ int main(int ac, char **argv)
 
 		lineptr[i] = '\0';
 
-		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr == NULL)
+		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
 		{
 			free(lineptr);
 			continue;
