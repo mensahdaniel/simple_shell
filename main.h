@@ -12,7 +12,6 @@
 #define SIZE 50
 
 extern char **environ;
-// extern char *args[SIZE];
 
 void isatty_handler(void);
 
