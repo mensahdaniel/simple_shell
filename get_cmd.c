@@ -18,32 +18,7 @@ char *get_cmdpath(char *command)
 		return NULL;
 	}
 
-	cmds = tokenizer(cmdpath, ":");
+	cmdp = full_path(command, cmdpath);
 
-	for (i = 0; cmds[i] != NULL; i++)
-	{
-		cmdp = malloc(sizeof(char) * (_strlen(command) + _strlen(cmds[i]) + 2));
-
-		if (cmdp == NULL)
-		{
-			// Handle allocation failure
-			return NULL;
-		}
-
-		_strcpy(cmdp, cmds[i]);
-		_strcat(cmdp, "/");
-		_strcat(cmdp, command);
-
-		if (access(cmdp, X_OK) == 0)
-		{
-			// Free memory allocated for cmds array
-			_free(cmds);
-			return cmdp;
-		}
-
-		free(cmdp); // Free cmdp if access fails
-	}
-
-	_free(cmds); // Free cmds array before returning NULL
-	return NULL;
+	return (cmdp);
 }
