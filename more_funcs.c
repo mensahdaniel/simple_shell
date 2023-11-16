@@ -17,7 +17,7 @@ char *_itoa(int num)
 		temp /= 10;
 	}
 
-	char *str = malloc((n_digits + isNegative + 1) * sizeof(char));
+	char *str = (char *)malloc((n_digits + isNegative + 1) * sizeof(char));
 
 	if (str == NULL)
 		return (NULL);
