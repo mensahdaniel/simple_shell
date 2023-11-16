@@ -34,3 +34,7 @@ char *_itoa(int num)
 	}
 	return (&str[dex + 1]);
 }
+
+char *full_path(char *cmd, char *path)
+{
+}
