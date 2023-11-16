@@ -39,7 +39,6 @@ int execute(char **cmds, char **argv)
 		}
 		else if (pid == 0)
 		{
-			printstr(cmd);
 			exeerr = execve(cmd, cmds, envp);
 
 			if (exeerr == -1)
