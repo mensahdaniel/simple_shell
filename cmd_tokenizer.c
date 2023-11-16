@@ -22,9 +22,8 @@ char **tokenizer(char *buffer, char *delim)
 	command = _strtok(buffer, delim);
 	while (command != NULL)
 	{
-		tokens[i] = _strdup(command); // Allocate memory for each token
+		tokens[i++] = _strdup(command); // Allocate memory for each token
 		command = _strtok(NULL, delim);
-		i++;
 	}
 
 	tokens[i] = NULL;
