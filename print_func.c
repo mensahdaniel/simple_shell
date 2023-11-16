@@ -34,10 +34,10 @@ int printstr(char *str)
 
 int _printerror(char *cmd, char *argv, int count)
 {
-	(char *)count;
 	printstr(argv);
 	printstr(": ");
-	printstr(count);
+	printstr((char *)count);
+	printstr(": ");
 	printstr(cmd);
 	printstr(": not found\n");
 }
