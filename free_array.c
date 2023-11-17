@@ -17,9 +17,9 @@ int _free(char **args)
 }
 
 /**
- * history - Fill File By User Input
- * @input: User Input
- * Return: -1 Fail 0 Succes
+ * add_history - add user input to File
+ * @lineptr: The user's Input
+ * Return: -1 if Fail or 0 on Succes
  */
 int add_history(char *lineptr)
 {
