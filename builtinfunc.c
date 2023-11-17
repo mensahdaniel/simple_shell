@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
  * builtincmd - used to execute builtin functions
@@ -25,7 +26,7 @@ char *getinput(void)
 
 	for (i = 0; lineptr[i] != '\n'; i++)
 	{
-		n_chars = read(stdin, &ch, 1);
+		n_chars = read(STDIN_FILENO, &ch, 1);
 		if (n_chars == 0)
 		{
 			free(lineptr); /* Free memory allocated by getline*/
