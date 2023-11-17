@@ -7,25 +7,19 @@
  */
 int get_cmdpath(char **cmd)
 {
-	char *path, *value, *cmd_path;
+	char *path, *token, *cmd_path;
 	struct stat buf;
 
 	path = get_path("PATH");
-	value = _strtok(path, ":");
-	while (value != NULL)
+	token = _strtok(path, ":");
+	cmd_path = get_full_path(path, *cmd, token);
+	if (stat(cmd_path, &buf) == 0)
 	{
-		cmd_path = build(*cmd, value);
-		if (stat(cmd_path, &buf) == 0)
-		{
-			*cmd = _strdup(cmd_path);
-			free(cmd_path);
-			free(path);
-			return (0);
-		}
+		*cmd = _strdup(cmd_path);
 		free(cmd_path);
-		value = _strtok(NULL, ":");
+		free(path);
+		return (0);
 	}
-	free(path);
 
 	return (1);
 }
@@ -36,12 +30,12 @@ int get_cmdpath(char **cmd)
  *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
-char *build(char *token, char *value)
+char *full_cmdpath(char *command, char *directory)
 {
 	char *cmd;
 	size_t len;
 
-	len = _strlen(value) + _strlen(token) + 2;
+	len = _strlen(directory) + _strlen(command) + 2;
 	cmd = malloc(sizeof(char) * len);
 	if (cmd == NULL)
 	{
@@ -50,9 +44,9 @@ char *build(char *token, char *value)
 
 	memset(cmd, 0, len);
 
-	cmd = _strcat(cmd, value);
+	cmd = _strcat(cmd, directory);
 	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, token);
+	cmd = _strcat(cmd, command);
 
 	return (cmd);
 }
