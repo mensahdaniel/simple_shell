@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <stdarg.h>
@@ -52,5 +53,9 @@ int execute(char **cmds, char **argv, int count);
 
 int _isalpha(int c);
 int _atoi(char *s);
+
+void read_file(char *filename, char **argv);
+void treat_file(char *line, int counter, FILE *fp, char **argv);
+void exit_bul_for_file(char **cmd, char *line, FILE *fd);
 
 #endif /* MAIN_H */
