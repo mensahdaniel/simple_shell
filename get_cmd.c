@@ -17,7 +17,7 @@ char *get_cmdpath(char *command)
 		return NULL;
 	}
 
-	size_t path_len = strlen(path);
+	size_t path_len = _strlen(path);
 	cmdpath = malloc(path_len + strlen(command) + 2);
 
 	if (cmdpath == NULL)
@@ -35,11 +35,11 @@ char *get_cmdpath(char *command)
 		}
 
 		size_t dir_len = (size_t)end - (size_t)dir;
-		strncpy(cmdpath, dir, dir_len);
+		_strcpy(cmdpath, dir);
 		cmdpath[dir_len] = '\0';
 
-		strcat(cmdpath, "/");
-		strcat(cmdpath, command);
+		_strcat(cmdpath, "/");
+		_strcat(cmdpath, command);
 
 		if (access(cmdpath, X_OK) == 0)
 		{
