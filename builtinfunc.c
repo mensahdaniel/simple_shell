@@ -24,19 +24,18 @@ char *getinput(void)
 	size_t n_size = 0;
 	ssize_t n_chars;
 	int i;
-	while (1)
-	{
 
+	if (n_chars == -1)
+	{
+		free(lineptr); /* Free memory allocated by getline*/
+		exit(0);
+	}
+
+	for (i = 0; lineptr[i] != '\n'; i++)
+	{
 		n_chars = read(stdin, &lineptr, n_size);
 
-		if (n_chars == -1)
-		{
-			free(lineptr); /* Free memory allocated by getline*/
-			exit(0);
-		}
-
-		for (i = 0; lineptr[i] != '\n'; i++)
-			;
+		;
 
 		lineptr[i] = '\0';
 
