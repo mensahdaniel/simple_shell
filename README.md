@@ -9,7 +9,7 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | 1. | [main.c](./main.c) |  |
 | 2. | [get\_cmd.c](./get_cmd.c) |  |
 | 3. | [get\_path.c](./get_path.c) |  |
-| 4. | [exec\_func.c](./exec_func.c) |  |
+| 4. | [exec\_func.c](./execute_func.c) |  |
 | 5. | [print\_func.c](./print_func.c) |  |
 | 6. | [main.h](./main.h) |  |
 | 7. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |

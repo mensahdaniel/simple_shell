@@ -57,40 +57,71 @@ char *build(char *token, char *value)
 	return (cmd);
 }
 /**
- * _getenv - Gets The Value Of Enviroment Variable By Name
- * @name: Environment Variable Name
- * Return: The Value of the Environment Variable Else NULL.
+ * get_path - Get the PATH environment variable
+ *
+ * @path: The PATH environment variable name
+ * Return: char* The content of the PATH environment variable
  */
-char *_getenv(char *name)
+char *get_path(char *path)
 {
-	size_t nl, vl;
-	char *value;
-	int i, x, j;
+	char *pathvar, **env = environ;
+	int i;
 
-	nl = _strlen(name);
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env[i] != NULL; i++)
 	{
-		if (_strncmp(name, environ[i], nl) == 0)
+		if (_strncmp(env[i], path, 4) == 0)
 		{
-			vl = _strlen(environ[i]) - nl;
-			value = malloc(sizeof(char) * vl);
-			if (!value)
-			{
-				free(value);
-				perror("unable to alloc");
-				return (NULL);
-			}
+			pathvar = env[i];
 
-			j = 0;
-			for (x = nl + 1; environ[i][x]; x++, j++)
-			{
-				value[j] = environ[i][x];
-			}
-			value[j] = '\0';
-
-			return (value);
+			return (pathvar++ + 6);
 		}
 	}
 
+	return (NULL);
+}
+
+/**
+ * get_full_path - tokenize path and concatenates existing
+ * command with tokenized directories in path
+ *
+ * @path: the value for the PATH variable
+ * @command: the command to be concatenated to the directories
+ * @delim: delimeter to tokenize path with
+ * Return: valid command absolute path
+ */
+char *get_full_path(const char *path, const char *command, const char *delim)
+{
+	char *cmdpath = NULL;
+	const char *dir = path;
+
+	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
+
+	while (*dir != '\0')
+	{
+		const char *end = _strchr(dir, *delim);
+
+		if (end == NULL)
+			end = dir + _strlen(dir); /* Last path in PATH */
+
+		size_t dir_len = (size_t)end - (size_t)dir;
+
+		_strcpy(cmdpath, dir);
+		cmdpath[dir_len] = '\0';
+
+		_strcat(cmdpath, "/");
+		_strcat(cmdpath, command);
+
+		if (access(cmdpath, X_OK) == 0)
+		{
+			return (cmdpath);
+		}
+
+		if (*end == '\0')
+		{
+			break;
+		}
+
+		dir = end + 1; /* Move to the next directory in PATH */
+	}
 	return (NULL);
 }
