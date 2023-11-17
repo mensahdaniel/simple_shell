@@ -39,9 +39,9 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		else
 		{
-			st = check_cmd(cmd, input, counter, argv);
+			st = check_cmd(cmd, lineptr, counter, argv);
 		}
-		free_all(cmd, input);
+		free_all(cmd, lineptr);
 	}
 	return (statue);
 }
