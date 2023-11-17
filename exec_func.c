@@ -21,8 +21,7 @@ int execute(char **cmds, char **argv, int count)
 
 	if (cmd == NULL)
 	{
-		/* Handle command not found */
-		if (builtincmd(cmds[0]) == -1)
+		if (builtincmd(cmds[0]) == -1) /* Handle command not found */
 			_printerror(cmds[0], argv[0], count);
 	}
 	else
@@ -32,7 +31,7 @@ int execute(char **cmds, char **argv, int count)
 		if (pid == -1)
 		{
 			free(cmd); /* Free cmd in case of fork failure */
-			return 1;
+			return (1);
 		}
 		else if (pid == 0)
 		{
