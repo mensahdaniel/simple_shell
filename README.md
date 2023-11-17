@@ -14,7 +14,7 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | 6. | [main.h](./main.h) |  |
 | 7. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
 | 8. | [builtinfunc.c](./builtinfunc.c) |  |
-| 9. | [isatty.c](./isatty.c) |  |
+| 9. | [signal.c](./signal.c) |  |
 | 10. | [strfunc.c](./strfunc.c) |  |
 | 11. | [strfunc1.c](./strfunc1.c) |  |
 
