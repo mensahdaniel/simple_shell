@@ -21,6 +21,7 @@ void signal_to_handel(int sig)
 {
 	if (sig == SIGINT)
 	{
+		_putchar('\n');
 		printstr(PROMPT);
 	}
 }
