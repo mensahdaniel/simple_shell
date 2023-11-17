@@ -17,6 +17,7 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 | 9. | [signal.c](./signal.c) |  |
 | 10. | [strfunc.c](./strfunc.c) |  |
 | 11. | [strfunc1.c](./strfunc1.c) |  |
+| 12. | [strfunc2.c](./strfunc2.c) |  |
 
 ## Authors
 
@@ -26,3 +27,6 @@ GitHub: [mensahdaniel](https://github.com/mensahdaniel)
 Author's File: [AUTHORS](./AUTHORS)
 
 - - -
+
+<br>
+<br>
