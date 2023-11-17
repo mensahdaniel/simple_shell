@@ -31,7 +31,7 @@ extern char **environ;
 
 char *_strtok(char *str, const char *tok);
 char *_strncpy(char *dest, char *src, unsigned long int n);
-int _strlen(char *str);
+size_t _strlen(const char *str);
 int _putchar(char c);
 int _atoi(char *str);
 void printstr(char *str);

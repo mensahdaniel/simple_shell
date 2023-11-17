@@ -38,18 +38,18 @@ char *_strncpy(char *dest, char *src, unsigned long int n)
 }
 
 /**
- * _strlen - lenght of string
- * @s:char
- * Return:int
+ * _strlen - Get the length of a string
+ *
+ * @str: The string to get the length of
+ * Return: int, the length of the string
  */
-
-int _strlen(char *str)
+size_t _strlen(const char *str)
 {
-	int len;
+	size_t i;
 
-	for (len = 0; str[len] != '\0'; len++)
+	for (i = 1; str[i]; i++)
 		;
-	return (len);
+	return (i);
 }
 
 /**

@@ -63,16 +63,3 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	wait(&status);
 	return (0);
 }
-/**
- * signal_to_handel - Handle ^C
- * @sig:Captured Signal
- * Return: Void
- */
-void signal_to_handel(int sig)
-{
-	if (sig == SIGINT)
-	{
-    _putchar('\n');
-		printstr(PROMPT);
-	}
-}
