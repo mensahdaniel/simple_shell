@@ -7,7 +7,7 @@
  */
 char *_getline()
 {
-	char *lineptr = malloc(BUFFSIZE), ch = 0;
+	char *lineptr = malloc(BUFFSIZE);
 	ssize_t n_chars;
 	int i;
 
