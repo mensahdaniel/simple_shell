@@ -28,13 +28,13 @@ void _prerror(char **argv, int c, char **cmd)
 {
 	char *er = _itoa(c);
 
-	PRINT(argv[0]);
-	PRINT(": ");
-	PRINT(er);
-	PRINT(": ");
-	PRINT(cmd[0]);
-	PRINT(": Illegal number: ");
-	PRINT(cmd[1]);
-	PRINT("\n");
+	printstr(argv[0]);
+	printstr(": ");
+	printstr(er);
+	printstr(": ");
+	printstr(cmd[0]);
+	printstr(": Illegal number: ");
+	printstr(cmd[1]);
+	printstr("\n");
 	free(er);
 }

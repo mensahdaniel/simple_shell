@@ -16,13 +16,12 @@ int _builtin(char **cmd, int status)
 	while ((bil + i)->command)
 	{
 		if (_strcmp(cmd[0], (bil + i)->command) == 0)
-		{
 			return ((bil + i)->function(cmd, status));
-		}
 		i++;
 	}
 	return (-1);
 }
+
 /**
  * check_cmd - Excute Simple Shell Command (Fork,Wait,Excute)
  *
@@ -38,9 +37,7 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	pid_t pid;
 
 	if (*cmd == NULL)
-	{
 		return (-1);
-	}
 
 	pid = fork();
 	if (pid == -1)
@@ -52,9 +49,7 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	if (pid == 0)
 	{
 		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
-		{
 			get_cmdpath(cmd);
-		}
 
 		if (execve(*cmd, cmd, environ) == -1)
 		{
@@ -77,6 +72,7 @@ void signal_to_handel(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printstr("\n$ ");
+    _putchar('\n');
+		printstr(PROMPT);
 	}
 }

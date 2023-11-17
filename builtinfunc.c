@@ -76,13 +76,12 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
 int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
 	size_t i;
-	int len;
+  char **env = environ;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; env[i] != NULL; i++)
 	{
-		len = _strlen(environ[i]);
-		write(1, environ[i], len);
-		write(STDOUT_FILENO, "\n", 1);
+    printstr(env[i]);
+    _putchar('\n');
 	}
 	return (0);
 }
@@ -103,14 +102,14 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 		perror("Error");
 		return (0);
 	}
+
 	while (rd > 0)
 	{
 		rd = read(fd, &c, 1);
 		fw = write(STDOUT_FILENO, &c, rd);
+
 		if (fw < 0)
-		{
 			return (-1);
-		}
 	}
 	_putchar('\n');
 	return (0);
@@ -129,18 +128,18 @@ int echo_bul(char **cmd, int st)
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_in(st);
-		PRINT("\n");
+		printstr("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
-		PRINT("\n");
+		printstr("\n");
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
 		path = get_path("PATH");
-		PRINT(path);
-		PRINT("\n");
+		printstr(path);
+		printstr("\n");
 		free(path);
 	}
 	else
