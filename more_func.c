@@ -24,10 +24,10 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 	{
 		counter++;
 		er = _itoa(counter);
-		printstr(er);
+		PRINT(er);
 		free(er);
-		printstr(" ");
-		printstr(line);
+		PRINT(" ");
+		PRINT(line);
 	}
 	if (line)
 		free(line);

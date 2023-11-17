@@ -7,18 +7,25 @@
  */
 int get_cmdpath(char **cmd)
 {
-	char *path, *token = ":", *cmd_path;
+	char *path, *value, *cmd_path;
 	struct stat buf;
 
 	path = get_path("PATH");
-	cmd_path = get_full_path(path, *cmd, token);
-	if (stat(cmd_path, &buf) == 0)
+	value = _strtok(path, ":");
+	while (value != NULL)
 	{
-		*cmd = _strdup(cmd_path);
+		cmd_path = add_cmd_path(*cmd, value);
+		if (stat(cmd_path, &buf) == 0)
+		{
+			*cmd = _strdup(cmd_path);
+			free(cmd_path);
+			free(path);
+			return (0);
+		}
 		free(cmd_path);
-		free(path);
-		return (0);
+		value = _strtok(NULL, ":");
 	}
+	free(path);
 
 	return (1);
 }
@@ -74,48 +81,48 @@ char *get_path(char *path)
 	return (NULL);
 }
 
-/**
- * get_full_path - tokenize path and concatenates existing
- * command with tokenized directories in path
- *
- * @path: the value for the PATH variable
- * @command: the command to be concatenated to the directories
- * @delim: delimeter to tokenize path with
- * Return: valid command absolute path
- */
-char *get_full_path(const char *path, const char *command, const char *delim)
-{
-	char *cmdpath = NULL;
-	const char *dir = path;
+// /**
+//  * get_full_path - tokenize path and concatenates existing
+//  * command with tokenized directories in path
+//  *
+//  * @path: the value for the PATH variable
+//  * @command: the command to be concatenated to the directories
+//  * @delim: delimeter to tokenize path with
+//  * Return: valid command absolute path
+//  */
+// char *get_full_path(const char *path, const char *command, const char *delim)
+// {
+// 	char *cmdpath = NULL;
+// 	const char *dir = path;
 
-	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
+// 	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
 
-	while (*dir != '\0')
-	{
-		const char *end = _strchr(dir, *delim);
+// 	while (*dir != '\0')
+// 	{
+// 		const char *end = _strchr(dir, *delim);
 
-		if (end == NULL)
-			end = dir + _strlen(dir); /* Last path in PATH */
+// 		if (end == NULL)
+// 			end = dir + _strlen(dir); /* Last path in PATH */
 
-		size_t dir_len = (size_t)end - (size_t)dir;
+// 		size_t dir_len = (size_t)end - (size_t)dir;
 
-		_strcpy(cmdpath, dir);
-		cmdpath[dir_len] = '\0';
+// 		_strcpy(cmdpath, dir);
+// 		cmdpath[dir_len] = '\0';
 
-		_strcat(cmdpath, "/");
-		_strcat(cmdpath, command);
+// 		_strcat(cmdpath, "/");
+// 		_strcat(cmdpath, command);
 
-		if (access(cmdpath, X_OK) == 0)
-		{
-			return (cmdpath);
-		}
+// 		if (access(cmdpath, X_OK) == 0)
+// 		{
+// 			return (cmdpath);
+// 		}
 
-		if (*end == '\0')
-		{
-			break;
-		}
+// 		if (*end == '\0')
+// 		{
+// 			break;
+// 		}
 
-		dir = end + 1; /* Move to the next directory in PATH */
-	}
-	return (NULL);
-}
+// 		dir = end + 1; /* Move to the next directory in PATH */
+// 	}
+// 	return (NULL);
+// }

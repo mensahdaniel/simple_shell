@@ -25,7 +25,7 @@ extern char **environ;
 #define BUFSIZE 1024
 #define DELIM " \t\r\n\a"
 #define PROMPT "(HSH)>>$ "
-// #define PRINT(c) (write(STDOUT_FILENO, &c, _strlen(c)))
+#define PRINT(c) (write(STDOUT_FILENO, &c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
 
@@ -34,7 +34,7 @@ char *_strncpy(char *dest, char *src, unsigned long int n);
 size_t _strlen(const char *str);
 int _putchar(char c);
 int _atoi(char *str);
-void printstr(char *str);
+// void printstr(char *str);
 int _strcmp(char *str1, char *str2);
 int _isalpha(int c);
 void array_rev(char *arr, int len);
@@ -68,7 +68,7 @@ char *get_path(char *path);
 char **tokenizer(char *buffer, char *delim);
 int run_builtin_func(char **cmd, int er);
 void read_file(char *filename, char **argv);
-char *get_full_path(const char *path, const char *command, const char *delim);
+char *add_cmd_path(char *command, char *path);
 int check_builtin_func(char **cmd);
 void creat_envi(char **envi);
 int check_cmd(char **tokens, char *line, int count, char **argv);
