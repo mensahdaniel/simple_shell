@@ -10,12 +10,12 @@
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *lineptr, **cmd;
-	int counter = 0, statue = 1, st = 0;
+	int counter = 0, status = 1, st = 0;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
 	signal(SIGINT, signal_to_handel);
-	while (statue)
+	while (status)
 	{
 		counter++;
 		if (isatty(STDIN_FILENO))
@@ -39,12 +39,13 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		else
 		{
-			st = check_cmd(cmd, lineptr, counter, argv);
+			st = execute(cmd, lineptr, counter, argv);
 		}
 		_free(cmd, lineptr);
 	}
-	return (statue);
+	return (status);
 }
+
 /**
  * check_builtin - check builtin
  *

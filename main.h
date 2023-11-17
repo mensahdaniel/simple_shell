@@ -67,7 +67,7 @@ void read_file(char *filename, char **argv);
 char *get_fullpath(char *token, char *value);
 int check_builtin_func(char **cmd);
 void creat_envi(char **envi);
-int check_cmd(char **tokens, char *line, int count, char **argv);
+int execute(char **tokens, char *line, int count, char **argv);
 void treat_file(char *line, int counter, FILE *fd, char **argv);
 void exit_bul_for_file(char **cmd, char *line, FILE *fd);
 

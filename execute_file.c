@@ -54,7 +54,7 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
 	}
 	else
 	{
-		st = check_cmd(cmd, line, counter, argv);
+		st = execute(cmd, line, counter, argv);
 		free(cmd);
 	}
 }

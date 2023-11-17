@@ -32,7 +32,7 @@ int run_builtin_func(char **cmd, int er)
  * @argv:Program Name
  * Return: 1 Case Command Null -1 Wrong Command 0 Command Excuted
  */
-int check_cmd(char **cmd, char *input, int c, char **argv)
+int execute(char **cmd, char *input, int c, char **argv)
 {
 	int status;
 	pid_t pid;
