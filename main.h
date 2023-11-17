@@ -54,7 +54,7 @@ void _free(char **input, char *line);
 /**###### INPUT Function ######*/
 
 void prompt(void);
-void signal_to_handel(int sig);
+void handle_signal(int sig);
 char *_getline(void);
 
 /** ###### Command parser and extractor ###*/
