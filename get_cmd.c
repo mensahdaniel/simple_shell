@@ -30,6 +30,7 @@ char *add_path(char *cmdpath, const char *path, const char *command, const char 
 
 		dir = end + 1; /* Move to the next directory in PATH */
 	}
+	return (NULL);
 }
 
 /**
@@ -56,8 +57,10 @@ char *get_cmdpath(char *command)
 	{
 		return NULL; /* Handle allocation failure */
 	}
+	cmdpath = add_path(cmdpath, path, command, delim);
+	if (cmdpath)
+		return (cmdpath);
 
-	cmdpath = add_path(cmdpath, path);
 	free(cmdpath);
 	return NULL; /* if Command not found */
 }
