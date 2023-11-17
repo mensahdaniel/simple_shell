@@ -36,8 +36,6 @@ int _atoi(char *s);
 void _puts(char *str);
 int _strcmp(char *s1, char *s2);
 int _isalpha(int c);
-// void array_rev(char *arr, int len);
-// int intlen(int num);
 char *_itoa(size_t num);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
