@@ -23,7 +23,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 			prompt();
 		lineptr = _getline();
 
-		for (i = 0; lineptr[i] != '\0'; i++)
+		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 		lineptr[i] = '\0';
 
