@@ -10,7 +10,7 @@
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *lineptr, **cmd;
-	int counter = 0, statue = 1, st = 0;
+	int counter = 0, statue = 1, st = 0, i;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
@@ -26,6 +26,10 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		add_history(lineptr);
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+		lineptr[i] = '\0';
+
 		cmd = tokenizer(lineptr, " ");
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
