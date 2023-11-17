@@ -1,17 +1,7 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef MAIN_H
+#define MAIN_H
 
-/**###### environ var ######*/
-
-extern char **environ;
-
-/**##### MACROS ######*/
-
-#define BUFSIZE 1024
-#define DELIM " \t\r\n\a"
-#define PRINTER(c) (write(STDOUT_FILENO, c, _strlen(c)))
-
-/**###### LIBS USED ######*/
+/**###### C HEADER LIBRARIES USED ######*/
 
 #include <errno.h>
 #include <fcntl.h>
@@ -24,6 +14,17 @@ extern char **environ;
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+/**###### environ var ######*/
+
+extern char **environ;
+
+/**##### DEFINED MACROS ######*/
+
+#define SIZE 50
+#define BUFSIZE 1024
+#define DELIM " \t\r\n\a"
+#define PRINT(c) (write(STDOUT_FILENO, &c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
 
@@ -45,7 +46,7 @@ char *_strchr(char *s, char c);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
 
-/**###### MEMORIE  MANGMENT ####*/
+/**###### MEMORY  MANGMENT FUNCTIONS ####*/
 
 void free_env(char **env);
 void *fill_an_array(void *a, int el, unsigned int len);
@@ -103,4 +104,4 @@ typedef struct bulltin {
   int (*fun)(char **line, int er);
 } bul_t;
 
-#endif
+#endif /* MAIN_H */

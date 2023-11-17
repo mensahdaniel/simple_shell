@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  *  _prerror - Print Custome Error
  * @argv:Program Name
@@ -10,13 +10,13 @@ void _prerror(char **argv, int c, char **cmd)
 {
 	char *er = _itoa(c);
 
-	PRINTER(argv[0]);
-	PRINTER(": ");
-	PRINTER(er);
-	PRINTER(": ");
-	PRINTER(cmd[0]);
-	PRINTER(": Illegal number: ");
-	PRINTER(cmd[1]);
-	PRINTER("\n");
+	PRINT(argv[0]);
+	PRINT(": ");
+	PRINT(er);
+	PRINT(": ");
+	PRINT(cmd[0]);
+	PRINT(": Illegal number: ");
+	PRINT(cmd[1]);
+	PRINT("\n");
 	free(er);
 }

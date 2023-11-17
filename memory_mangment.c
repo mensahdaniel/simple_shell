@@ -1,7 +1,7 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- **_realloc -  Reallocates A Memory Block Using Malloc And Free
+ *_realloc -  Reallocates A Memory Block Using Malloc And Free
  *@ptr: Pointer
  *@old_size: Previous Size Of The Pointer
  *@new_size: New Size Of The Pointer

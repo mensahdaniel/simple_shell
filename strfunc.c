@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * _strcmp - Compare Two String
@@ -8,9 +8,9 @@
  */
 int _strcmp(char *s1, char *s2)
 {
-int cmp = 0, i, len1, len2;
-len1 = _strlen(s1);
-len2 = _strlen(s2);
+	int cmp = 0, i, len1, len2;
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
 
 	if (s1 == NULL || s2 == NULL)
 		return (1);
@@ -35,14 +35,14 @@ len2 = _strlen(s2);
  */
 int _isalpha(int c)
 {
-if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-{
-return (1);
-}
-else
-{
-return (0);
-}
+	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }
 /**
  * _itoa - Convert Integer To Char

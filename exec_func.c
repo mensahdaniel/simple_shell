@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * handle_builtin - Handle Builtin Command
@@ -7,7 +7,7 @@
  * Return: -1 Fail 0 Succes (Return :Excute Builtin)
  */
 
-int handle_builtin(char **cmd, int er)
+int _builtin(char **cmd, int status)
 {
 	 bul_t bil[] = {
 		{"cd", change_dir},
@@ -23,7 +23,7 @@ int handle_builtin(char **cmd, int er)
 	{
 		if (_strcmp(cmd[0], (bil + i)->command) == 0)
 		{
-			return ((bil + i)->fun(cmd, er));
+			return ((bil + i)->fun(cmd, status));
 		}
 		i++;
 	}
@@ -83,6 +83,6 @@ void signal_to_handel(int sig)
 {
 	if (sig == SIGINT)
 	{
-		PRINTER("\n$ ");
+		PRINT("\n$ ");
 	}
 }

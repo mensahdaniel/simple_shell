@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * exit_bul - Exit Statue Shell
  * @cmd: Parsed Command
@@ -7,7 +7,7 @@
  * @c:Excute Count
  * Return: Void (Exit Statue)
  */
-void  exit_bul(char **cmd, char *input, char **argv, int c)
+void exit_bul(char **cmd, char *input, char **argv, int c)
 {
 	int statue, i = 0;
 
@@ -34,14 +34,13 @@ void  exit_bul(char **cmd, char *input, char **argv, int c)
 	}
 }
 
-
 /**
  * change_dir - Change Dirctorie
  * @cmd: Parsed Command
  * @er: Statue Last Command Excuted
  * Return: 0 Succes 1 Failed (For Old Pwd Always 0 Case No Old PWD)
  */
-int change_dir(char **cmd, __attribute__((unused))int er)
+int change_dir(char **cmd, __attribute__((unused)) int er)
 {
 	int value = -1;
 	char cwd[PATH_MAX];
@@ -76,7 +75,7 @@ int change_dir(char **cmd, __attribute__((unused))int er)
  */
 int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
-size_t i;
+	size_t i;
 	int len;
 
 	for (i = 0; environ[i] != NULL; i++)
@@ -93,7 +92,7 @@ size_t i;
  * @er: Statue Of Last Command Excuted
  * Return: 0 Succes -1 Fail
  */
-int display_help(char **cmd, __attribute__((unused))int er)
+int display_help(char **cmd, __attribute__((unused)) int er)
 {
 	int fd, fw, rd = 1;
 	char c;
@@ -125,26 +124,24 @@ int display_help(char **cmd, __attribute__((unused))int er)
 int echo_bul(char **cmd, int st)
 {
 	char *path;
-	unsigned int  pid = getppid();
+	unsigned int pid = getppid();
 
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_in(st);
-		PRINTER("\n");
+		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
-		PRINTER("\n");
-
+		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
 		path = _getenv("PATH");
-		PRINTER(path);
-		PRINTER("\n");
+		PRINT(path);
+		PRINT("\n");
 		free(path);
-
 	}
 	else
 		return (print_echo(cmd));
