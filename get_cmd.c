@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * path_cmd -  Search In $PATH For Excutable Command
+ * get_cmdpath -  Search In $PATH For Excutable Command
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
@@ -30,45 +30,45 @@ int get_cmdpath(char **cmd)
 	return (1);
 }
 /**
- * build - Build Command
- * @token: Excutable Command
- * @value: Dirctory Conatining Command
+ * get_fullpath - Build Command
+ * @command: Excutable Command
+ * @directory: Dirctory Conatining Command
  *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
-char *get_fullpath(char *token, char *value)
+char *get_fullpath(char *command, char *directory)
 {
 	char *cmd;
 	size_t len;
 
-	len = _strlen(value) + _strlen(token) + 2;
+	len = _strlen(directory) + _strlen(command) + 2;
 	cmd = malloc(sizeof(char) * len);
 	if (cmd == NULL)
 		return (NULL);
 
 	memset(cmd, 0, len);
 
-	cmd = _strcat(cmd, value);
+	cmd = _strcat(cmd, directory);
 	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, token);
+	cmd = _strcat(cmd, command);
 
 	return (cmd);
 }
 /**
- * _getenv - Gets The Value Of Enviroment Variable By Name
- * @name: Environment Variable Name
+ * get_path - Gets The Value Of Enviroment Variable By Name
+ * @var_name: Environment Variable Name
  * Return: The Value of the Environment Variable Else NULL.
  */
-char *get_path(char *name)
+char *get_path(char *var_name)
 {
 	size_t nl, vl;
 	char *value;
 	int i, x, j;
 
-	nl = _strlen(name);
+	nl = _strlen(var_name);
 	for (i = 0; environ[i]; i++)
 	{
-		if (_strncmp(name, environ[i], nl) == 0)
+		if (_strncmp(var_name, environ[i], nl) == 0)
 		{
 			vl = _strlen(environ[i]) - nl;
 			value = malloc(sizeof(char) * vl);
