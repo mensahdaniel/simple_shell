@@ -1,6 +1,14 @@
 #include "main.h"
 
-char *add_path(const char *path, const char *command, const char *delim)
+/**
+ * get_full_path - tokenize path and concatenates existing command with dir in path
+ *
+ * @path: the value for the PATH variable
+ * @command: the command to be concatenated to the directories
+ * @delim: delimeter to tokenize path with
+ * Return: valid command absolute path
+ */
+char *get_full_path(const char *path, const char *command, const char *delim)
 {
 	char *cmdpath = NULL;
 	const char *dir = path;
@@ -10,12 +18,12 @@ char *add_path(const char *path, const char *command, const char *delim)
 	while (*dir != '\0')
 	{
 		const char *end = _strchr(dir, *delim);
+
 		if (end == NULL)
-		{
 			end = dir + _strlen(dir); /* Last path in PATH */
-		}
 
 		size_t dir_len = (size_t)end - (size_t)dir;
+
 		_strcpy(cmdpath, dir);
 		cmdpath[dir_len] = '\0';
 
@@ -24,7 +32,7 @@ char *add_path(const char *path, const char *command, const char *delim)
 
 		if (access(cmdpath, X_OK) == 0)
 		{
-			return cmdpath;
+			return (cmdpath);
 		}
 
 		if (*end == '\0')
@@ -51,17 +59,17 @@ char *get_cmdpath(char *command)
 
 	if (path == NULL || command == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	if (cmdpath == NULL)
 	{
-		return NULL; /* Handle allocation failure */
+		return (NULL); /* Handle allocation failure */
 	}
-	cmdpath = add_path(path, command, delim);
+	cmdpath = get_full_path(path, command, delim);
 	if (cmdpath)
 		return (cmdpath);
 
 	free(cmdpath);
-	return NULL; /* if Command not found */
+	return (NULL); /* if Command not found */
 }
