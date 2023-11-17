@@ -22,7 +22,8 @@ int builtincmd(char *cmds)
 char *getinput(void)
 {
 	char *lineptr = malloc(BUFFSIZE), ch = 0;
-	int n_chars, i;
+	ssize_t n_chars;
+	int i;
 
 	for (i = 0; lineptr[i] != '\n'; i++)
 	{
