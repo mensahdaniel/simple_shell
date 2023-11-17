@@ -8,10 +8,7 @@
  */
 long int _putchar(char c)
 {
-	ssize_t num;
-
-	num = (write(STDOUT_FILENO, &c, 1));
-	return (num);
+	return (write(STDOUT_FILENO, &c, 1));
 }
 
 /**
