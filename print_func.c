@@ -47,6 +47,5 @@ int _printerror(char *cmd, char *argv, int count)
 	printstr(cmd);
 	printstr(": not found\n");
 
-	free(num1);
 	return (0);
 }
