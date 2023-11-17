@@ -21,9 +21,9 @@ int _free(char **args)
  * @input: User Input
  * Return: -1 Fail 0 Succes
  */
-int history(char *input)
+int add_history(char *lineptr)
 {
-	char *filename = ".simple_shell_history";
+	char *filename = ".shell_history";
 	ssize_t fd, w;
 	int len = 0;
 
@@ -32,11 +32,11 @@ int history(char *input)
 	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 00600);
 	if (fd < 0)
 		return (-1);
-	if (input)
+	if (lineptr)
 	{
-		while (input[len])
-			len++;
-		w = write(fd, input, len);
+		len = _strlen(lineptr);
+
+		w = write(fd, lineptr, len);
 		if (w < 0)
 			return (-1);
 	}
