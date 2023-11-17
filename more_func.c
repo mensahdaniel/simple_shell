@@ -59,7 +59,7 @@ int _isalpha(int c)
  */
 char *_itoa(size_t num)
 {
-	int i = 0, isNegative = 0;
+	int start, end, i = 0;
 	char *str = (char *)malloc(12 * sizeof(char));
 
 	if (str == NULL)
@@ -70,7 +70,7 @@ char *_itoa(size_t num)
 	{
 		str[i++] = '0';
 		str[i] = '\0';
-		return str;
+		return (str);
 	}
 
 	/* Process individual digits */
@@ -81,10 +81,13 @@ char *_itoa(size_t num)
 	}
 
 	/* Reverse the string */
-	int start = 0, end = i - 1;
+	start = 0;
+	end = i - 1;
+
 	while (start < end)
 	{
 		char temp = str[start];
+
 		str[start] = str[end];
 		str[end] = temp;
 		start++;
@@ -93,5 +96,5 @@ char *_itoa(size_t num)
 
 	str[i] = '\0'; /* Adding a null terminator */
 
-	return str;
+	return (str);
 }
