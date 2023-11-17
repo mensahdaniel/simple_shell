@@ -43,6 +43,7 @@ char *_getline()
 	}
 	while (buff[0] == ' ' || buff[0] == '\t')
 		buff++;
+	buff[i] = '\0';
 	hashtag_handle(buff);
 	return (buff);
 }
