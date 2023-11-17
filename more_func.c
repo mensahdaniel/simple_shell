@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * history_dis - Display History Of User Input Simple Shell
+ * display_history - Display History Of User Input Simple Shell
  *
  * Return: 0 Succes -1 Fail
  */
@@ -59,10 +59,10 @@ int print_echo(char **cmd)
 	}
 	else
 	{
-		do
+		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 		{
 			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		}
 	}
 	return (1);
 }
