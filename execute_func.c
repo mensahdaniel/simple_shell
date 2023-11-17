@@ -9,8 +9,8 @@
 
 int run_builtin_func(char **cmd, int status)
 {
-	bul_t bil[] = {{"cd", change_dir}, {"env", dis_env},				 {"help", display_help},
-								 {"echo", echo_bul}, {"history", history_dis}, {NULL, NULL}};
+	bul_t bil[] = {{"cd", change_dir}, {"env", display_env},				 {"help", display_help},
+								 {"echo", echo},		 {"history", display_history}, {NULL, NULL}};
 	int i = 0;
 
 	while ((bil + i)->command)

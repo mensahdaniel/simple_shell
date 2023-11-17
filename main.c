@@ -29,7 +29,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		cmd = tokenizer(lineptr, " ");
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
-			exit_bul(cmd, lineptr, argv, counter);
+			exit_func(cmd, lineptr, argv, counter);
 		}
 		else if (check_builtin_func(cmd) == 0)
 		{
