@@ -37,9 +37,6 @@ char *getinput(void)
 
 		if (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
-
-		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
-			continue;
 	}
 	lineptr[i - 1] = '\0';
 	// hashtag_handle(buff);
