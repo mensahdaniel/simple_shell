@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * _itoa - converts an integer to a string
+ *
+ * @num: integer to be converted
+ * Return: pointer to the string
+ */
 char *_itoa(int num)
 {
 	int temp, dex = 10;
@@ -28,6 +34,7 @@ char *_itoa(int num)
 		while (temp != 0)
 		{
 			char digit = (char)(temp % 10) + '0';
+
 			str[dex--] = digit;
 			temp /= 10;
 		}

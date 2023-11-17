@@ -31,9 +31,18 @@ int printstr(char *str)
 	return (i);
 }
 
+/**
+ * _printerror - Print an error message
+ *
+ * @cmd: The command that was not found
+ * @argv: executed shell program name
+ * @count: the number of times commands have been executed
+ * Return: 0
+ */
 int _printerror(char *cmd, char *argv, int count)
 {
 	char *num = _itoa(count);
+
 	printstr(argv);
 	printstr(": ");
 	printstr(num);
