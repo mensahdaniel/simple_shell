@@ -25,7 +25,7 @@ char *getinput(void)
 	ssize_t n_chars;
 	int i;
 
-	for (i = 0; lineptr[i] != '\n'; i++)
+	for (i = 0; lineptr[i] != EOF; i++)
 	{
 		n_chars = read(STDIN_FILENO, &ch, 1);
 		if (n_chars == 0)
