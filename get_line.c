@@ -41,7 +41,8 @@ char *_getline()
 			}
 		}
 	}
-	buff[i] = '\0';
+	while (buff[0] == ' ' || buff[0] == '\t')
+		buff++;
 	hashtag_handle(buff);
 	return (buff);
 }
