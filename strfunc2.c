@@ -52,14 +52,14 @@ char *_strcat(char *dest, char *src)
  */
 char *_strchr(const char *str, char c)
 {
-        for (; *str != '\0'; str++)
-        {
-                if (*str == c)
-                {
-                        return ((char *)(str));
-                }
-        }
-        return (NULL);
+	for (; *str != '\0'; str++)
+	{
+		if (*str == c)
+		{
+			return ((char *)(str));
+		}
+	}
+	return (NULL);
 }
 /**
  * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
