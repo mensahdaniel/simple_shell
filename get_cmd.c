@@ -34,7 +34,7 @@ char *get_cmdpath(char *command)
 			end = dir + _strlen(dir); /* Last path in PATH */
 		}
 
-		size_t dir_len = end - dir;
+		size_t dir_len = (size_t)end - (size_t)dir;
 		strncpy(cmdpath, dir, dir_len);
 		cmdpath[dir_len] = '\0';
 
