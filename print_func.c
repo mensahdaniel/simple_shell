@@ -40,12 +40,12 @@ int _printerror(char *cmd, char *argv, int count)
 {
 	char *num = _itoa(count);
 
-	printf("%s", argv);
-	printf(": ");
-	printf("%s", num);
-	printf(": ");
-	printf("%s", cmd);
-	printf(": not found\n");
+	printstr(argv);
+	printstr(": ");
+	printstr(num);
+	printstr(": ");
+	printstr(cmd);
+	printstr(": not found\n");
 
 	return (0);
 }
