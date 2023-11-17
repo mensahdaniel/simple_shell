@@ -38,11 +38,11 @@ int printstr(char *str)
  */
 int _printerror(char *cmd, char *argv, int count)
 {
-	char *num = _itoa(count);
+	char *num1 = _itoa(count);
 
 	printstr(argv);
 	printstr(": ");
-	printstr(num);
+	printstr(num1);
 	printstr(": ");
 	printstr(cmd);
 	printstr(": not found\n");
