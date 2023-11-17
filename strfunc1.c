@@ -48,19 +48,19 @@ char *_strcat(char *dest, char *src)
  * @c:Char To Search For
  * Return: Pointer To Char*
  */
-char *_strchr(char *s, char c)
+char *_strchr(char *str, char c)
 {
 
 	do
 	{
 
-		if (*s == c)
+		if (*str == c)
 		{
 			break;
 		}
-	} while (*s++);
+	} while (*str++);
 
-	return (s);
+	return (str);
 }
 /**
  * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
