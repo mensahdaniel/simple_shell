@@ -70,21 +70,19 @@ int print_echo(char **cmd)
 	if (pid == 0)
 	{
 		if (execve("/bin/echo", cmd, environ) == -1)
-		{
 			return (-1);
-		}
+
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
-	{
 		return (-1);
-	}
+
 	else
 	{
-		do
+		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 		{
 			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		}
 	}
 	return (1);
 }
