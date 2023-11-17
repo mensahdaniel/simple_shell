@@ -13,7 +13,9 @@ char **tokenizer(char *lineptr)
 
 	if (lineptr == NULL)
 		return (NULL);
+
 	tokens = malloc(sizeof(char *) * buffsize);
+
 	if (!tokens)
 	{
 		perror("hsh");
@@ -21,6 +23,7 @@ char **tokenizer(char *lineptr)
 	}
 
 	token = _strtok(lineptr, "\n ");
+
 	for (i = 0; token; i++)
 	{
 		tokens[i] = token;
