@@ -39,5 +39,5 @@ char *_itoa(int num)
 			temp /= 10;
 		}
 	}
-	return (str);
+	return (&str[dex + 1]);
 }
