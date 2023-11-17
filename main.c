@@ -14,12 +14,14 @@ int main(__attribute__((unused)) int argc, char **argv)
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
+
 	signal(SIGINT, signal_to_handel);
 	while (status)
 	{
 		counter++;
 		if (isatty(STDIN_FILENO))
 			prompt();
+
 		lineptr = _getline();
 		if (lineptr[0] == '\0')
 		{
@@ -27,10 +29,10 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		add_history(lineptr);
 		cmd = tokenizer(lineptr);
+
 		if (_strcmp(cmd[0], "exit") == 0)
-		{
 			exit_func(cmd, lineptr, argv, counter);
-		}
+
 		else if (check_builtin_func(cmd) == 0)
 		{
 			st = run_builtin_func(cmd, st);
@@ -38,9 +40,8 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		else
-		{
 			st = execute(cmd, lineptr, counter, argv);
-		}
+
 		_free(cmd, lineptr);
 	}
 	return (status);
@@ -57,9 +58,7 @@ int check_builtin_func(char **cmd)
 	bulitin_t func[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
 	if (*cmd == NULL)
-	{
 		return (-1);
-	}
 
 	while ((func + i)->command)
 	{

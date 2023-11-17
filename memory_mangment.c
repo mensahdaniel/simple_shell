@@ -59,9 +59,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
-	{
 		dest[i] = src[i];
-	}
 	return (dest);
 }
 /**
@@ -96,12 +94,13 @@ void *_calloc(unsigned int size)
 
 	if (size == 0)
 		return (NULL);
+
 	a = malloc(size);
+
 	if (a == NULL)
 		return (NULL);
+
 	for (i = 0; i < size; i++)
-	{
 		a[i] = '\0';
-	}
 	return (a);
 }
