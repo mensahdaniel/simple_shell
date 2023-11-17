@@ -51,7 +51,7 @@ int main(__attribute__((unused)) int argc, char **argv)
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin(char **cmd)
+int check_builtin_func(char **cmd)
 {
 	bulitin_t func[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
