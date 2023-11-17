@@ -44,9 +44,7 @@ char *get_fullpath(char *token, char *value)
 	len = _strlen(value) + _strlen(token) + 2;
 	cmd = malloc(sizeof(char) * len);
 	if (cmd == NULL)
-	{
 		return (NULL);
-	}
 
 	memset(cmd, 0, len);
 
@@ -83,9 +81,7 @@ char *get_path(char *name)
 
 			j = 0;
 			for (x = nl + 1; environ[i][x]; x++, j++)
-			{
 				value[j] = environ[i][x];
-			}
 			value[j] = '\0';
 
 			return (value);

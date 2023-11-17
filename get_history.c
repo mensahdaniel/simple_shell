@@ -6,7 +6,7 @@
  */
 int add_history(char *input)
 {
-	char *filename = ".simple_shell_history";
+	char *filename = ".shell_history";
 	ssize_t fd, w;
 	int len = 0;
 
@@ -35,7 +35,5 @@ void free_env(char **env)
 	int i;
 
 	for (i = 0; env[i]; i++)
-	{
 		free(env[i]);
-	}
 }
