@@ -1,5 +1,4 @@
 #include "main.h"
-#include <unistd.h>
 
 /**
  * builtincmd - used to execute builtin functions
@@ -25,29 +24,24 @@ char *getinput(void)
 	ssize_t n_chars;
 	int i;
 
-	for (i = 0; ch != EOF && ch != '\n'; i++)
+	for (i = 0; lineptr[i - 1] != EOF && lineptr[i - 1] != '\n'; i++)
 	{
 		fflush(stdin);
-		n_chars = getline(STDIN_FILENO, &ch, 1);
+		n_chars = read(STDIN_FILENO, &lineptr[i], 1);
 
-		if (n_chars == -1)
+		if (n_chars == 0)
 		{
 			free(lineptr); /* Free memory allocated by getline*/
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 
-		for (i = 0; lineptr[i] != '\n'; i++)
-			;
-
-		lineptr[i] = '\0';
-
-		while (*lineptr == ' ' || *lineptr == '\t')
+		if (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
 
 		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
 			continue;
 	}
-	lineptr[i] = '\0';
+	lineptr[i - 1] = '\0';
 	// hashtag_handle(buff);
 	return (lineptr);
 }
