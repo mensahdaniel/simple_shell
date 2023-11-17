@@ -8,7 +8,7 @@
  */
 int main(int ac, char **argv)
 {
-	char *lineptr = malloc(900);
+	char *lineptr = malloc(BUFFSIZE);
 	size_t n_size = 0;
 	ssize_t n_chars;
 	int i, count = 0;
