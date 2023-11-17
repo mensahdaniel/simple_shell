@@ -1,10 +1,12 @@
 #include "main.h"
 
-char *add_path(char *cmdpath, const char *path, const char *command, const char *delim)
+char *add_path(const char *path, const char *command, const char *delim)
 {
+	char *cmdpath = NULL;
+	const char *dir = path;
+
 	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
 
-	const char *dir = path;
 	while (*dir != '\0')
 	{
 		const char *end = _strchr(dir, *delim);
@@ -56,7 +58,7 @@ char *get_cmdpath(char *command)
 	{
 		return NULL; /* Handle allocation failure */
 	}
-	cmdpath = add_path(cmdpath, path, command, delim);
+	cmdpath = add_path(path, command, delim);
 	if (cmdpath)
 		return (cmdpath);
 
