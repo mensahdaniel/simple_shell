@@ -42,7 +42,14 @@ char *_itoa(int num)
 	return (&str[dex + 1]);
 }
 
-char *reset_lineprt(char *lineptr, size_t n_size)
+/**
+ * reset_lineptr - resets the lineptr to NULL
+ *
+ * @lineptr: pointer to the lineptr
+ * @n_size: size of the lineptr
+ * Return: pointer to the lineptr
+ */
+char *reset_lineptr(char *lineptr, size_t n_size)
 {
 	lineptr = NULL; /* Reset lineptr after freeing memory*/
 	/* Reallocate memory for lineptr*/
