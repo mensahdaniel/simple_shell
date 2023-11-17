@@ -6,7 +6,7 @@
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
+int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
 	char *filename = ".simple_shell_history";
 	FILE *fp;
@@ -34,35 +34,74 @@ int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 	fclose(fp);
 	return (0);
 }
-/**
- * print_echo - Excute Normal Echo
- * @cmd: Parsed Command
- * Return: 0 Succes -1 Fail
- */
-int print_echo(char **cmd)
-{
-	pid_t pid;
-	int status;
 
-	pid = fork();
-	if (pid == 0)
+/**
+ * _isalpha - Check if Alphabtic
+ *@c: Character
+ * Return: 1 If True 0 If Not
+ */
+int _isalpha(int c)
+{
+	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
 	{
-		if (execve("/bin/echo", cmd, environ) == -1)
-		{
-			return (-1);
-		}
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-	{
-		return (-1);
+		return (1);
 	}
 	else
 	{
-		do
-		{
-			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		return (0);
 	}
-	return (1);
+}
+
+/**
+ * _itoa - Convert Integer To Char
+ * @n: Int To Convert
+ * Return: Char Pointer
+ */
+/**
+ * _itoa - converts an integer to a string
+ *
+ * @num: integer to be converted
+ * Return: pointer to the string
+ */
+char *_itoa(size_t num)
+{
+	int i = 0, isNegative = 0;
+	char *str = (char *)malloc(12 * sizeof(char));
+
+	if (str == NULL)
+		exit(1);
+	/* Handle negative numbers */
+	if (num < 0)
+	{
+		isNegative = 1;
+		num = -num;
+	}
+	/* Process individual digits */
+	while (num != 0)
+	{
+		str[i++] = num % 10 + '0'; /* Convert digit to character */
+		num = num / 10;
+	}
+	/*Add '-' for negative numbers */
+	if (isNegative)
+		str[i++] = '-';
+	/*If the number is 0 */
+	if (i == 0)
+		str[i++] = '0';
+	str[i] = '\0'; /* Adding a null terminator*/
+
+	/* Reverse the string */
+	int start = 0, end = i - 1;
+
+	while (start < end)
+	{
+		char temp = str[start];
+
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
+
+	return (str);
 }
