@@ -24,7 +24,6 @@ int get_cmdpath(char **cmd)
 		free(cmd_path);
 		value = _strtok(NULL, ":");
 	}
-	free(path);
 
 	return (1);
 }
