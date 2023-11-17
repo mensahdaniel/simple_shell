@@ -29,17 +29,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		add_history(lineptr);
 
-		while (lineptr[0] == ' ' || lineptr[0] == '\t')
-			lineptr++;
 
-		for (i = 0; lineptr[i] != '\0'; i++)
-		{
-			if (lineptr[i] == '\n')
-			{
-				lineptr[i] = '\0';
-				break;
-			}
-		}
 
 		cmd = tokenizer(lineptr);
 
