@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * handle_builtin - Handle Builtin Command
+ * run_builtin_func - Handle Builtin Command
  * @cmd: Parsed Command
  * @er:statue of last Excute
  * Return: -1 Fail 0 Succes (Return :Excute Builtin)
@@ -22,7 +22,7 @@ int run_builtin_func(char **cmd, int er)
 	return (-1);
 }
 /**
- * check_cmd - Excute Simple Shell Command (Fork,Wait,Excute)
+ * execute - Excute Simple Shell Command (Fork,Wait,Excute)
  *
  * @cmd:Parsed Command
  * @input: User Input
@@ -72,6 +72,6 @@ void signal_to_handel(int sig)
 	if (sig == SIGINT)
 	{
 		PRINT("\n");
-    PRINT(PROMPT);
+		PRINT(PROMPT);
 	}
 }
