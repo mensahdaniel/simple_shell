@@ -13,11 +13,11 @@ char *get_path(char *path)
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-		if (_strncmp(env[i], path, 5) == 0)
+		if (_strncmp(env[i], path, 4) == 0)
 		{
 			pathvar = env[i];
 
-			return (pathvar++ + 5);
+			return (pathvar++ + 6);
 		}
 	}
 
