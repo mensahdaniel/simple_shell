@@ -17,7 +17,7 @@ int add_history(char *lineptr)
 		return (-1);
 	if (lineptr)
 	{
-		for (int i = 0; lineptr[i] != '\0'; i++)
+		for (i = 0; lineptr[i] != '\0'; i++)
 			;
 		lineptr[i] = '\n';
 		while (lineptr[len])
