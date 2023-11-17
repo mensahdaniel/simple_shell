@@ -30,7 +30,6 @@ extern char **environ;
 /**###### STRING FUNCTION ######*/
 
 char *_strtok(char *str, const char *tok);
-unsigned int check_delim(char c, const char *str);
 char *_strncpy(char *dest, char *src, unsigned long int n);
 int _strlen(char *str);
 int _putchar(char c);
@@ -41,7 +40,7 @@ int _isalpha(int c);
 void array_rev(char *arr, int len);
 int intlen(int num);
 char *_itoa(unsigned int n);
-char *_strcat(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, const char *src);
 char *_strchr(const char *str, char c);
 int _strncmp(char *str1, char *str2, size_t count);
