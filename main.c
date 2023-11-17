@@ -15,7 +15,7 @@ int main(int ac, char **argv)
 	while (1)
 	{
 		isatty_handler();
-
+		lineptr = getinput();
 		char **cmds;
 
 		count++;
