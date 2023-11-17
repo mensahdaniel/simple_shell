@@ -34,14 +34,14 @@ int main(__attribute__((unused)) int argc, char **argv)
 		else if (check_builtin(cmd) == 0)
 		{
 			st = handle_builtin(cmd, st);
-			free_all(cmd, lineptr);
+			_free(cmd, lineptr);
 			continue;
 		}
 		else
 		{
 			st = check_cmd(cmd, lineptr, counter, argv);
 		}
-		free_all(cmd, lineptr);
+		_free(cmd, lineptr);
 	}
 	return (statue);
 }
