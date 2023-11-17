@@ -18,7 +18,7 @@ int builtincmd(char *cmds)
 	return (-1);
 }
 
-char *_getinput(void)
+char *getinput(void)
 {
 	char *lineptr = malloc(BUFFSIZE);
 	size_t n_size = 0;
@@ -27,7 +27,7 @@ char *_getinput(void)
 	while (1)
 	{
 
-		n_chars = getline(&lineptr, &n_size, stdin);
+		n_chars = read(stdin, &lineptr, n_size);
 
 		if (n_chars == -1)
 		{
