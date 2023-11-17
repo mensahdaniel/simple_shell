@@ -44,12 +44,12 @@ char *_itoa(int num)
 
 char *reset_lineprt(char *lineptr, size_t n_size)
 {
-	lineptr = NULL; // Reset lineptr after freeing memory
-
-	lineptr = malloc(SIZE * sizeof(char)); // Reallocate memory for lineptr
+	lineptr = NULL; /* Reset lineptr after freeing memory*/
+	/* Reallocate memory for lineptr*/
+	lineptr = malloc(SIZE * sizeof(char));
 	if (lineptr == NULL)
 	{
-		// Handle allocation failure
+		/* Handle allocation failure*/
 		exit(EXIT_FAILURE);
 	}
 	n_size = SIZE;
