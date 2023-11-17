@@ -5,7 +5,7 @@
  * @cmd: Parsed Command
  * @input: User Input
  * @argv:Program Name
- * @c:Excute Count
+ * @count:Excute Count
  * Return: Void (Exit Statue)
  */
 void exit_bul(char **cmd, char *input, char **argv, int count)
@@ -38,7 +38,6 @@ void exit_bul(char **cmd, char *input, char **argv, int count)
 /**
  * change_dir - Change Dirctorie
  * @cmd: Parsed Command
- * @er: Statue Last Command Excuted
  * Return: 0 Succes 1 Failed (For Old Pwd Always 0 Case No Old PWD)
  */
 int change_dir(char **cmd)
@@ -69,7 +68,7 @@ int change_dir(char **cmd)
 	return (0);
 }
 /**
- * dis_env - Display Enviroment Variables on system
+ * display_env - Display Enviroment Variables on system
  *
  * Return:Always 0
  */
