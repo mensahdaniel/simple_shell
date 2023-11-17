@@ -10,12 +10,13 @@
 char **tokenizer(char *buffer, char *delim)
 {
 	char *command;
-	char **tokens = malloc(SIZE * sizeof(char *)); /* Allocate memory for tokens dynamically */
+	/* Allocate memory for tokens dynamically */
+	char **tokens = malloc(SIZE * sizeof(char *));
 
 	if (tokens == NULL)
 	{
 		/* Handle allocation failure */
-		return NULL;
+		return (NULL);
 	}
 
 	int i = 0;
@@ -28,5 +29,5 @@ char **tokenizer(char *buffer, char *delim)
 	}
 
 	tokens[i] = NULL;
-	return tokens;
+	return (tokens);
 }
