@@ -21,13 +21,12 @@ int builtincmd(char *cmds)
 char *getinput(void)
 {
 	char *lineptr = malloc(BUFFSIZE);
-	ssize_t n_chars;
-	int i;
+	int n_chars, i;
 
 	for (i = 0; lineptr[i] != '\n'; i++)
 	{
 		n_chars = read(stdin, &lineptr[i], 1);
-		if (n_chars == -1)
+		if (n_chars == 0)
 		{
 			free(lineptr); /* Free memory allocated by getline*/
 			exit(0);
