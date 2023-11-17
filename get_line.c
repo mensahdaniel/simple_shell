@@ -7,26 +7,23 @@
  */
 char *_getline()
 {
-        char *lineptr = malloc(BUFFSIZE), ch = 0;
-        ssize_t n_chars;
-        int i;
+	char *lineptr = malloc(BUFFSIZE), ch = 0;
+	ssize_t n_chars;
+	int i;
 
-        for (i = 0; lineptr[i - 1] != EOF && lineptr[i - 1] != '\n'; i++)
-        {
-                fflush(stdin);
-                n_chars = read(STDIN_FILENO, &lineptr[i], 1);
+	for (i = 0; lineptr[i - 1] != EOF && lineptr[i - 1] != '\n'; i++)
+	{
+		fflush(stdin);
+		n_chars = read(STDIN_FILENO, &lineptr[i], 1);
 
-                if (n_chars == 0)
-                {
-                        free(lineptr); /* Free memory allocated by getline*/
-                        exit(EXIT_SUCCESS);
-                }
-
-                if (*lineptr == ' ' || *lineptr == '\t')
-                        lineptr++;
-        }
-        // hashtag_handle(buff);
-        return (lineptr);
+		if (n_chars == 0)
+		{
+			free(lineptr); /* Free memory allocated by getline*/
+			exit(EXIT_SUCCESS);
+		}
+	}
+	hashtag_handle(lineptr);
+	return (lineptr);
 }
 
 /**
