@@ -25,7 +25,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		{
 			continue;
 		}
-		history(lineptr);
+		add_history(lineptr);
 		cmd = tokenizer(lineptr, " ");
 		if (_strcmp(cmd[0], "exit") == 0)
 		{

@@ -24,7 +24,7 @@ extern char **environ;
 #define SIZE 50
 #define BUFSIZE 1024
 #define DELIM " \t\r\n\a"
-#define PRINT(c) (write(STDOUT_FILENO, &c, _strlen(c)))
+// #define PRINT(c) (write(STDOUT_FILENO, &c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
 
@@ -78,7 +78,7 @@ void exit_bul_for_file(char **cmd, char *line, FILE *fd);
 /** ####BUL FUNC #####*/
 
 void hashtag_handle(char *buff);
-int history(char *input);
+int add_history(char *input);
 int history_dis(char **cmd, int er);
 int dis_env(char **cmd, int er);
 int change_dir(char **cmd, int er);

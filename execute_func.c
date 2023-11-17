@@ -77,6 +77,6 @@ void signal_to_handel(int sig)
 {
 	if (sig == SIGINT)
 	{
-		PRINT("\n$ ");
+		printstr("\n$ ");
 	}
 }
