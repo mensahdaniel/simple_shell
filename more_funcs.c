@@ -41,3 +41,17 @@ char *_itoa(int num)
 	}
 	return (&str[dex + 1]);
 }
+
+char *reset_lineprt(char *lineptr, size_t n_size)
+{
+	lineptr = NULL; // Reset lineptr after freeing memory
+
+	lineptr = malloc(SIZE * sizeof(char)); // Reallocate memory for lineptr
+	if (lineptr == NULL)
+	{
+		// Handle allocation failure
+		exit(EXIT_FAILURE);
+	}
+	n_size = SIZE;
+	return (lineptr);
+}
