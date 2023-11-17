@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * history - Fill File By User Input
- * @input: User Input
+ * add_history - Fill File By User Input
+ * @lineptr: User Input
  * Return: -1 Fail 0 Succes
  */
-int add_history(char *input)
+int add_history(char *lineptr)
 {
 	char *filename = ".shell_history";
 	ssize_t fd, w;
@@ -15,11 +15,11 @@ int add_history(char *input)
 	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 00600);
 	if (fd < 0)
 		return (-1);
-	if (input)
+	if (lineptr)
 	{
-		while (input[len])
+		while (lineptr[len])
 			len++;
-		w = write(fd, input, len);
+		w = write(fd, lineptr, len);
 		if (w < 0)
 			return (-1);
 	}

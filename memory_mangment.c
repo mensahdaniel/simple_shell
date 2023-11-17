@@ -34,7 +34,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (result);
 }
 /**
- * free_all - Free Array Of Char Pointers
+ * _free - Free Array Of Char Pointers
  * @cmd:Array Pointer
  * @line:Char Pointer
  * Return: Void
