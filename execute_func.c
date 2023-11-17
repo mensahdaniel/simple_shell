@@ -36,6 +36,9 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	int status;
 	pid_t pid;
 
+	if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
+		get_cmdpath(cmd);
+
 	if (*cmd == NULL)
 		return (-1);
 
@@ -48,8 +51,6 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 
 	if (pid == 0)
 	{
-		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
-			get_cmdpath(cmd);
 
 		if (execve(*cmd, cmd, environ) == -1)
 		{
