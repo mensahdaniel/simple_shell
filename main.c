@@ -9,12 +9,12 @@
 int main(int ac, char **argv)
 {
 	char *lineptr = NULL;
-	int count = 0;
+	int count = 0, i, state;
 
 	(void)ac;
 
 	if (argv[1] != NULL)
-		read_file(argv[1], argv);
+		read_file(argv[1], argv, state);
 	signal(SIGINT, signal_handler);
 
 	while (1)
@@ -25,8 +25,11 @@ int main(int ac, char **argv)
 
 		count++;
 		add_history(lineptr);
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+		lineptr[i] = '\0';
 		cmds = tokenizer(lineptr, " ");
-		execute(cmds, argv, count);
+		execute(cmds, argv, count, state);
 	}
 	free(lineptr); /* Free memory allocated by getline after processing */
 	return (0);

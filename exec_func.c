@@ -8,23 +8,24 @@
  * @count: the number of times commands have been executed
  * Return: 0
  */
-int execute(char **cmds, char **argv, int count)
+int execute(char **cmds, char **argv, int count, int state)
 {
 	char **envp = environ, *cmd;
 	int exeerr;
 	pid_t pid;
 
-	if (*cmds[0] != '/')
-		cmd = get_cmdpath(cmds[0]);
-	else
-		cmd = cmds[0];
+	// if (*cmds[0] != '/')
+	// else
+	// 	cmd = cmds[0];
+	state = builtincmd(cmds, state);
 
-	if (cmd == NULL)
+	if (state == -1)
 	{
-		if (builtincmd(cmds[0]) == -1) /* Handle command not found */
-			_printerror(cmds[0], argv[0], count);
+		cmd = get_cmdpath(cmds[0]);
+		/* Handle command not found */
 	}
-	else
+
+	if (cmd != NULL && state != -1)
 	{
 		pid = fork();
 

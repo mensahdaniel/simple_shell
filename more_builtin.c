@@ -46,10 +46,10 @@ int change_dir(char **cmd)
 	char cwd[PATH_MAX];
 
 	if (cmd[1] == NULL)
-		value = chdir(get_path("HOME"));
+		value = chdir(getenv("HOME"));
 	else if (_strcmp(cmd[1], "-") == 0)
 	{
-		value = chdir(get_path("OLDPWD"));
+		value = chdir(getenv("OLDPWD"));
 	}
 	else
 		value = chdir(cmd[1]);

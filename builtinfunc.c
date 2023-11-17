@@ -6,14 +6,19 @@
  * @cmds: built in command to run
  * Return: -1 if built-in command not found
  */
-int builtincmd(char *cmds)
+int builtincmd(char **cmds, int state)
 {
-	if (_strcmp(cmds, "exit") == 0)
+	if (_strcmp(cmds[0], "exit") == 0)
 	{
-
 		printstr("Exiting...");
 		exit(EXIT_FAILURE);
 	}
+	else if (_strcmp(cmds[0], "cd") == 0)
+		return (change_dir(cmds));
+	else if (_strcmp(cmds[0], "env") == 0)
+		display_env();
+	else if (_strcmp(cmds[0], "echo") == 0)
+		return (echo(cmds, state));
 
 	return (-1);
 }
@@ -43,7 +48,6 @@ char *getinput(void)
 		if (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
 	}
-	lineptr[i - 1] = '\0';
-	/* hashtag_handle(buff); */
+	// hashtag_handle(buff);
 	return (lineptr);
 }

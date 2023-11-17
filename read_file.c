@@ -7,7 +7,7 @@
  * Return: -1 or  0
  */
 
-void read_file(char *filename, char **argv)
+void read_file(char *filename, char **argv, int state)
 {
 	FILE *fp;
 	char *line = NULL;
@@ -23,7 +23,7 @@ void read_file(char *filename, char **argv)
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		counter++;
-		treat_file(line, counter, fp, argv);
+		treat_file(line, counter, fp, argv, state);
 	}
 	if (line)
 		free(line);
@@ -38,14 +38,14 @@ void read_file(char *filename, char **argv)
  * @argv:Program Name
  * Return : Excute A line void
  */
-void treat_file(char *line, int counter, FILE *fp, char **argv)
+void treat_file(char *line, int counter, FILE *fp, char **argv, int state)
 {
 	char **cmd;
 	int st = 0;
 
 	cmd = tokenizer(line, "\n ");
 
-	execute(cmd, argv, counter);
+	execute(cmd, argv, counter, state);
 }
 /**
  * exit_bul_for_file - Exit Shell Case Of File
