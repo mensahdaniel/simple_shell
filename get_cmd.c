@@ -14,33 +14,25 @@ char *get_cmdpath(char *command)
 
 	if (cmdpath == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	dir = strtok(cmdpath, delim);
 	while (dir != NULL)
 	{
 		cmdp = malloc(sizeof(char *) * (strlen(command) + strlen(dir) + 2));
-		if (cmdp == NULL)
-		{
-			// Handle allocation failure
-			free(cmdpath); // Free cmdpath before returning NULL
-			return NULL;
-		}
 		strcpy(cmdp, dir);
 		strcat(cmdp, "/");
 		strcat(cmdp, command);
 
+		/* printf("full path: %s\n", cmdp); */
 		if (access(cmdp, X_OK) == 0)
-		{
-			free(cmdpath); // Free cmdpath before returning cmdp
-			return cmdp;
-		}
+			return (cmdp);
 
-		free(cmdp); // Free cmdp if access fails
+		free(cmdp);
 		dir = strtok(NULL, delim);
+		/* printf("token path: %s\n", dir); */
 	}
 
-	free(cmdpath); // Free cmdpath if command not found
-	return NULL;
+	return (NULL);
 }
