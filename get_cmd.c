@@ -7,11 +7,10 @@
  */
 int get_cmdpath(char **cmd)
 {
-	char *path, *token, *cmd_path;
+	char *path, *token = ":", *cmd_path;
 	struct stat buf;
 
 	path = get_path("PATH");
-	token = _strtok(path, ":");
 	cmd_path = get_full_path(path, *cmd, token);
 	if (stat(cmd_path, &buf) == 0)
 	{
@@ -23,33 +22,7 @@ int get_cmdpath(char **cmd)
 
 	return (1);
 }
-/**
- * build - Build Command
- * @token: Excutable Command
- * @value: Dirctory Conatining Command
- *
- * Return: Parsed Full Path Of Command Or NULL Case Failed
- */
-char *full_cmdpath(char *command, char *directory)
-{
-	char *cmd;
-	size_t len;
 
-	len = _strlen(directory) + _strlen(command) + 2;
-	cmd = malloc(sizeof(char) * len);
-	if (cmd == NULL)
-	{
-		return (NULL);
-	}
-
-	memset(cmd, 0, len);
-
-	cmd = _strcat(cmd, directory);
-	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, command);
-
-	return (cmd);
-}
 /**
  * get_path - Get the PATH environment variable
  *

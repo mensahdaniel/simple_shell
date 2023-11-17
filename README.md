@@ -6,16 +6,15 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 | SN | File | Description |
 | --- | ---- | ----------- |
-| 1. |  |  |
-|  | [builtinfunc.c](./builtinfunc.c) |  |
-| 2. | [get\_cmd.c](./get_cmd.c) |  |
-| 3. | [get\_path.c](./get_path.c) |  |
-| 4. | [exec\_func.c](./execute_func.c) |  |
+| 1. | [builtinfunc.c](./builtinfunc.c) |  |
+|  | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
+| 2. | [execute\_file.c](./execute_file.c) |  |
+| 4. | [execute_func.c](./execute_func.c) |  |
 | 5. | [print\_func.c](./print_func.c) |  |
 | 6. |  |  |
-| 7. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
-|  | [get_history.c](./get_history.c) |  |
-|  | [get_line.c](./get_line.c) |  |
+| 7. | [get\_cmd.c](./get_cmd.c) |  |
+|  | [get\_history.c](./get_history.c) |  |
+|  | [get\_line.c](./get_line.c) |  |
 | 8. | [main.c](./main.c) |  |
 |  | [main.h](./main.h) |  |
 |  | [memory\_management](./memory_mangment.c) |  |

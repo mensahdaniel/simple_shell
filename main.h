@@ -68,7 +68,6 @@ char *get_path(char *path);
 char **tokenizer(char *buffer, char *delim);
 int handle_builtin(char **cmd, int er);
 void read_file(char *filename, char **argv);
-char *full_cmdpath(char *token, char *value);
 char *get_full_path(const char *path, const char *command, const char *delim);
 int check_builtin(char **cmd);
 void creat_envi(char **envi);
