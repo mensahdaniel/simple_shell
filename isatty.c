@@ -7,7 +7,7 @@ void isatty_handler(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		printstr("(HSH)>>$ ");
+		printstr(PROMPT);
 		/* fflush(stdout); */
 	}
 }
@@ -21,6 +21,6 @@ void signal_to_handel(int sig)
 {
 	if (sig == SIGINT)
 	{
-		printstr("\n( ");
+		printstr(PROMPT);
 	}
 }

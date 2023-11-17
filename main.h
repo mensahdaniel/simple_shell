@@ -14,6 +14,7 @@
 #define SIZE 50
 #define BUFFSIZE 1024
 #define PATH_MAX 1024
+#define PROMPT "(HSH)>>$ "
 
 extern char **environ;
 
