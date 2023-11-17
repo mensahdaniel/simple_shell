@@ -41,6 +41,7 @@ int _printerror(char *cmd, char *argv, int count);
 void print_number(unsigned int n);
 void print_number_in(int n);
 
+int add_history(char *lineptr);
 int display_history(void);
 int print_echo(char **cmd);
 

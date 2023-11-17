@@ -24,7 +24,7 @@ int main(int ac, char **argv)
 		char **cmds;
 
 		count++;
-
+		add_history(lineptr);
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv, count);
 	}
