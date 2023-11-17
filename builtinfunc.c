@@ -18,6 +18,11 @@ int builtincmd(char *cmds)
 	return (-1);
 }
 
+/**
+ * getinput - read input from file stream
+ *
+ * Return: the string of characters read with a null terminator.
+ */
 char *getinput(void)
 {
 	char *lineptr = malloc(BUFFSIZE), ch = 0;
