@@ -33,7 +33,7 @@ char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 int _putchar(char c);
 int _atoi(char *s);
-void _puts(char *str);
+// void _puts(char *str);
 int _strcmp(char *s1, char *s2);
 int _isalpha(int c);
 char *_itoa(size_t num);
