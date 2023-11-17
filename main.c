@@ -37,11 +37,12 @@ int main(int ac, char **argv)
 			continue;
 
 		char **cmds;
+
 		count++;
 
 		cmds = tokenizer(lineptr, " ");
 		execute(cmds, argv, count);
 	}
 	free(lineptr); /* Free memory allocated by getline after processing */
-	return 0;
+	return (0);
 }
