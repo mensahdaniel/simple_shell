@@ -22,7 +22,7 @@ extern char **environ;
 /**##### MACROS ######*/
 
 #define BUFFSIZE 1024
-#define PROMPT "(HSH)>>$ "
+#define PROMPT "$ "
 #define PRINT(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
