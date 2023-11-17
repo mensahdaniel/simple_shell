@@ -22,7 +22,6 @@ void read_file(char *filename, char **argv)
 	{
 		counter++;
 		treat_file(line, counter, fp, argv);
-
 	}
 	if (line)
 		free(line);
@@ -37,27 +36,27 @@ void read_file(char *filename, char **argv)
  * @argv:Program Name
  * Return : Excute A line void
  */
-void treat_file(char *line, int counter, FILE *fp, char **argv)
+void treat_file(char *lineptr, int counter, FILE *fp, char **argv)
 {
 	char **cmd;
 	int st = 0;
 
-	cmd = parse_cmd(line);
+	cmd = tokenizer(lineptr, " ");
 
-		if (_strncmp(cmd[0], "exit", 4) == 0)
-		{
-			exit_bul_for_file(cmd, line, fp);
-		}
-		else if (check_builtin(cmd) == 0)
-		{
-			st = handle_builtin(cmd, st);
-			free(cmd);
-		}
-		else
-		{
-			st = check_cmd(cmd, line, counter, argv);
-			free(cmd);
-		}
+	if (_strncmp(cmd[0], "exit", 4) == 0)
+	{
+		exit_bul_for_file(cmd, lineptr, fp);
+	}
+	else if (check_builtin(cmd) == 0)
+	{
+		st = handle_builtin(cmd, st);
+		free(cmd);
+	}
+	else
+	{
+		st = check_cmd(cmd, lineptr, counter, argv);
+		free(cmd);
+	}
 }
 /**
  * exit_bul_for_file - Exit Shell Case Of File
@@ -89,7 +88,4 @@ void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 	free(cmd);
 	fclose(fd);
 	exit(statue);
-
-
-
 }

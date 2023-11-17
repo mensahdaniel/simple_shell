@@ -39,7 +39,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
  * @line:Char Pointer
  * Return: Void
  */
-void free_all(char **cmd, char *line)
+void _free(char **cmd, char *line)
 {
 	free(cmd);
 	free(line);
