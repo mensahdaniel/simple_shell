@@ -7,7 +7,7 @@
  * @c:Excute Count
  * Return: Void (Exit Statue)
  */
-void exit_bul(char **cmd, char *input, char **argv, int c)
+void exit_func(char **cmd, char *input, char **argv, int c)
 {
 	int statue, i = 0;
 
@@ -73,15 +73,15 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
  * @er:Statue of Last command Excuted
  * Return:Always 0
  */
-int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
+int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
 	size_t i;
-  char **env = environ;
+	char **env = environ;
 
 	for (i = 0; env[i] != NULL; i++)
 	{
-    printstr(env[i]);
-    _putchar('\n');
+		printstr(env[i]);
+		_putchar('\n');
 	}
 	return (0);
 }
@@ -120,7 +120,7 @@ int display_help(char **cmd, __attribute__((unused)) int er)
  * @cmd: Parsed Command
  * Return: Always 0 Or Excute Normal Echo
  */
-int echo_bul(char **cmd, int st)
+int echo(char **cmd, int st)
 {
 	char *path;
 	unsigned int pid = getppid();

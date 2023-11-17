@@ -47,9 +47,9 @@ void treat_file(char *lineptr, int counter, FILE *fp, char **argv)
 	{
 		exit_bul_for_file(cmd, lineptr, fp);
 	}
-	else if (check_builtin(cmd) == 0)
+	else if (check_builtin_func(cmd) == 0)
 	{
-		st = handle_builtin(cmd, st);
+		st = run_builtin_func(cmd, st);
 		free(cmd);
 	}
 	else
