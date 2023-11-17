@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * history_dis - Display History Of User Input Simple Shell
+ * display_history - Display History Of User Input Simple Shell
  * @c:Parsed Command
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
+int display_history(char **c, __attribute__((unused)) int s)
 {
 	char *filename = ".shell_history";
 	FILE *fp;
@@ -15,6 +15,7 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 	int counter = 0;
 	char *er;
 
+	(void)c;
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 		return (-1);
@@ -50,11 +51,6 @@ int _isalpha(int c)
 		return (0);
 }
 
-/**
- * _itoa - Convert Integer To Char
- * @n: Int To Convert
- * Return: Char Pointer
- */
 /**
  * _itoa - converts an integer to a string
  *
