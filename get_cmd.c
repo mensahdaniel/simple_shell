@@ -5,7 +5,7 @@
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
-int path_cmd(char **cmd)
+int get_cmdpath(char **cmd)
 {
 	char *path, *value, *cmd_path;
 	struct stat buf;
@@ -14,7 +14,7 @@ int path_cmd(char **cmd)
 	value = _strtok(path, ":");
 	while (value != NULL)
 	{
-		cmd_path = build(*cmd, value);
+		cmd_path = get_fullpath(*cmd, value);
 		if (stat(cmd_path, &buf) == 0)
 		{
 			*cmd = _strdup(cmd_path);
@@ -36,7 +36,7 @@ int path_cmd(char **cmd)
  *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
-char *build(char *token, char *value)
+char *get_fullpath(char *token, char *value)
 {
 	char *cmd;
 	size_t len;
@@ -61,7 +61,7 @@ char *build(char *token, char *value)
  * @name: Environment Variable Name
  * Return: The Value of the Environment Variable Else NULL.
  */
-char *_getenv(char *name)
+char *get_path(char *name)
 {
 	size_t nl, vl;
 	char *value;
