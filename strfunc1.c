@@ -61,28 +61,32 @@ char *_strchr(const char *str, char c)
 	return (NULL);
 }
 /**
- * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
- * @s1: A String.
- * @s2: A String.
- * @n: Amount Of Characters To Compare.
+ * _strncmp - Compare two strings
  *
- * Return: 1 If The Strings Don't Match Otherwise 0
+ * @str1: The first string to be compared
+ * @str2: The second string to be compared
+ * @count: The number of characters to compare
+ * Return: size_t the difference between the two strings and 0 if equal
  */
-int _strncmp(const char *str1, const char *str2, size_t n)
-{
-	size_t i;
 
-	if (str1 == NULL)
-		return (-1);
-	for (i = 0; i < n && str2[i]; i++)
+int _strncmp(char *str1, char *str2, size_t count)
+{
+	int i;
+
+	for (i = 0; i < count; i++)
 	{
-		if (str1[i] != str2[i])
+		if (str1[i] > str2[i])
 		{
-			return (1);
+			return (str1[i] - str2[i]);
+		}
+		else if (str1[i] < str2[i])
+		{
+			return (str1[i] - str2[i]);
 		}
 	}
 	return (0);
 }
+
 /**
  * _strdup - Duplicate A String
  * @str:String

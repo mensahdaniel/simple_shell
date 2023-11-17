@@ -43,7 +43,7 @@ char *_itoa(unsigned int n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strchr(const char *str, char c);
-int _strncmp(const char *s1, const char *s2, size_t n);
+int _strncmp(char *str1, char *str2, size_t count);
 char *_strdup(char *str);
 
 /**###### MEMORY  MANGMENT FUNCTIONS ####*/
