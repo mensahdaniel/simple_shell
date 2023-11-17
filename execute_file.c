@@ -41,7 +41,7 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
 	char **cmd;
 	int st = 0;
 
-	cmd = parse_cmd(line);
+	cmd = tokenizer(line);
 
 	if (_strncmp(cmd[0], "exit", 4) == 0)
 	{
