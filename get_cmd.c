@@ -63,10 +63,6 @@ char *get_cmdpath(char *command)
 		return (NULL);
 	}
 
-	if (cmdpath == NULL)
-	{
-		return (NULL); /* Handle allocation failure */
-	}
 	cmdpath = get_full_path(path, command, delim);
 	if (cmdpath)
 		return (cmdpath);
