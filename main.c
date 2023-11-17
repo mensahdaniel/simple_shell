@@ -9,7 +9,7 @@
 
 int main(__attribute__((unused)) int argc, char **argv)
 {
-	char *lineptr, **cmd;
+	char *lineptr = NULL, **cmd;
 	int counter = 0, status = 1, st = 0, i;
 
 	if (argv[1] != NULL)
