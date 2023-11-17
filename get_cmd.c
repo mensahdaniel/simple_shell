@@ -19,7 +19,6 @@ int get_cmdpath(char **cmd)
 		{
 			*cmd = _strdup(cmd_path);
 			free(cmd_path);
-			free(path);
 			return (0);
 		}
 		free(cmd_path);
