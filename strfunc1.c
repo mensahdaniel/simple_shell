@@ -29,17 +29,17 @@ char *_strcpy(char *dest, const char *src)
  */
 char *_strcat(char *dest, const char *src)
 {
-        int i, j;
+	int i, j;
 
-        for (i = 0; dest[i] != '\0'; i++)
-                ;
-        for (j = 0; src[j] != '\0'; j++)
-        {
-                dest[i] = src[j];
-                i++;
-        }
-        dest[i] = '\0';
-        return (dest);
+	for (i = 0; dest[i] != '\0'; i++)
+		;
+	for (j = 0; src[j] != '\0'; j++)
+	{
+		dest[i] = src[j];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
@@ -69,7 +69,7 @@ char *_strchr(const char *str, char c)
  * Return: size_t the difference between the two strings and 0 if equal
  */
 
-int _strncmp(char *str1, char *str2, size_t count)
+int _strncmp(char *str1, char *str2, int count)
 {
 	int i;
 

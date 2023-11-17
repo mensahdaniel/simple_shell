@@ -34,7 +34,7 @@ char *_strncpy(char *dest, char *src, unsigned long int n);
 size_t _strlen(const char *str);
 int _putchar(char c);
 int _atoi(char *str);
-// void printstr(char *str);
+void printstr(char *str);
 int _strcmp(char *str1, char *str2);
 int _isalpha(int c);
 void array_rev(char *arr, int len);
@@ -43,7 +43,7 @@ char *_itoa(unsigned int n);
 char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, const char *src);
 char *_strchr(const char *str, char c);
-int _strncmp(char *str1, char *str2, size_t count);
+int _strncmp(char *str1, char *str2, int count);
 char *_strdup(char *str);
 
 /**###### MEMORY  MANGMENT FUNCTIONS ####*/

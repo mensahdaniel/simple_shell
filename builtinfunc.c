@@ -128,18 +128,18 @@ int echo(char **cmd, int st)
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_in(st);
-		printstr("\n");
+		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
-		printstr("\n");
+		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
 		path = get_path("PATH");
-		printstr(path);
-		printstr("\n");
+		PRINT(path);
+		PRINT("\n");
 		free(path);
 	}
 	else
