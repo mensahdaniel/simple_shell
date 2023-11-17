@@ -25,21 +25,31 @@ char *getinput(void)
 	ssize_t n_chars;
 	int i;
 
-	for (i = 0; ch != '\n'; i++)
+	for (i = 0; ch != EOF && ch != '\n'; i++)
 	{
+		fflush(stdin);
 		n_chars = read(STDIN_FILENO, &ch, 1);
 		if (n_chars == 0)
 		{
-			free(lineptr); /* Free memory allocated by getline*/
-			exit(0);
+			free(lineptr);
+			exit(EXIT_SUCCESS);
 		}
-		// if (ch == ' ' || ch == '\t')
-		// 	ch++;
 		lineptr[i] = ch;
-
-		// if (i >= BUFFSIZE)
-		// 	lineptr = realloc(lineptr, BUFFSIZE + 1);
+		if (lineptr[0] == '\n')
+		{
+			free(lineptr);
+			return ("\0");
+		}
+		if (i >= BUFFSIZE)
+		{
+			lineptr = realloc(lineptr, BUFFSIZE + 1);
+			if (lineptr == NULL)
+			{
+				return (NULL);
+			}
+		}
 	}
 	lineptr[i] = '\0';
+	// hashtag_handle(buff);
 	return (lineptr);
 }
