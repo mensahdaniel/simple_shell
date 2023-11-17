@@ -2,7 +2,7 @@
 
 /**
  * tokenizer - Parse Line Of Input
- * @input:User Input To Parse
+ * @lineptr:User Input To Parse
  * Return: Array Of Char (Parsed):Simple Shell
  */
 char **tokenizer(char *lineptr)

@@ -25,12 +25,12 @@ int run_builtin_func(char **cmd, int er)
  * execute - Excute Simple Shell Command (Fork,Wait,Excute)
  *
  * @cmd:Parsed Command
- * @input: User Input
+ * @lineptr: User Input
  * @c:Shell Excution Time Case of Command Not Found
  * @argv:Program Name
  * Return: 1 Case Command Null -1 Wrong Command 0 Command Excuted
  */
-int execute(char **cmd, char *input, int c, char **argv)
+int execute(char **cmd, char *lineptr, int c, char **argv)
 {
 	int status;
 	pid_t pid;
@@ -53,7 +53,7 @@ int execute(char **cmd, char *input, int c, char **argv)
 		if (execve(*cmd, cmd, environ) == -1)
 		{
 			print_error(cmd[0], c, argv);
-			free(input);
+			free(lineptr);
 			free(cmd);
 			exit(EXIT_FAILURE);
 		}
