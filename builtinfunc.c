@@ -37,12 +37,9 @@ char *getinput(void)
 		// 	ch++;
 		lineptr[i] = ch;
 
-		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
-			lineptr[0] = '\0';
-
 		// if (i >= BUFFSIZE)
 		// 	lineptr = realloc(lineptr, BUFFSIZE + 1);
 	}
-	// lineptr[i] = '\0';
+	lineptr[i] = '\0';
 	return (lineptr);
 }
