@@ -11,3 +11,16 @@ void isatty_handler(void)
 		/* fflush(stdout); */
 	}
 }
+
+/**
+ * signal_to_handel - Handle ^C
+ * @sig:Captured Signal
+ * Return: Void
+ */
+void signal_to_handel(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printstr("\n( ");
+	}
+}
