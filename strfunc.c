@@ -9,7 +9,7 @@
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return (write(STDOUT_FILENO, &c, 1));
 }
 /**
  * _strncpy - copie a string
@@ -21,18 +21,18 @@ int _putchar(char c)
 
 char *_strncpy(char *dest, char *src, int n)
 {
-int i;
+	int i;
 
-i = 0;
+	i = 0;
 	while (i < n && *(src + i))
 	{
-	*(dest + i) = *(src + i);
-	i++;
+		*(dest + i) = *(src + i);
+		i++;
 	}
 	while (i < n)
 	{
-	*(dest + i) = '\0';
-	i++;
+		*(dest + i) = '\0';
+		i++;
 	}
 	return (dest);
 }
@@ -47,11 +47,11 @@ int _strlen(char *s)
 {
 	int i;
 
-		for (i = 0; s[i] != '\0'; i++)
-		{
-			continue;
-		}
-return (i);
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		continue;
+	}
+	return (i);
 }
 
 /**
@@ -61,7 +61,7 @@ return (i);
  */
 int _atoi(char *s)
 {
-int i, j, n, x;
+	int i, j, n, x;
 
 	i = n = 0;
 	x = 1;
@@ -92,6 +92,6 @@ void _puts(char *str)
 	{
 		_putchar(str[i]);
 	}
-_putchar('\n');
-return;
+	_putchar('\n');
+	return;
 }
