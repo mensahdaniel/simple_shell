@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * get_full_path - tokenize path and concatenates existing command with dir in path
+ * get_full_path - tokenize path and concatenates existing
+ * command with tokenized directories in path
  *
  * @path: the value for the PATH variable
  * @command: the command to be concatenated to the directories
