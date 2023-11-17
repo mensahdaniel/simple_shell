@@ -8,7 +8,8 @@
  */
 char *_itoa(int num)
 {
-	char *str = (char *)malloc(12 * sizeof(char)); /*Allocating memory for the string*/
+	/*Allocating memory for the string*/
+	char *str = (char *)malloc(12 * sizeof(char));
 
 	if (str == NULL)
 	{
@@ -25,7 +26,6 @@ char *_itoa(int num)
 		isNegative = 1;
 		num = -num;
 	}
-
 	/* Process individual digits */
 	while (num != 0)
 	{
