@@ -8,9 +8,7 @@
  */
 char *_itoa(int num)
 {
-	/* The Maximum length of an integer in string form is 11 characters including sign */
-	/* 10 digits + 1 for sign */
-	char *str = (char *)malloc(12 * sizeof(char)); // Allocating memory for the string
+	char *str = (char *)malloc(12 * sizeof(char)); /*Allocating memory for the string*/
 
 	if (str == NULL)
 	{
@@ -37,21 +35,18 @@ char *_itoa(int num)
 
 	/*Add '-' for negative numbers */
 	if (isNegative)
-	{
 		str[i++] = '-';
-	}
 
 	/*If the number is 0 */
 	if (i == 0)
-	{
 		str[i++] = '0';
-	}
 
 	str[i] = '\0'; /* Adding a null terminator*/
 
 	/* Reverse the string */
 	int start = 0;
 	int end = i - 1;
+
 	while (start < end)
 	{
 		char temp = str[start];
