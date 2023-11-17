@@ -9,7 +9,7 @@
 char *get_cmdpath(char *command)
 {
 	char *cmdpath = NULL, *cmdp = NULL;
-	const char *path = getenv("PATH");
+	const char *path = get_path("PATH");
 	const char *delim = ":";
 
 	if (path == NULL || command == NULL)
@@ -22,16 +22,16 @@ char *get_cmdpath(char *command)
 
 	if (cmdpath == NULL)
 	{
-		return NULL; // Handle allocation failure
+		return NULL; /* Handle allocation failure */
 	}
 
 	const char *dir = path;
 	while (*dir != '\0')
 	{
-		const char *end = strchr(dir, *delim);
+		const char *end = _strchr(dir, *delim);
 		if (end == NULL)
 		{
-			end = dir + strlen(dir); // Last path in PATH
+			end = dir + _strlen(dir); /* Last path in PATH */
 		}
 
 		size_t dir_len = end - dir;
@@ -51,9 +51,9 @@ char *get_cmdpath(char *command)
 			break;
 		}
 
-		dir = end + 1; // Move to the next directory in PATH
+		dir = end + 1; /* Move to the next directory in PATH */
 	}
 
 	free(cmdpath);
-	return NULL; // Command not found
+	return NULL; /* if Command not found */
 }
