@@ -20,18 +20,18 @@ int builtincmd(char *cmds)
 
 char *getinput(void)
 {
-	char *lineptr = malloc(BUFFSIZE);
+	char *lineptr = malloc(BUFFSIZE), ch = 0;
 	int n_chars, i;
 
 	for (i = 0; lineptr[i] != '\n'; i++)
 	{
-		n_chars = read(stdin, &lineptr[i], 1);
+		n_chars = read(stdin, &ch, 1);
 		if (n_chars == 0)
 		{
 			free(lineptr); /* Free memory allocated by getline*/
 			exit(0);
 		}
-
+		lineptr[i] = ch;
 		if (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
 
