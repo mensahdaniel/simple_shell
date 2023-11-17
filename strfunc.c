@@ -43,15 +43,13 @@ char *_strncpy(char *dest, char *src, unsigned long int n)
  * Return:int
  */
 
-int _strlen(char *s)
+int _strlen(char *str)
 {
-	int i;
+	int len;
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		continue;
-	}
-	return (i);
+	for (len = 0; str[len] != '\0'; len++)
+		;
+	return (len);
 }
 
 /**
