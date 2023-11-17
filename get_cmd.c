@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * path_cmd -  Search In $PATH For Excutable Command
+ * get_cmdpath -  Search In $PATH For Excutable Command
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
@@ -23,6 +23,33 @@ int get_cmdpath(char **cmd)
 	return (1);
 }
 
+/**
+ * add_cmd_path - Build a full path to the Command
+ * @command: Excutable Command
+ * @path: Dirctory Conatining Command
+ *
+ * Return: Parsed Full Path Of Command Or NULL Case Failed
+ */
+char *add_cmd_path(char *command, char *path)
+{
+	char *cmd;
+	size_t len;
+
+	len = _strlen(path) + _strlen(command) + 2;
+	cmd = malloc(sizeof(char) * len);
+	if (cmd == NULL)
+	{
+		return (NULL);
+	}
+
+	memset(cmd, 0, len);
+
+	cmd = _strcat(cmd, path);
+	cmd = _strcat(cmd, "/");
+	cmd = _strcat(cmd, command);
+
+	return (cmd);
+}
 /**
  * get_path - Get the PATH environment variable
  *
