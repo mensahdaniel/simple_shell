@@ -90,26 +90,28 @@ int _strncmp(char *str1, char *str2, size_t count)
 }
 
 /**
- * _strdup - Duplicate A String
- * @str:String
- * Return: Duplicate String Failed Null
+ * _strdup - Duplicate a string
+ *
+ * @str: The string to be duplicated
+ * Return: char* The duplicated string
  */
 char *_strdup(char *str)
 {
-	size_t len, i;
-	char *str2;
+	char *dupstr = NULL;
+	int i;
 
-	len = _strlen(str);
-	str2 = malloc(sizeof(char) * (len + 1));
-	if (!str2)
-	{
+	if (str == NULL)
 		return (NULL);
-	}
 
-	for (i = 0; i <= len; i++)
-	{
-		str2[i] = str[i];
-	}
+	dupstr = malloc(sizeof(char) * (_strlen(str) + 1));
 
-	return (str2);
+	if (dupstr == NULL)
+		return (NULL);
+
+	for (i = 0; str[i] != '\0'; i++)
+		dupstr[i] = str[i];
+
+	dupstr[i] = '\0';
+
+	return (dupstr);
 }
