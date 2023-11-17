@@ -15,7 +15,7 @@ int main(int ac, char **argv)
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
-	signal(SIGINT, signal_to_handel);
+	signal(SIGINT, signal_handler);
 
 	while (1)
 	{
