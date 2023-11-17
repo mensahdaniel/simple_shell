@@ -20,7 +20,7 @@ int builtincmd(char *cmds)
 
 char *getinput(void)
 {
-	char *lineptr = malloc(BUFFSIZE);
+	char *lineptr = malloc(BUFFSIZE), ch;
 	size_t n_size = 0;
 	ssize_t n_chars;
 	int i;
@@ -33,16 +33,17 @@ char *getinput(void)
 
 	for (i = 0; lineptr[i] != '\n'; i++)
 	{
-		n_chars = read(stdin, &lineptr, n_size);
+		n_chars = read(stdin, &lineptr[i], 1);
 
-		;
-
-		lineptr[i] = '\0';
-
-		while (*lineptr == ' ' || *lineptr == '\t')
+		if (*lineptr == ' ' || *lineptr == '\t')
 			lineptr++;
 
 		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
 			continue;
+
+		if (i >= BUFFSIZE)
+			lineptr = realloc(lineptr, BUFFSIZE + 1);
 	}
+	lineptr[i] = '\0';
+	return (lineptr);
 }
