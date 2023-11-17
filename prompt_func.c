@@ -18,12 +18,12 @@ void print_error(char *input, int counter, char **argv)
 {
 	char *er;
 
-	printstr(argv[0]);
-	printstr(": ");
+	PRINT(argv[0]);
+	PRINT(": ");
 	er = _itoa(counter);
-	printstr(er);
+	PRINT(er);
 	free(er);
-	printstr(": ");
-	printstr(input);
-	printstr(": not found\n");
+	PRINT(": ");
+	PRINT(input);
+	PRINT(": not found\n");
 }
