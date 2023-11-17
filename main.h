@@ -30,12 +30,12 @@ extern char **environ;
 
 char *_strtok(char *str, const char *tok);
 unsigned int check_delim(char c, const char *str);
-char *_strncpy(char *dest, char *src, int n);
-int _strlen(char *s);
+char *_strncpy(char *dest, char *src, unsigned long int n);
+int _strlen(char *str);
 int _putchar(char c);
-int _atoi(char *s);
+int _atoi(char *str);
 void _puts(char *str);
-int _strcmp(char *s1, char *s2);
+int _strcmp(char *str1, char *str2);
 int _isalpha(int c);
 void array_rev(char *arr, int len);
 int intlen(int num);

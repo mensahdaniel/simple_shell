@@ -19,7 +19,7 @@ int _putchar(char c)
  * Return:char
  */
 
-char *_strncpy(char *dest, char *src, int n)
+char *_strncpy(char *dest, char *src, unsigned long int n)
 {
 	int i;
 
@@ -55,29 +55,29 @@ int _strlen(char *s)
 }
 
 /**
- * _atoi - convert to a int
- * @s:string
+ * _atoi - converts a string to an integer
+ * @s:the string
  * Return:int
  */
-int _atoi(char *s)
+int _atoi(char *str)
 {
-	int i, j, n, x;
+	int i, j, num, x;
 
-	i = n = 0;
+	i = num = 0;
 	x = 1;
-	while ((s[i] < '0' || s[i] > '9') && (s[i] != '\0'))
+	while ((str[i] < '0' || str[i] > '9') && (str[i] != '\0'))
 	{
-		if (s[i] == '-')
+		if (str[i] == '-')
 			x *= -1;
 		i++;
 	}
 	j = i;
-	while ((s[j] >= '0') && (s[j] <= '9'))
+	while ((str[j] >= '0') && (str[j] <= '9'))
 	{
-		n = (n * 10) + x * ((s[j]) - '0');
+		num = (num * 10) + x * ((str[j]) - '0');
 		j++;
 	}
-	return (n);
+	return (num);
 }
 /**
  * _puts - print a string
