@@ -34,6 +34,5 @@ char *get_cmdpath(char *command)
 		/* printf("token path: %s\n", dir); */
 	}
 
-	printf("Command not found: %s\n", command);
 	return (NULL);
 }
