@@ -1,106 +1,97 @@
 #include "main.h"
 
 /**
- * _strcmp - Compare Two String
- * @s1:String 1
- * @s2:String 2
- * Return: 0 If Identical Otherwise How Much Diffrent
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int _strcmp(char *s1, char *s2)
+int _putchar(char c)
 {
-	int cmp = 0, i, len1, len2;
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
+	return (write(1, &c, 1));
+}
+/**
+ * _strncpy - copie a string
+ * @dest:char
+ *  @src:char
+ * @n:int
+ * Return:char
+ */
 
-	if (s1 == NULL || s2 == NULL)
-		return (1);
-	if (len1 != len2)
-		return (1);
-	for (i = 0; s1[i]; i++)
-	{
-		if (s1[i] != s2[i])
-		{
-			cmp = s1[i] - s2[i];
-			break;
-		}
-		else
-			continue;
-	}
-	return (cmp);
-}
-/**
- * _isalpha - Check if Alphabtic
- *@c: Character
- * Return: 1 If True 0 If Not
- */
-int _isalpha(int c)
+char *_strncpy(char *dest, char *src, int n)
 {
-	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
-/**
- * _itoa - Convert Integer To Char
- * @n: Int To Convert
- * Return: Char Pointer
- */
-char *_itoa(unsigned int n)
-{
-	int len = 0, i = 0;
-	char *s;
+int i;
 
-	len = intlen(n);
-	s = malloc(len + 1);
-	if (!s)
-		return (NULL);
-	*s = '\0';
-	while (n / 10)
+i = 0;
+	while (i < n && *(src + i))
 	{
-		s[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
+	*(dest + i) = *(src + i);
+	i++;
 	}
-	s[i] = (n % 10) + '0';
-	array_rev(s, len);
-	s[i + 1] = '\0';
-	return (s);
+	while (i < n)
+	{
+	*(dest + i) = '\0';
+	i++;
+	}
+	return (dest);
 }
+
 /**
- *  array_rev - Reverse Array
- * @arr:Array To Reverse
- * @len:Length Of Array
- * Return: Void(Reverse Array)
+ * _strlen - lenght of string
+ * @s:char
+ * Return:int
  */
-void array_rev(char *arr, int len)
+
+int _strlen(char *s)
 {
 	int i;
-	char tmp;
 
-	for (i = 0; i < (len / 2); i++)
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			continue;
+		}
+return (i);
+}
+
+/**
+ * _atoi - convert to a int
+ * @s:string
+ * Return:int
+ */
+int _atoi(char *s)
+{
+int i, j, n, x;
+
+	i = n = 0;
+	x = 1;
+	while ((s[i] < '0' || s[i] > '9') && (s[i] != '\0'))
 	{
-		tmp = arr[i];
-		arr[i] = arr[(len - 1) - i];
-		arr[(len - 1) - i] = tmp;
+		if (s[i] == '-')
+			x *= -1;
+		i++;
 	}
+	j = i;
+	while ((s[j] >= '0') && (s[j] <= '9'))
+	{
+		n = (n * 10) + x * ((s[j]) - '0');
+		j++;
+	}
+	return (n);
 }
 /**
- * intlen - Determine Length Of Int
- * @num: Given Int
- * Return: Length Of Int
+ * _puts - print a string
+ * @str:pointer char
+ * return:void
  */
-int intlen(int num)
+void _puts(char *str)
 {
-	int len = 0;
+	int i;
 
-	while (num != 0)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		len++;
-		num /= 10;
+		_putchar(str[i]);
 	}
-	return (len);
+_putchar('\n');
+return;
 }
