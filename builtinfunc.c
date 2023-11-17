@@ -17,3 +17,33 @@ int builtincmd(char *cmds)
 
 	return (-1);
 }
+
+char *_getinput(void)
+{
+	char *lineptr = malloc(BUFFSIZE);
+	size_t n_size = 0;
+	ssize_t n_chars;
+	int i;
+	while (1)
+	{
+
+		n_chars = getline(&lineptr, &n_size, stdin);
+
+		if (n_chars == -1)
+		{
+			free(lineptr); /* Free memory allocated by getline*/
+			exit(0);
+		}
+
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+
+		lineptr[i] = '\0';
+
+		while (*lineptr == ' ' || *lineptr == '\t')
+			lineptr++;
+
+		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
+			continue;
+	}
+}
