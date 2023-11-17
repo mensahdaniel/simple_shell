@@ -9,7 +9,7 @@
 
 int main(__attribute__((unused)) int argc, char **argv)
 {
-	char *input, **cmd;
+	char *lineptr, **cmd;
 	int counter = 0, statue = 1, st = 0;
 
 	if (argv[1] != NULL)
@@ -20,27 +20,26 @@ int main(__attribute__((unused)) int argc, char **argv)
 		counter++;
 		if (isatty(STDIN_FILENO))
 			prompt();
-		input = _getline();
-		if (input[0] == '\0')
+		lineptr = _getline();
+		if (lineptr[0] == '\0')
 		{
 			continue;
 		}
-		history(input);
-		cmd = parse_cmd(input);
+		history(lineptr);
+		cmd = tokenizer(lineptr, " ");
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
-			exit_bul(cmd, input, argv, counter);
+			exit_bul(cmd, lineptr, argv, counter);
 		}
 		else if (check_builtin(cmd) == 0)
 		{
 			st = handle_builtin(cmd, st);
-			free_all(cmd, input);
+			free_all(cmd, lineptr);
 			continue;
 		}
 		else
 		{
 			st = check_cmd(cmd, input, counter, argv);
-
 		}
 		free_all(cmd, input);
 	}
@@ -54,15 +53,9 @@ int main(__attribute__((unused)) int argc, char **argv)
  */
 int check_builtin(char **cmd)
 {
-	bul_t fun[] = {
-		{"cd", NULL},
-		{"help", NULL},
-		{"echo", NULL},
-		{"history", NULL},
-		{NULL, NULL}
-	};
+	bul_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
-		if (*cmd == NULL)
+	if (*cmd == NULL)
 	{
 		return (-1);
 	}

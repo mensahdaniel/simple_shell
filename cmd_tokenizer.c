@@ -11,7 +11,7 @@ char **tokenizer(char *buffer, char *delim)
 {
 	char *command;
 	/* Allocate memory for tokens dynamically */
-	char **tokens = malloc(SIZE * sizeof(char *));
+	char **tokens = malloc(BUFSIZE * sizeof(char *));
 
 	if (tokens == NULL)
 	{
