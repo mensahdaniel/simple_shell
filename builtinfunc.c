@@ -49,8 +49,7 @@ char *getinput(void)
 			}
 		}
 	}
-	if (lineptr[i] == '\n')
-		lineptr[i] = '\0';
+	lineptr[i] = '\0';
 	// hashtag_handle(buff);
 	return (lineptr);
 }
