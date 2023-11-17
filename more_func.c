@@ -2,8 +2,7 @@
 
 /**
  * history_dis - Display History Of User Input Simple Shell
- * @c:Parsed Command
- * @s:Statue Of Last Excute
+ *
  * Return: 0 Succes -1 Fail
  */
 int display_history(void)
@@ -67,5 +66,3 @@ int print_echo(char **cmd)
 	}
 	return (1);
 }
-
-
