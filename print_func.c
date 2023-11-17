@@ -50,3 +50,38 @@ int _printerror(char *cmd, char *argv, int count)
 	free(num1);
 	return (0);
 }
+
+/**
+ * print_number -Print Unsigned Int Putchar
+ * @num: Unisigned Integer
+ * Return: Void
+ */
+void print_number(unsigned int num)
+{
+	unsigned int x = num;
+
+	if ((x / 10) > 0)
+		print_number(x / 10);
+
+	_putchar(x % 10 + '0');
+}
+
+/**
+ * print_number_in -Print Number Putchar
+ * @num:Integer
+ * Return: void
+ */
+void print_number_in(int num)
+{
+	unsigned int x = num;
+
+	if (num < 0)
+	{
+		_putchar('-');
+		x = -x;
+	}
+	if ((x / 10) > 0)
+		print_number(x / 10);
+
+	_putchar(x % 10 + '0');
+}

@@ -12,6 +12,7 @@
 
 #define SIZE 50
 #define BUFFSIZE 1024
+#define PATH_MAX 1024
 
 extern char **environ;
 
@@ -34,6 +35,11 @@ char *_strtok(char *str, const char *delim);
 char *_strdup(char *str);
 
 int _printerror(char *cmd, char *argv, int count);
+void print_number(unsigned int n);
+void print_number_in(int n);
+
+int display_history(void);
+int print_echo(char **cmd);
 
 char *_itoa(int num);
 int _free(char **args);
@@ -43,5 +49,8 @@ char *getinput(void);
 
 char **tokenizer(char *lineptr, char *delim);
 int execute(char **cmds, char **argv, int count);
+
+int _isalpha(int c);
+int _atoi(char *s);
 
 #endif /* MAIN_H */
