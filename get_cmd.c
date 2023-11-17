@@ -8,31 +8,52 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, *dir = NULL, *cmdp = NULL, *delim = ":";
+	char *cmdpath = NULL, *cmdp = NULL;
+	const char *path = getenv("PATH");
+	const char *delim = ":";
 
-	cmdpath = get_path("PATH=");
+	if (path == NULL || command == NULL)
+	{
+		return NULL;
+	}
+
+	size_t path_len = strlen(path);
+	cmdpath = malloc(path_len + strlen(command) + 2);
 
 	if (cmdpath == NULL)
 	{
-		return (NULL);
+		return NULL; // Handle allocation failure
 	}
 
-	dir = strtok(cmdpath, delim);
-	while (dir != NULL)
+	const char *dir = path;
+	while (*dir != '\0')
 	{
-		cmdp = malloc(sizeof(char *) * (strlen(command) + strlen(dir) + 2));
-		strcpy(cmdp, dir);
-		strcat(cmdp, "/");
-		strcat(cmdp, command);
+		const char *end = strchr(dir, *delim);
+		if (end == NULL)
+		{
+			end = dir + strlen(dir); // Last path in PATH
+		}
 
-		/* printf("full path: %s\n", cmdp); */
-		if (access(cmdp, X_OK) == 0)
-			return (cmdp);
+		size_t dir_len = end - dir;
+		strncpy(cmdpath, dir, dir_len);
+		cmdpath[dir_len] = '\0';
 
-		free(cmdp);
-		dir = strtok(NULL, delim);
-		/* printf("token path: %s\n", dir); */
+		strcat(cmdpath, "/");
+		strcat(cmdpath, command);
+
+		if (access(cmdpath, X_OK) == 0)
+		{
+			return cmdpath;
+		}
+
+		if (*end == '\0')
+		{
+			break;
+		}
+
+		dir = end + 1; // Move to the next directory in PATH
 	}
 
-	return (NULL);
+	free(cmdpath);
+	return NULL; // Command not found
 }
