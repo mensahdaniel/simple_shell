@@ -69,19 +69,17 @@ char *_strchr(const char *str, char c)
  * Return: size_t the difference between the two strings and 0 if equal
  */
 
-int _strncmp(char *str1, char *str2, int count)
+int _strncmp(char *str1, char *str2, size_t count)
 {
-	int i;
+	size_t i;
 
-	for (i = 0; i < count; i++)
+	if (str1 == NULL)
+		return (-1);
+	for (i = 0; i < count && str2[i]; i++)
 	{
-		if (str1[i] > str2[i])
+		if (str1[i] != str2[i])
 		{
-			return (str1[i] - str2[i]);
-		}
-		else if (str1[i] < str2[i])
-		{
-			return (str1[i] - str2[i]);
+			return (1);
 		}
 	}
 	return (0);
