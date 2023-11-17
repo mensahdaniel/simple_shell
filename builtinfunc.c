@@ -49,7 +49,7 @@ char *getinput(void)
 			}
 		}
 	}
-	lineptr[i] = '\0';
+	lineptr[--i] = '\0';
 	// hashtag_handle(buff);
 	return (lineptr);
 }
