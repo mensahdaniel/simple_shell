@@ -28,26 +28,24 @@ char *getinput(void)
 	for (i = 0; ch != EOF && ch != '\n'; i++)
 	{
 		fflush(stdin);
-		n_chars = read(STDIN_FILENO, &ch, 1);
-		if (n_chars == 0)
+		n_chars = getline(STDIN_FILENO, &ch, 1);
+
+		if (n_chars == -1)
 		{
-			free(lineptr);
-			exit(EXIT_SUCCESS);
+			free(lineptr); /* Free memory allocated by getline*/
+			exit(0);
 		}
-		lineptr[i] = ch;
-		if (lineptr[0] == '\n')
-		{
-			free(lineptr);
-			return ("\0");
-		}
-		if (i >= BUFFSIZE)
-		{
-			lineptr = realloc(lineptr, BUFFSIZE + 1);
-			if (lineptr == NULL)
-			{
-				return (NULL);
-			}
-		}
+
+		for (i = 0; lineptr[i] != '\n'; i++)
+			;
+
+		lineptr[i] = '\0';
+
+		while (*lineptr == ' ' || *lineptr == '\t')
+			lineptr++;
+
+		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
+			continue;
 	}
 	lineptr[i] = '\0';
 	// hashtag_handle(buff);
