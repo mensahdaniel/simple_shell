@@ -2,6 +2,8 @@
 
 char *add_path(char *cmdpath, const char *path, const char *command, const char *delim)
 {
+	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
+
 	const char *dir = path;
 	while (*dir != '\0')
 	{
@@ -49,9 +51,6 @@ char *get_cmdpath(char *command)
 	{
 		return NULL;
 	}
-
-	size_t path_len = _strlen(path);
-	cmdpath = malloc(path_len + strlen(command) + 2);
 
 	if (cmdpath == NULL)
 	{
