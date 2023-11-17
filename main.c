@@ -29,7 +29,9 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		add_history(lineptr);
 
-
+		for (i = 0; lineptr[i] != '\0'; i++)
+			;
+		lineptr[i] = '\0';
 
 		cmd = tokenizer(lineptr);
 
