@@ -34,7 +34,7 @@ char *_strncpy(char *dest, char *src, unsigned long int n);
 int _strlen(char *str);
 int _putchar(char c);
 int _atoi(char *str);
-void _puts(char *str);
+void printstr(char *str);
 int _strcmp(char *str1, char *str2);
 int _isalpha(int c);
 void array_rev(char *arr, int len);
