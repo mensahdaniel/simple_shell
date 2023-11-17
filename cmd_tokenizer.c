@@ -1,33 +1,32 @@
 #include "main.h"
 
 /**
- * tokenizer - breaks the lineptr into tokens based on the specidifed delimiter
- *
- * @buffer: string to be tokenized
- * @delim: the delimiter to be used to tokenize the string
- * Return: the tokenized string as an array of tokens (cmds)
+ * parse_cmd - Parse Line Of Input
+ * @input:User Input To Parse
+ * Return: Array Of Char (Parsed):Simple Shell
  */
-char **tokenizer(char *buffer, char *delim)
+char **tokenizer(char *input)
 {
-	char *command;
-	/* Allocate memory for tokens dynamically */
-	char **tokens = malloc(BUFSIZE * sizeof(char *));
+	char **tokens;
+	char *token;
+	int i, buffsize = BUFFSIZE;
 
-	if (tokens == NULL)
+	if (input == NULL)
+		return (NULL);
+	tokens = malloc(sizeof(char *) * buffsize);
+	if (!tokens)
 	{
-		/* Handle allocation failure */
+		perror("hsh");
 		return (NULL);
 	}
 
-	int i = 0;
-
-	command = _strtok(buffer, delim);
-	while (command != NULL)
+	token = _strtok(input, "\n ");
+	for (i = 0; token; i++)
 	{
-		tokens[i++] = _strdup(command); /* Allocate memory for each token */
-		command = _strtok(NULL, delim);
+		tokens[i] = token;
+		token = _strtok(NULL, "\n ");
 	}
-
 	tokens[i] = NULL;
+
 	return (tokens);
 }

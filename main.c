@@ -10,12 +10,12 @@
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *lineptr, **cmd;
-	int counter = 0, status = 1, st = 0, i;
+	int counter = 0, statue = 1, st = 0;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
 	signal(SIGINT, signal_to_handel);
-	while (status)
+	while (statue)
 	{
 		counter++;
 		if (isatty(STDIN_FILENO))
@@ -26,11 +26,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		add_history(lineptr);
-		for (i = 0; lineptr[i] != '\n'; i++)
-			;
-		lineptr[i] = '\0';
-
-		cmd = tokenizer(lineptr, " ");
+		cmd = parse_cmd(lineptr);
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
 			exit_func(cmd, lineptr, argv, counter);
@@ -47,7 +43,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		_free(cmd, lineptr);
 	}
-	return (status);
+	return (statue);
 }
 /**
  * check_builtin - check builtin
@@ -55,18 +51,18 @@ int main(__attribute__((unused)) int argc, char **argv)
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin_func(char **cmd)
+int check_builtin(char **cmd)
 {
-	bul_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
+	bulitin_t func[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
 	if (*cmd == NULL)
 	{
 		return (-1);
 	}
 
-	while ((fun + i)->command)
+	while ((func + i)->command)
 	{
-		if (_strcmp(cmd[0], (fun + i)->command) == 0)
+		if (_strcmp(cmd[0], (func + i)->command) == 0)
 			return (0);
 		i++;
 	}

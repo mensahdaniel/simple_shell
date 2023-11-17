@@ -7,21 +7,22 @@
  * Return: -1 Fail 0 Succes (Return :Excute Builtin)
  */
 
-int run_builtin_func(char **cmd, int status)
+int handle_builtin(char **cmd, int er)
 {
-	bul_t bil[] = {{"cd", change_dir}, {"env", display_env},				 {"help", display_help},
-								 {"echo", echo},		 {"history", display_history}, {NULL, NULL}};
+	bulitin_t builtin[] = {{"cd", change_dir}, {"env", display_env},				 {"help", display_help},
+								 {"echo", echo_func}, {"history", display_history}, {NULL, NULL}};
 	int i = 0;
 
-	while ((bil + i)->command)
+	while ((builtin + i)->command)
 	{
-		if (_strcmp(cmd[0], (bil + i)->command) == 0)
-			return ((bil + i)->function(cmd, status));
+		if (_strcmp(cmd[0], (builtin + i)->command) == 0)
+		{
+			return ((builtin + i)->function(cmd, er));
+		}
 		i++;
 	}
 	return (-1);
 }
-
 /**
  * check_cmd - Excute Simple Shell Command (Fork,Wait,Excute)
  *
@@ -36,11 +37,10 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	int status;
 	pid_t pid;
 
-	if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
-		get_cmdpath(cmd);
-
 	if (*cmd == NULL)
+	{
 		return (-1);
+	}
 
 	pid = fork();
 	if (pid == -1)
@@ -51,6 +51,10 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 
 	if (pid == 0)
 	{
+		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
+		{
+			get_cmdpath(cmd);
+		}
 
 		if (execve(*cmd, cmd, environ) == -1)
 		{
@@ -63,4 +67,16 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	}
 	wait(&status);
 	return (0);
+}
+/**
+ * signal_to_handel - Handle ^C
+ * @sig:Captured Signal
+ * Return: Void
+ */
+void signal_to_handel(int sig)
+{
+	if (sig == SIGINT)
+	{
+		PRINT("\n$ ");
+	}
 }

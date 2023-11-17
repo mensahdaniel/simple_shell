@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * history - add user inpt to File
+ * history - Fill File By User Input
  * @input: User Input
- * Return: -1 if Fail or 0 on Succes
+ * Return: -1 Fail 0 Succes
  */
-int add_history(char *input)
+int history(char *input)
 {
-	char *filename = ".shell_history";
+	char *filename = ".simple_shell_history";
 	ssize_t fd, w;
 	int len = 0;
 

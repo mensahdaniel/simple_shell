@@ -3,48 +3,30 @@
 
 /**
  * _getline - Read The Input By User From Stdin
- *
- * Return: buffer or NULL
+ * Return: Input
  */
 char *_getline()
 {
-	int i, buffsize = BUFSIZE, rd;
-	char c = 0;
-	char *buff = malloc(buffsize);
+        char *lineptr = malloc(BUFFSIZE), ch = 0;
+        ssize_t n_chars;
+        int i;
 
-	if (buff == NULL)
-	{
-		free(buff);
-		return (NULL);
-	}
+        for (i = 0; lineptr[i - 1] != EOF && lineptr[i - 1] != '\n'; i++)
+        {
+                fflush(stdin);
+                n_chars = read(STDIN_FILENO, &lineptr[i], 1);
 
-	for (i = 0; c != EOF && c != '\n'; i++)
-	{
-		fflush(stdin);
-		rd = read(STDIN_FILENO, &c, 1);
-		if (rd == 0)
-		{
-			free(buff);
-			exit(EXIT_SUCCESS);
-		}
-		buff[i] = c;
-		if (buff[0] == '\n')
-		{
-			free(buff);
-			return ("\0");
-		}
-		if (i >= buffsize)
-		{
-			buff = _realloc(buff, buffsize, buffsize + 1);
-			if (buff == NULL)
-			{
-				return (NULL);
-			}
-		}
-	}
-	buff[i] = '\0';
-	hashtag_handle(buff);
-	return (buff);
+                if (n_chars == 0)
+                {
+                        free(lineptr); /* Free memory allocated by getline*/
+                        exit(EXIT_SUCCESS);
+                }
+
+                if (*lineptr == ' ' || *lineptr == '\t')
+                        lineptr++;
+        }
+        // hashtag_handle(buff);
+        return (lineptr);
 }
 
 /**

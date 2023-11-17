@@ -6,9 +6,9 @@
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
+int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
-	char *filename = ".shell_history";
+	char *filename = ".simple_shell_history";
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;

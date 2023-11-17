@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * get_cmdpath -  Search In $PATH For Excutable Command
+ * path_cmd -  Search In $PATH For Excutable Command
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
-int get_cmdpath(char **cmd)
+int path_cmd(char **cmd)
 {
 	char *path, *value, *cmd_path;
 	struct stat buf;
@@ -14,33 +14,34 @@ int get_cmdpath(char **cmd)
 	value = _strtok(path, ":");
 	while (value != NULL)
 	{
-		cmd_path = add_cmd_path(*cmd, value);
+		cmd_path = build(*cmd, value);
 		if (stat(cmd_path, &buf) == 0)
 		{
 			*cmd = _strdup(cmd_path);
 			free(cmd_path);
+			free(path);
 			return (0);
 		}
 		free(cmd_path);
 		value = _strtok(NULL, ":");
 	}
+	free(path);
 
 	return (1);
 }
-
 /**
- * add_cmd_path - Build a full path to the Command
- * @command: Excutable Command
- * @path: Dirctory Conatining Command
+ * build - Build Command
+ * @token: Excutable Command
+ * @value: Dirctory Conatining Command
  *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
-char *add_cmd_path(char *command, char *path)
+char *build(char *token, char *value)
 {
 	char *cmd;
 	size_t len;
 
-	len = _strlen(path) + _strlen(command) + 2;
+	len = _strlen(value) + _strlen(token) + 2;
 	cmd = malloc(sizeof(char) * len);
 	if (cmd == NULL)
 	{
@@ -49,28 +50,27 @@ char *add_cmd_path(char *command, char *path)
 
 	memset(cmd, 0, len);
 
-	cmd = _strcat(cmd, path);
+	cmd = _strcat(cmd, value);
 	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, command);
+	cmd = _strcat(cmd, token);
 
 	return (cmd);
 }
 /**
- * get_path - Get the PATH environment variable
- *
- * @path: The PATH environment variable name
- * Return: char* The content of the PATH environment variable
+ * _getenv - Gets The Value Of Enviroment Variable By Name
+ * @name: Environment Variable Name
+ * Return: The Value of the Environment Variable Else NULL.
  */
-char *get_path(char *path)
+char *_getenv(char *name)
 {
 	size_t nl, vl;
 	char *value;
 	int i, x, j;
 
-	nl = _strlen(path);
+	nl = _strlen(name);
 	for (i = 0; environ[i]; i++)
 	{
-		if (_strncmp(path, environ[i], nl) == 0)
+		if (_strncmp(name, environ[i], nl) == 0)
 		{
 			vl = _strlen(environ[i]) - nl;
 			value = malloc(sizeof(char) * vl);
@@ -94,49 +94,3 @@ char *get_path(char *path)
 
 	return (NULL);
 }
-
-// /**
-//  * get_full_path - tokenize path and concatenates existing
-//  * command with tokenized directories in path
-//  *
-//  * @path: the value for the PATH variable
-//  * @command: the command to be concatenated to the directories
-//  * @delim: delimeter to tokenize path with
-//  * Return: valid command absolute path
-//  */
-// char *get_full_path(const char *path, const char *command, const char *delim)
-// {
-// 	char *cmdpath = NULL;
-// 	const char *dir = path;
-
-// 	cmdpath = malloc(_strlen(path) + _strlen(command) + 2);
-
-// 	while (*dir != '\0')
-// 	{
-// 		const char *end = _strchr(dir, *delim);
-
-// 		if (end == NULL)
-// 			end = dir + _strlen(dir); /* Last path in PATH */
-
-// 		size_t dir_len = (size_t)end - (size_t)dir;
-
-// 		_strcpy(cmdpath, dir);
-// 		cmdpath[dir_len] = '\0';
-
-// 		_strcat(cmdpath, "/");
-// 		_strcat(cmdpath, command);
-
-// 		if (access(cmdpath, X_OK) == 0)
-// 		{
-// 			return (cmdpath);
-// 		}
-
-// 		if (*end == '\0')
-// 		{
-// 			break;
-// 		}
-
-// 		dir = end + 1; /* Move to the next directory in PATH */
-// 	}
-// 	return (NULL);
-// }

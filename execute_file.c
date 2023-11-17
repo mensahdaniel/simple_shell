@@ -36,16 +36,16 @@ void read_file(char *filename, char **argv)
  * @argv:Program Name
  * Return : Excute A line void
  */
-void treat_file(char *lineptr, int counter, FILE *fp, char **argv)
+void treat_file(char *line, int counter, FILE *fp, char **argv)
 {
 	char **cmd;
 	int st = 0;
 
-	cmd = tokenizer(lineptr, " ");
+	cmd = parse_cmd(line);
 
 	if (_strncmp(cmd[0], "exit", 4) == 0)
 	{
-		exit_bul_for_file(cmd, lineptr, fp);
+		exit_bul_for_file(cmd, line, fp);
 	}
 	else if (check_builtin_func(cmd) == 0)
 	{
@@ -54,7 +54,7 @@ void treat_file(char *lineptr, int counter, FILE *fp, char **argv)
 	}
 	else
 	{
-		st = check_cmd(cmd, lineptr, counter, argv);
+		st = check_cmd(cmd, line, counter, argv);
 		free(cmd);
 	}
 }
