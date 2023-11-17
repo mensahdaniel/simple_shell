@@ -138,7 +138,7 @@ int echo_bul(char **cmd, int st)
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
-		path = _getenv("PATH");
+		path = get_path("PATH");
 		PRINT(path);
 		PRINT("\n");
 		free(path);

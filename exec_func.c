@@ -53,7 +53,7 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	{
 		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
 		{
-			path_cmd(cmd);
+			get_cmdpath(cmd);
 		}
 
 		if (execve(*cmd, cmd, environ) == -1)

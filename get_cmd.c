@@ -5,12 +5,12 @@
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
-int path_cmd(char **cmd)
+int get_cmdpath(char **cmd)
 {
 	char *path, *value, *cmd_path;
 	struct stat buf;
 
-	path = _getenv("PATH");
+	path = get_path("PATH");
 	value = _strtok(path, ":");
 	while (value != NULL)
 	{
@@ -68,7 +68,7 @@ char *_getenv(char *name)
 	int i, x, j;
 
 	nl = _strlen(name);
-	for (i = 0 ; environ[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
 		if (_strncmp(name, environ[i], nl) == 0)
 		{
