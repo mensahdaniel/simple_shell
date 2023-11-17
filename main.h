@@ -19,7 +19,7 @@
 extern char **environ;
 
 void isatty_handler(void);
-void signal_to_handel(int sig);
+void signal_handler(int sig);
 
 char *get_path(char *path);
 char *get_cmdpath(char *command);

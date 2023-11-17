@@ -17,7 +17,7 @@ void isatty_handler(void)
  * @sig:Captured Signal
  * Return: Void
  */
-void signal_to_handel(int sig)
+void signal_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
