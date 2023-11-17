@@ -24,7 +24,7 @@ int printstr(char *str);
 size_t _strlen(const char *str);
 int _strcmp(char *str1, char *str2);
 char *_strchr(const char *str, char c);
-char *_strcat(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 int _strncmp(char *str1, char *str2, int count);
 
 char *_strcpy(char *dest, const char *src);

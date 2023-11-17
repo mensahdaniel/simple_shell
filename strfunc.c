@@ -79,7 +79,7 @@ int _strncmp(char *str1, char *str2, int count)
  * @src: The source string to be concatenated
  * Return: char* The full concatenated string
  */
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
 	int i, j;
 

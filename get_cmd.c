@@ -1,30 +1,7 @@
 #include "main.h"
 
-/**
- * get_cmdpath - the absolute path of a command
- *
- * @command: The command to be searched for
- * Return: char* The absolute path of the command
- */
-char *get_cmdpath(char *command)
+char *add_path(char *cmdpath, const char *path, const char *command, const char *delim)
 {
-	char *cmdpath = NULL;
-	const char *path = get_path("PATH");
-	const char *delim = ":";
-
-	if (path == NULL || command == NULL)
-	{
-		return NULL;
-	}
-
-	size_t path_len = _strlen(path);
-	cmdpath = malloc(path_len + strlen(command) + 2);
-
-	if (cmdpath == NULL)
-	{
-		return NULL; /* Handle allocation failure */
-	}
-
 	const char *dir = path;
 	while (*dir != '\0')
 	{
@@ -53,7 +30,34 @@ char *get_cmdpath(char *command)
 
 		dir = end + 1; /* Move to the next directory in PATH */
 	}
+}
 
+/**
+ * get_cmdpath - the absolute path of a command
+ *
+ * @command: The command to be searched for
+ * Return: char* The absolute path of the command
+ */
+char *get_cmdpath(char *command)
+{
+	char *cmdpath = NULL;
+	const char *path = get_path("PATH");
+	const char *delim = ":";
+
+	if (path == NULL || command == NULL)
+	{
+		return NULL;
+	}
+
+	size_t path_len = _strlen(path);
+	cmdpath = malloc(path_len + strlen(command) + 2);
+
+	if (cmdpath == NULL)
+	{
+		return NULL; /* Handle allocation failure */
+	}
+
+	cmdpath = add_path(cmdpath, path);
 	free(cmdpath);
 	return NULL; /* if Command not found */
 }
