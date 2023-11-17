@@ -36,14 +36,11 @@ char *_getline()
 		{
 			buff = _realloc(buff, buffsize, buffsize + 1);
 			if (buff == NULL)
-			{
 				return (NULL);
-			}
 		}
 	}
 	while (buff[0] == ' ' || buff[0] == '\t')
 		buff++;
-	buff[i] = '\0';
 	hashtag_handle(buff);
 	return (buff);
 }
