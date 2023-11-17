@@ -14,18 +14,19 @@ int main(int ac, char **argv)
 	(void)ac;
 
 	if (argv[1] != NULL)
+		read_file(argv[1], argv);
 
-		while (1)
-		{
-			isatty_handler();
-			lineptr = getinput();
-			char **cmds;
+	while (1)
+	{
+		isatty_handler();
+		lineptr = getinput();
+		char **cmds;
 
-			count++;
+		count++;
 
-			cmds = tokenizer(lineptr, " ");
-			execute(cmds, argv, count);
-		}
+		cmds = tokenizer(lineptr, " ");
+		execute(cmds, argv, count);
+	}
 	free(lineptr); /* Free memory allocated by getline after processing */
 	return (0);
 }
