@@ -10,7 +10,7 @@
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *lineptr, **cmd;
-	int counter = 0, status = 1, st = 0;
+	int counter = 0, status = 1, st = 0, i;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
@@ -31,6 +31,15 @@ int main(__attribute__((unused)) int argc, char **argv)
 
 		while (lineptr[0] == ' ' || lineptr[0] == '\t')
 			lineptr++;
+
+		for (i = 0; lineptr[i] != '\0'; i++)
+		{
+			if (lineptr[i] == '\n')
+			{
+				lineptr[i] = '\0';
+				break;
+			}
+		}
 
 		cmd = tokenizer(lineptr);
 
