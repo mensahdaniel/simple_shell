@@ -8,7 +8,7 @@ int add_history(char *lineptr)
 {
 	char *filename = ".shell_history";
 	ssize_t fd, w;
-	int len = 0;
+	int len = 0, i;
 
 	if (!filename)
 		return (-1);
@@ -17,6 +17,9 @@ int add_history(char *lineptr)
 		return (-1);
 	if (lineptr)
 	{
+		for (int i = 0; lineptr[i] != '\0'; i++)
+			;
+		lineptr[i] = '\n';
 		while (lineptr[len])
 			len++;
 		w = write(fd, lineptr, len);
