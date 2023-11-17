@@ -9,7 +9,7 @@
 char *_itoa(int num)
 {
 	int temp, dex = 10;
-	char *str = (char *)malloc(12 * sizeof(char));
+	char *str = malloc(12 * sizeof(char *));
 
 	if (str == NULL)
 		return (NULL);
