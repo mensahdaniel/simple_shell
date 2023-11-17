@@ -9,13 +9,8 @@
 
 int run_builtin_func(char **cmd, int er)
 {
-	bulitin_t builtin[] = {{"cd", change_dir},
-		{"env", display_env},
-		{"help", display_help},
-		{"echo", echo_func},
-		{"history", display_history},
-		{NULL, NULL}
-	};
+	bulitin_t builtin[] = {{"cd", change_dir},	{"env", display_env},					{"help", display_help},
+												 {"echo", echo_func}, {"history", display_history}, {NULL, NULL}};
 
 	int i = 0;
 
