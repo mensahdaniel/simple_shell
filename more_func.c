@@ -17,9 +17,8 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
-	{
 		return (-1);
-	}
+
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		counter++;
@@ -29,8 +28,10 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 		PRINT(" ");
 		PRINT(line);
 	}
+
 	if (line)
 		free(line);
+
 	fclose(fp);
 	return (0);
 }
@@ -43,13 +44,10 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 int _isalpha(int c)
 {
 	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-	{
 		return (1);
-	}
+
 	else
-	{
 		return (0);
-	}
 }
 
 /**
