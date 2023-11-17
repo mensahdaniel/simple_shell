@@ -29,9 +29,7 @@ char *_strcat(char *dest, char *src)
 	char *s = dest;
 
 	while (*dest != '\0')
-	{
 		dest++;
-	}
 
 	while (*src != '\0')
 	{
@@ -55,9 +53,7 @@ char *_strchr(const char *str, char c)
 	for (; *str != '\0'; str++)
 	{
 		if (*str == c)
-		{
 			return ((char *)(str));
-		}
 	}
 	return (NULL);
 }
@@ -78,9 +74,7 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 	for (i = 0; i < n && s2[i]; i++)
 	{
 		if (s1[i] != s2[i])
-		{
 			return (1);
-		}
 	}
 	return (0);
 }
@@ -97,14 +91,10 @@ char *_strdup(char *str)
 	len = _strlen(str);
 	str2 = malloc(sizeof(char) * (len + 1));
 	if (!str2)
-	{
 		return (NULL);
-	}
 
 	for (i = 0; i <= len; i++)
-	{
 		str2[i] = str[i];
-	}
 
 	return (str2);
 }
@@ -123,8 +113,10 @@ int _strcmp(char *s1, char *s2)
 
 	if (s1 == NULL || s2 == NULL)
 		return (1);
+
 	if (len1 != len2)
 		return (1);
+
 	for (i = 0; s1[i]; i++)
 	{
 		if (s1[i] != s2[i])
