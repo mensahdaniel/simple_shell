@@ -38,6 +38,8 @@ char *_itoa(int num);
 int _free(char **args);
 
 int builtincmd(char *cmds);
+char *getinput(void);
+
 char **tokenizer(char *lineptr, char *delim);
 int execute(char **cmds, char **argv, int count);
 
