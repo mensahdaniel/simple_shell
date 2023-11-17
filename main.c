@@ -21,7 +21,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 		counter++;
 		if (isatty(STDIN_FILENO))
 			prompt();
-
 		lineptr = _getline();
 
 		for (i = 0; lineptr[i] != '\0'; i++)
@@ -29,9 +28,8 @@ int main(__attribute__((unused)) int argc, char **argv)
 		lineptr[i] = '\0';
 
 		if (lineptr[0] == '\0')
-		{
 			continue;
-		}
+
 		add_history(lineptr);
 
 		cmd = tokenizer(lineptr);
