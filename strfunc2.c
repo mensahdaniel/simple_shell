@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
  * _strcmp - Compare Two String
@@ -55,7 +56,7 @@ int _isalpha(int c)
  * @num: integer to be converted
  * Return: pointer to the string
  */
-char *_itoa(int num)
+char *_itoa(size_t num)
 {
 	int i = 0, isNegative = 0;
 	char *str = (char *)malloc(12 * sizeof(char));
@@ -97,24 +98,24 @@ char *_itoa(int num)
 
 	return (str);
 }
-/**
- *  array_rev - Reverse Array
- * @arr:Array To Reverse
- * @len:Length Of Array
- * Return: Void(Reverse Array)
- */
-void array_rev(char *arr, int len)
-{
-	int i;
-	char tmp;
+// /**
+//  *  array_rev - Reverse Array
+//  * @arr:Array To Reverse
+//  * @len:Length Of Array
+//  * Return: Void(Reverse Array)
+//  */
+// void array_rev(char *arr, int len)
+// {
+// 	int i;
+// 	char tmp;
 
-	for (i = 0; i < (len / 2); i++)
-	{
-		tmp = arr[i];
-		arr[i] = arr[(len - 1) - i];
-		arr[(len - 1) - i] = tmp;
-	}
-}
+// 	for (i = 0; i < (len / 2); i++)
+// 	{
+// 		tmp = arr[i];
+// 		arr[i] = arr[(len - 1) - i];
+// 		arr[(len - 1) - i] = tmp;
+// 	}
+// }
 /**
  * intlen - Determine Length Of Int
  * @num: Given Int
