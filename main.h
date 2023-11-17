@@ -41,7 +41,7 @@ int intlen(int num);
 char *_itoa(unsigned int n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-char *_strchr(char *s, char c);
+char *_strchr(const char *str, char c);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
 

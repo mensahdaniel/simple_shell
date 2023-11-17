@@ -42,25 +42,24 @@ char *_strcat(char *dest, char *src)
 	*dest = '\0';
 	return (s);
 }
+
 /**
- * _strchr - Locate Charactere In String
- * @s:String Search In
- * @c:Char To Search For
- * Return: Pointer To Char*
+ * _strchr - Find the first occurrence of a character in a string
+ *
+ * @str: The string to be searched
+ * @c: The character to search for
+ * Return: char* The pointer to the first occurrence of the character
  */
-char *_strchr(char *s, char c)
+char *_strchr(const char *str, char c)
 {
-
-	do
-	{
-
-		if (*s == c)
-		{
-			break;
-		}
-	} while (*s++);
-
-	return (s);
+        for (; *str != '\0'; str++)
+        {
+                if (*str == c)
+                {
+                        return ((char *)(str));
+                }
+        }
+        return (NULL);
 }
 /**
  * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
