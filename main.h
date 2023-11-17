@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 #define SIZE 50
-#define BUFFSIZE 900
+#define BUFFSIZE 1024
 
 extern char **environ;
 
