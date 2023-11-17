@@ -31,9 +31,9 @@ int main(__attribute__((unused)) int argc, char **argv)
 		{
 			exit_bul(cmd, lineptr, argv, counter);
 		}
-		else if (check_builtin(cmd) == 0)
+		else if (check_builtin_func(cmd) == 0)
 		{
-			st = handle_builtin(cmd, st);
+			st = run_builtin_func(cmd, st);
 			_free(cmd, lineptr);
 			continue;
 		}
@@ -51,7 +51,7 @@ int main(__attribute__((unused)) int argc, char **argv)
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin(char **cmd)
+int check_builtin_func(char **cmd)
 {
 	bul_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;

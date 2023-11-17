@@ -7,7 +7,7 @@
  * Return: -1 Fail 0 Succes (Return :Excute Builtin)
  */
 
-int _builtin(char **cmd, int status)
+int run_builtin_func(char **cmd, int status)
 {
 	bul_t bil[] = {{"cd", change_dir}, {"env", dis_env},				 {"help", display_help},
 								 {"echo", echo_bul}, {"history", history_dis}, {NULL, NULL}};
