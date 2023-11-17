@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * exit_bul - Exit Statue Shell
+ * exit_func - Exit Statue Shell
  * @cmd: Parsed Command
  * @input: User Input
  * @argv:Program Name
@@ -66,16 +66,17 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
 	return (0);
 }
 /**
- * dis_env - Display Enviroment Variable
+ * display_env - Display Enviroment Variable
  * @cmd:Parsed Command
  * @er:Statue of Last command Excuted
  * Return:Always 0
  */
-int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
+int display_env(char **cmd, __attribute__((unused)) int er)
 {
 	size_t i;
 	int len;
 
+	(void)cmd;
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		len = _strlen(environ[i]);
@@ -112,7 +113,7 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 	return (0);
 }
 /**
- * echo_bul - Excute Echo Cases
+ * echo_func - Excute Echo Cases
  * @st:Statue Of Last Command Excuted
  * @cmd: Parsed Command
  * Return: Always 0 Or Excute Normal Echo

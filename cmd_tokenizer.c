@@ -1,17 +1,17 @@
 #include "main.h"
 
 /**
- * parse_cmd - Parse Line Of Input
+ * tokenizer - Parse Line Of Input
  * @input:User Input To Parse
  * Return: Array Of Char (Parsed):Simple Shell
  */
-char **tokenizer(char *input)
+char **tokenizer(char *lineptr)
 {
 	char **tokens;
 	char *token;
 	int i, buffsize = BUFFSIZE;
 
-	if (input == NULL)
+	if (lineptr == NULL)
 		return (NULL);
 	tokens = malloc(sizeof(char *) * buffsize);
 	if (!tokens)
@@ -20,7 +20,7 @@ char **tokenizer(char *input)
 		return (NULL);
 	}
 
-	token = _strtok(input, "\n ");
+	token = _strtok(lineptr, "\n ");
 	for (i = 0; token; i++)
 	{
 		tokens[i] = token;
