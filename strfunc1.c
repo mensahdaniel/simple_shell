@@ -70,15 +70,15 @@ char *_strchr(char *str, char c)
  *
  * Return: 1 If The Strings Don't Match Otherwise 0
  */
-int _strncmp(const char *s1, const char *s2, size_t n)
+int _strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t i;
 
-	if (s1 == NULL)
+	if (str1 == NULL)
 		return (-1);
-	for (i = 0; i < n && s2[i]; i++)
+	for (i = 0; i < n && str2[i]; i++)
 	{
-		if (s1[i] != s2[i])
+		if (str1[i] != str2[i])
 		{
 			return (1);
 		}
