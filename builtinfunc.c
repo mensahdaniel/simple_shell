@@ -33,9 +33,9 @@ char *getinput(void)
 			free(lineptr); /* Free memory allocated by getline*/
 			exit(0);
 		}
+		// if (ch == ' ' || ch == '\t')
+		// 	ch++;
 		lineptr[i] = ch;
-		if (*lineptr == ' ' || *lineptr == '\t')
-			lineptr++;
 
 		if (lineptr[0] == ' ' || lineptr[0] == '\t' || lineptr[0] == '\0')
 			continue;
@@ -43,6 +43,6 @@ char *getinput(void)
 		// if (i >= BUFFSIZE)
 		// 	lineptr = realloc(lineptr, BUFFSIZE + 1);
 	}
-	lineptr[i] = '\0';
+	// lineptr[i] = '\0';
 	return (lineptr);
 }
