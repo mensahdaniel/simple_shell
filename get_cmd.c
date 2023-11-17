@@ -63,16 +63,32 @@ char *add_cmd_path(char *command, char *path)
  */
 char *get_path(char *path)
 {
-	char *pathvar, **env = environ;
-	int i;
+	size_t nl, vl;
+	char *value;
+	int i, x, j;
 
-	for (i = 0; env[i] != NULL; i++)
+	nl = _strlen(path);
+	for (i = 0; environ[i]; i++)
 	{
-		if (_strncmp(env[i], path, 4) == 0)
+		if (_strncmp(path, environ[i], nl) == 0)
 		{
-			pathvar = env[i];
+			vl = _strlen(environ[i]) - nl;
+			value = malloc(sizeof(char) * vl);
+			if (!value)
+			{
+				free(value);
+				perror("unable to alloc");
+				return (NULL);
+			}
 
-			return (pathvar++ + 6);
+			j = 0;
+			for (x = nl + 1; environ[i][x]; x++, j++)
+			{
+				value[j] = environ[i][x];
+			}
+			value[j] = '\0';
+
+			return (value);
 		}
 	}
 
