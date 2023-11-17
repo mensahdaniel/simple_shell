@@ -49,26 +49,53 @@ int _isalpha(int c)
  * @n: Int To Convert
  * Return: Char Pointer
  */
-char *_itoa(unsigned int n)
+/**
+ * _itoa - converts an integer to a string
+ *
+ * @num: integer to be converted
+ * Return: pointer to the string
+ */
+char *_itoa(int num)
 {
-	int len = 0, i = 0;
-	char *s;
+	int i = 0, isNegative = 0;
+	char *str = (char *)malloc(12 * sizeof(char));
 
-	len = intlen(n);
-	s = malloc(len + 1);
-	if (!s)
-		return (NULL);
-	*s = '\0';
-	while (n / 10)
+	if (str == NULL)
+		exit(1);
+	/* Handle negative numbers */
+	if (num < 0)
 	{
-		s[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
+		isNegative = 1;
+		num = -num;
 	}
-	s[i] = (n % 10) + '0';
-	array_rev(s, len);
-	s[i + 1] = '\0';
-	return (s);
+	/* Process individual digits */
+	while (num != 0)
+	{
+		str[i++] = num % 10 + '0'; /* Convert digit to character */
+		num = num / 10;
+	}
+	/*Add '-' for negative numbers */
+	if (isNegative)
+		str[i++] = '-';
+	/*If the number is 0 */
+	if (i == 0)
+		str[i++] = '0';
+	str[i] = '\0'; /* Adding a null terminator*/
+
+	/* Reverse the string */
+	int start = 0, end = i - 1;
+
+	while (start < end)
+	{
+		char temp = str[start];
+
+		str[start] = str[end];
+		str[end] = temp;
+		start++;
+		end--;
+	}
+
+	return (str);
 }
 /**
  *  array_rev - Reverse Array
