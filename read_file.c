@@ -19,6 +19,7 @@ void read_file(char *filename, char **argv)
 	{
 		exit(EXIT_FAILURE);
 	}
+
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		counter++;
