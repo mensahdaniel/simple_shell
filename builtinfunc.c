@@ -39,6 +39,6 @@ char *getinput(void)
 			lineptr++;
 	}
 	lineptr[i - 1] = '\0';
-	// hashtag_handle(buff);
+	/* hashtag_handle(buff); */
 	return (lineptr);
 }
