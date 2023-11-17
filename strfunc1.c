@@ -21,29 +21,27 @@ char *_strcpy(char *dest, const char *src)
 	return (dest);
 }
 /**
- * _strcat - Concat Two String
- * @dest:First String
- * @src:Second String
- * Return:First String + Second String Char *
+ * _strcat - Concatenate two strings
+ *
+ * @dest: The destination string
+ * @src: The source string to be concatenated
+ * Return: char* The full concatenated string
  */
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
-	char *s = dest;
+        int i, j;
 
-	while (*dest != '\0')
-	{
-		dest++;
-	}
-
-	while (*src != '\0')
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (s);
+        for (i = 0; dest[i] != '\0'; i++)
+                ;
+        for (j = 0; src[j] != '\0'; j++)
+        {
+                dest[i] = src[j];
+                i++;
+        }
+        dest[i] = '\0';
+        return (dest);
 }
+
 /**
  * _strchr - Find the first occurrence of a character in a string
  *
