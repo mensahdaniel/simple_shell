@@ -14,7 +14,7 @@ char *get_cmdpath(char *command)
 
 	if (cmdpath == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	dir = strtok(cmdpath, delim);
