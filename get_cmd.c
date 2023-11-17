@@ -8,7 +8,7 @@
  */
 char *get_cmdpath(char *command)
 {
-	char *cmdpath = NULL, *cmdp = NULL;
+	char *cmdpath = NULL;
 	const char *path = get_path("PATH");
 	const char *delim = ":";
 

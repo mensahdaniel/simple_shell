@@ -41,24 +41,3 @@ char *_itoa(int num)
 	}
 	return (&str[dex + 1]);
 }
-
-/**
- * reset_lineptr - resets the lineptr to NULL
- *
- * @lineptr: pointer to the lineptr
- * @n_size: size of the lineptr
- * Return: pointer to the lineptr
- */
-char *reset_lineptr(char *lineptr, size_t n_size)
-{
-	lineptr = NULL; /* Reset lineptr after freeing memory*/
-	/* Reallocate memory for lineptr*/
-	lineptr = malloc(SIZE * sizeof(char));
-	if (lineptr == NULL)
-	{
-		/* Handle allocation failure*/
-		exit(EXIT_FAILURE);
-	}
-	n_size = SIZE;
-	return (lineptr);
-}

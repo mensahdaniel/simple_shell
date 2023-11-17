@@ -35,7 +35,6 @@ int _printerror(char *cmd, char *argv, int count);
 
 char *_itoa(int num);
 int _free(char **args);
-char *reset_lineptr(char *lineptr, size_t n_size);
 
 int builtincmd(char *cmds);
 char **tokenizer(char *lineptr, char *delim);

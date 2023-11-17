@@ -44,6 +44,5 @@ int main(int ac, char **argv)
 		execute(cmds, argv, count);
 	}
 	free(lineptr); /* Free memory allocated by getline after processing */
-	lineptr = reset_lineptr(lineptr, n_size);
 	return (0);
 }
