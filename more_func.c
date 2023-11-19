@@ -5,7 +5,7 @@
  */
 void _isattyAndSignal(void)
 {
-	signal(SIGINT, sig_handler);
+	signal(SIGINT, handle_signal);
 	if ((isatty(STDIN_FILENO) == 1))
 		write(STDOUT_FILENO, "$ ", 3);
 }
