@@ -8,7 +8,7 @@
  */
 int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
-	char *filename = ".simple_shell_history";
+	char *filename = ".shell_history";
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
