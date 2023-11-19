@@ -6,15 +6,15 @@
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
+int display_history(char **c, int s)
 {
-	char *filename = ".simple_shell_history";
+	char *filename = ".shell_history", *line = NULL, *er;
 	FILE *fp;
-	char *line = NULL;
 	size_t len = 0;
 	int counter = 0;
-	char *er;
 
+	(void)c;
+	(void)s;
 	fp = fopen(filename, "r");
 	if (fp == NULL)
 	{
@@ -59,10 +59,10 @@ int print_echo(char **cmd)
 	}
 	else
 	{
-		do
+		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 		{
 			waitpid(pid, &status, WUNTRACED);
-		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		}
 	}
 	return (1);
 }
