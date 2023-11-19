@@ -4,24 +4,21 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 ## Files and Discription
 
-| SN | File | Description |
-| --- | ---- | ----------- |
-| 2. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
-| 3. | [execute\_file.c](./execute_file.c) |  |
-| 4. | [execute\_func.c](./execute_func.c) |  |
-| 5. | [get\_cmd.c](./get_cmd.c) |  |
-| 6. | [get\_history.c](./get_history.c) |  |
-| 7. | [get\_line.c](./get_line.c) |  |
-| 8. | [main.c](./main.c) |  |
-| 9. | [main.h](./main.h) |  |
-| 10. | [memory\_management](./memory_mangment.c) |  |
-| 11. | [more\_func.c](./more_func.c) |  |
-| 12. | [print\_func.c](./print_func.c) |  |
-| 13. | [prompt\_func.c](./prompt_func.c) |  |
-| 14. | [signal.c](./signal.c) |  |
-| 15. | [strfunc.c](./strfunc.c) |  |
-| 16. | [strfunc1.c](./strfunc1.c) |  |
-| 17. | [strfunc2.c](./strfunc2.c) |  |
+| SN  | File                                          | Description |
+| --- | --------------------------------------------- | ----------- |
+| 1.  | [cmd\_tokenizer.c](./cmd_tokenizer.c)         |             |
+| 2.  | [execute\_func.c](./execute_func.c)           |             |
+| 3.  | [get\_cmd_help_func.c](./get_cmd_help_func.c) |             |
+| 4.  | [get\_cmd.c](./get_cmd.c)                     |             |
+| 5.  | [main.c](./main.c)                            |             |
+| 6.  | [main.h](./main.h)                            |             |
+| 7. | [manage_environment_func.c](./manage_environment_func.c)               |             |
+| 8. | [manage_environent_var](./manage_environment_var.c)             |             |
+| 9. | [memory\_management.c](./memory_mangment.c)     |             |
+| 10. | [more\_func.c](./more_func.c)                 |             |
+| 11. | [signal.c](./signal.c)                        |             |
+| 12. | [strfunc.c](./strfunc.c)                      |             |
+| 13. | [strfunc1.c](./strfunc1.c)                    |             |
 
 ## Authors
 
@@ -31,6 +28,3 @@ GitHub: [mensahdaniel](https://github.com/mensahdaniel)
 Author's File: [AUTHORS](./AUTHORS)
 
 - - -
-
-<br>
-<br>
