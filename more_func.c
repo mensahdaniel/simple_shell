@@ -6,20 +6,20 @@
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int display_history(char **c, __attribute__((unused)) int s)
+int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
-	char *filename = ".shell_history";
+	char *filename = ".simple_shell_history";
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
 	int counter = 0;
 	char *er;
 
-	(void)c;
 	fp = fopen(filename, "r");
 	if (fp == NULL)
+	{
 		return (-1);
-
+	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
 		counter++;
@@ -29,72 +29,40 @@ int display_history(char **c, __attribute__((unused)) int s)
 		PRINT(" ");
 		PRINT(line);
 	}
-
 	if (line)
 		free(line);
-
 	fclose(fp);
 	return (0);
 }
-
 /**
- * _isalpha - Check if Alphabtic
- *@c: Character
- * Return: 1 If True 0 If Not
+ * print_echo - Excute Normal Echo
+ * @cmd: Parsed Command
+ * Return: 0 Succes -1 Fail
  */
-int _isalpha(int c)
+int print_echo(char **cmd)
 {
-	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-		return (1);
+	pid_t pid;
+	int status;
 
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve("/bin/echo", cmd, environ) == -1)
+		{
+			return (-1);
+		}
+		exit(EXIT_FAILURE);
+	}
+	else if (pid < 0)
+	{
+		return (-1);
+	}
 	else
-		return (0);
-}
-
-/**
- * _itoa - converts an integer to a string
- *
- * @num: integer to be converted
- * Return: pointer to the string
- */
-char *_itoa(size_t num)
-{
-	int start, end, i = 0;
-	char *str = (char *)malloc(12 * sizeof(char));
-
-	if (str == NULL)
-		exit(1);
-
-	/* Process 0 as a special case */
-	if (num == 0)
 	{
-		str[i++] = '0';
-		str[i] = '\0';
-		return (str);
+		do
+		{
+			waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-
-	/* Process individual digits */
-	while (num != 0)
-	{
-		str[i++] = num % 10 + '0'; /* Convert digit to character */
-		num = num / 10;
-	}
-
-	/* Reverse the string */
-	start = 0;
-	end = i - 1;
-
-	while (start < end)
-	{
-		char temp = str[start];
-
-		str[start] = str[end];
-		str[end] = temp;
-		start++;
-		end--;
-	}
-
-	str[i] = '\0'; /* Adding a null terminator */
-
-	return (str);
+	return (1);
 }

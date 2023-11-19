@@ -1,29 +1,26 @@
 #include "main.h"
 
 /**
- * tokenizer - Parse Line Of Input
- * @lineptr:User Input To Parse
+ * parse_cmd - Parse Line Of Input
+ * @input:User Input To Parse
  * Return: Array Of Char (Parsed):Simple Shell
  */
-char **tokenizer(char *lineptr)
+char **tokenizer(char *input)
 {
 	char **tokens;
 	char *token;
-	int i, buffsize = BUFFSIZE;
+	int i, buffsize = BUFSIZE;
 
-	if (lineptr == NULL)
+	if (input == NULL)
 		return (NULL);
-
 	tokens = malloc(sizeof(char *) * buffsize);
-
 	if (!tokens)
 	{
 		perror("hsh");
 		return (NULL);
 	}
 
-	token = _strtok(lineptr, "\n ");
-
+	token = _strtok(input, "\n ");
 	for (i = 0; token; i++)
 	{
 		tokens[i] = token;

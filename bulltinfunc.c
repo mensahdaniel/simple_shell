@@ -7,7 +7,7 @@
  * @c:Excute Count
  * Return: Void (Exit Statue)
  */
-void exit_func(char **cmd, char *input, char **argv, int c)
+void  exit_func(char **cmd, char *input, char **argv, int c)
 {
 	int statue, i = 0;
 
@@ -34,13 +34,14 @@ void exit_func(char **cmd, char *input, char **argv, int c)
 	}
 }
 
+
 /**
  * change_dir - Change Dirctorie
  * @cmd: Parsed Command
  * @er: Statue Last Command Excuted
  * Return: 0 Succes 1 Failed (For Old Pwd Always 0 Case No Old PWD)
  */
-int change_dir(char **cmd, __attribute__((unused)) int er)
+int change_dir(char **cmd, __attribute__((unused))int er)
 {
 	int value = -1;
 	char cwd[PATH_MAX];
@@ -48,7 +49,9 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
 	if (cmd[1] == NULL)
 		value = chdir(getenv("HOME"));
 	else if (_strcmp(cmd[1], "-") == 0)
+	{
 		value = chdir(getenv("OLDPWD"));
+	}
 	else
 		value = chdir(cmd[1]);
 
@@ -71,12 +74,11 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
  * @er:Statue of Last command Excuted
  * Return:Always 0
  */
-int display_env(char **cmd, __attribute__((unused)) int er)
+int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
-	size_t i;
+size_t i;
 	int len;
 
-	(void)cmd;
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		len = _strlen(environ[i]);
@@ -91,7 +93,7 @@ int display_env(char **cmd, __attribute__((unused)) int er)
  * @er: Statue Of Last Command Excuted
  * Return: 0 Succes -1 Fail
  */
-int display_help(char **cmd, __attribute__((unused)) int er)
+int display_help(char **cmd, __attribute__((unused))int er)
 {
 	int fd, fw, rd = 1;
 	char c;
@@ -107,7 +109,9 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 		rd = read(fd, &c, 1);
 		fw = write(STDOUT_FILENO, &c, rd);
 		if (fw < 0)
+		{
 			return (-1);
+		}
 	}
 	_putchar('\n');
 	return (0);
@@ -121,7 +125,7 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 int echo_func(char **cmd, int st)
 {
 	char *path;
-	unsigned int pid = getppid();
+	unsigned int  pid = getppid();
 
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
@@ -132,6 +136,7 @@ int echo_func(char **cmd, int st)
 	{
 		print_number(pid);
 		PRINT("\n");
+
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
@@ -139,6 +144,7 @@ int echo_func(char **cmd, int st)
 		PRINT(path);
 		PRINT("\n");
 		free(path);
+
 	}
 	else
 		return (print_echo(cmd));

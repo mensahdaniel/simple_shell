@@ -1,5 +1,5 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef MAIN_H
+#define MAIN_H
 
 /**###### LIBS USED ######*/
 
@@ -21,8 +21,9 @@ extern char **environ;
 
 /**##### MACROS ######*/
 
-#define BUFFSIZE 1024
-#define PROMPT "$ "
+#define BUFSIZE 1024
+// #define DELIM " \t\r\n\a"
+#define PROMPT "(HSH)>>$ "
 #define PRINT(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
@@ -33,12 +34,15 @@ char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 int _putchar(char c);
 int _atoi(char *s);
+void _puts(char *str);
 int _strcmp(char *s1, char *s2);
 int _isalpha(int c);
-char *_itoa(size_t num);
+void array_rev(char *arr, int len);
+int intlen(int num);
+char *_itoa(unsigned int n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-char *_strchr(const char *str, char c);
+char *_strchr(char *s, char c);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
 
@@ -60,11 +64,11 @@ char *_getline(void);
 /** ###### Command parser and extractor ###*/
 
 int get_cmdpath(char **line);
-char *get_path(char *name);
+char *get_path(char *var_name);
 char **tokenizer(char *cmd);
 int run_builtin_func(char **cmd, int er);
 void read_file(char *filename, char **argv);
-char *get_fullpath(char *token, char *value);
+char *add_fullpath(char *token, char *value);
 int check_builtin_func(char **cmd);
 void creat_envi(char **envi);
 int execute(char **tokens, char *line, int count, char **argv);
@@ -98,6 +102,6 @@ void _prerror(char **argv, int c, char **cmd);
 typedef struct bulltin {
   char *command;
   int (*function)(char **line, int er);
-} bulitin_t;
+} builtin_t;
 
-#endif
+#endif /* MAIN_H */

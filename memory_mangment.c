@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- *_realloc -  Reallocates A Memory Block Using Malloc And Free
- *@ptr: Pointer
- *@old_size: Previous Size Of The Pointer
- *@new_size: New Size Of The Pointer
- *Return: Void Pointer Rellocated Memory
+ * _realloc -  Reallocates A Memory Block Using Malloc And Free
+ * @ptr: Pointer
+ * @old_size: Previous Size Of The Pointer
+ * @new_size: New Size Of The Pointer
+ * Return: Void Pointer Rellocated Memory
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -34,7 +34,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (result);
 }
 /**
- * _free - Free Array Of Char Pointers
+ * _free - Free Array Of Char Pointer And Char Pointer
  * @cmd:Array Pointer
  * @line:Char Pointer
  * Return: Void
@@ -42,8 +42,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 void _free(char **cmd, char *line)
 {
 	free(cmd);
-	/*free(line); */
-	(void)line;
+	free(line);
 	cmd = NULL;
 	line = NULL;
 }
@@ -60,7 +59,9 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
+	{
 		dest[i] = src[i];
+	}
 	return (dest);
 }
 /**
@@ -95,13 +96,12 @@ void *_calloc(unsigned int size)
 
 	if (size == 0)
 		return (NULL);
-
 	a = malloc(size);
-
 	if (a == NULL)
 		return (NULL);
-
 	for (i = 0; i < size; i++)
+	{
 		a[i] = '\0';
+	}
 	return (a);
 }

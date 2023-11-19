@@ -2,14 +2,14 @@
 #include "main.h"
 
 /**
- * _getline - Read The Input By User From Stdin
- * Return: Input
- */
+* _getline - Read The Input By User From Stdin
+* Return: Input
+*/
 char *_getline()
 {
-	int i, buffsize = BUFFSIZE, rd;
-	char c = 0;
-	char *buff = malloc(buffsize);
+int i, buffsize = BUFSIZE, rd;
+char c = 0;
+char *buff = malloc(buffsize);
 
 	if (buff == NULL)
 	{
@@ -36,11 +36,12 @@ char *_getline()
 		{
 			buff = _realloc(buff, buffsize, buffsize + 1);
 			if (buff == NULL)
+			{
 				return (NULL);
+			}
 		}
 	}
-	while (buff[0] == ' ' || buff[0] == '\t')
-		buff++;
+	buff[i] = '\0';
 	hashtag_handle(buff);
 	return (buff);
 }
@@ -54,12 +55,12 @@ void hashtag_handle(char *buff)
 {
 	int i;
 
-	for (i = 0; buff[i] != '\0'; i++)
-	{
-		if (buff[i] == '#')
+		for (i = 0; buff[i] != '\0'; i++)
 		{
+			if (buff[i] == '#')
+			{
 			buff[i] = '\0';
 			break;
-		}
+			}
 	}
 }

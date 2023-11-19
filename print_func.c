@@ -1,25 +1,15 @@
 #include "main.h"
 
 /**
- *  _prerror - Print Custom Error
- * @argv:Program Name
- * @c:Error Count
- * @cmd:Command
- * Return: Void
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-void _prerror(char **argv, int c, char **cmd)
+int _putchar(char c)
 {
-	char *er = _itoa(c);
-
-	PRINT(argv[0]);
-	PRINT(": ");
-	PRINT(er);
-	PRINT(": ");
-	PRINT(cmd[0]);
-	PRINT(": Illegal number: ");
-	PRINT(cmd[1]);
-	PRINT("\n");
-	free(er);
+	return (write(1, &c, 1));
 }
 
 /**
@@ -57,32 +47,23 @@ void print_number_in(int n)
 }
 
 /**
- * print_echo - Excute Normal Echo
- * @cmd: Parsed Command
- * Return: 0 Succes -1 Fail
+ *  _prerror - Print Custome Error
+ * @argv:Program Name
+ * @c:Error Count
+ * @cmd:Command
+ * Return: Void
  */
-int print_echo(char **cmd)
+void _prerror(char **argv, int c, char **cmd)
 {
-	pid_t pid;
-	int status;
+	char *er = _itoa(c);
 
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve("/bin/echo", cmd, environ) == -1)
-			return (-1);
-
-		exit(EXIT_FAILURE);
-	}
-	else if (pid < 0)
-		return (-1);
-
-	else
-	{
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-		{
-			waitpid(pid, &status, WUNTRACED);
-		}
-	}
-	return (1);
+	PRINT(argv[0]);
+	PRINT(": ");
+	PRINT(er);
+	PRINT(": ");
+	PRINT(cmd[0]);
+	PRINT(": Illegal number: ");
+	PRINT(cmd[1]);
+	PRINT("\n");
+	free(er);
 }
