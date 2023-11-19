@@ -6,7 +6,7 @@
  */
 void handle_signal(__attribute__((unused)) int signo)
 {
-	write(STDOUT_FILENO, "\n(HSH)>>$ ", 9);
+	write(STDOUT_FILENO, "\n(HSH)>>$ ", 10);
 }
 
 /**

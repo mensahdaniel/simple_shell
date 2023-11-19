@@ -7,7 +7,7 @@ void _isattyAndSignal(void)
 {
 	signal(SIGINT, handle_signal);
 	if ((isatty(STDIN_FILENO) == 1))
-		write(STDOUT_FILENO, "$ ", 3);
+		write(STDOUT_FILENO, "(HSH)>>$ ", 9);
 }
 /**
  * clearBuffer - Removes the '\n' char, and looks for tabulations
