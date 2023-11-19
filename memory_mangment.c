@@ -42,7 +42,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 void _free(char **cmd, char *line)
 {
 	free(cmd);
-	free(line);
+	(void)line;
 	cmd = NULL;
 	line = NULL;
 }
