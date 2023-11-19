@@ -78,6 +78,8 @@ int isDir(const char *fileName);
 
 char *addTilde(char *path);
 
+char *_getline(void);
+
 int child_fork(pid_t child_pid, char *name);
 int checkEnv(char *str);
 

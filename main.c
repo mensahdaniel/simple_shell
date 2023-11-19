@@ -14,7 +14,7 @@ int main(void)
 	while (1)
 	{
 		_isattyAndSignal();
-		counter = getline(&buffer, &i, stdin);
+		buffer = _getline();
 
 		if (_checkChars(buffer) == -1)
 			continue;

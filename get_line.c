@@ -4,7 +4,7 @@
  * _getline - Read The Input By User From Stdin
  * Return: Input
  */
-char *_getline()
+char *_getline(void)
 {
 	int i, buffsize = BUFFSIZE, rd;
 	char c = 0;
