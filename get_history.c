@@ -15,6 +15,7 @@ int history(char *input)
 	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 00600);
 	if (fd < 0)
 		return (-1);
+
 	if (input)
 	{
 		while (input[len])
