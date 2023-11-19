@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * tokenize - Tokenizes a given string
+ * tokenizer - Tokenizes a given string
  * @str: String to tokenize
  * @builtIn: Indicates if there's a built-in or not
  *
  * Return: An array of tokenized strings
  */
-char **tokenize(char *str, int builtIn)
+char **tokenizer(char *str, int builtIn)
 {
 	char *token = NULL, **array = NULL, *test = NULL;
 	int size = 0, n = 0;
