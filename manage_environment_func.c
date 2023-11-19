@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * printenv - Prints out all the environment variables
+ * print_env - Prints out all the environment variables
  */
 void print_env(void)
 {
