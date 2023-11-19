@@ -43,7 +43,7 @@ char *path(char *filename);
 // int exists(char *path);
 
 int _setenv(char *name, char *value, int overwrite);
-// int checkUnset(char *str);
+int checkUnset(char *str);
 int checkSetenv(char *str);
 int checkHelp(char *str);
 int _unsetenv(char *name);
@@ -64,14 +64,14 @@ char *clearBuffer(char *str, int counter);
 
 void helpCase(char *name);
 
-int getLineAndCheck(char *str);
+// int getLineAndCheck(char *str);
 
 void free_environ(char *var_name);
 char *searchAndDestroy(char *str);
 int itsExecutable(char *str);
 int isDir(const char *fileName);
 
-char *addTilde(char *path);
+// char *addTilde(char *path);
 
 int child_fork(pid_t child_pid, char *name);
 int checkEnv(char *str);
