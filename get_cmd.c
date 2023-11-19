@@ -31,8 +31,8 @@ int get_cmdpath(char **cmd)
 }
 /**
  * add_fullpath - Build Command
- * @token: Excutable Command
- * @value: Dirctory Conatining Command
+ * @command: Excutable Command
+ * @directory: Dirctory Conatining Command
  *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
