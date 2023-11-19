@@ -1,32 +1,46 @@
 #include "main.h"
 
 /**
- * parse_cmd - Parse Line Of Input
- * @input:User Input To Parse
- * Return: Array Of Char (Parsed):Simple Shell
+ * tokenizer - Tokenizes a given string
+ * @str: String to tokenize
+ * @builtIn: Indicates if there's a built-in or not
+ *
+ * Return: An array of tokenized strings
  */
-char **parse_cmd(char *input)
+char **tokenizer(char *str, int builtIn)
 {
-	char **tokens;
-	char *token;
-	int i, buffsize = BUFSIZE;
+	char *token = NULL, **array = NULL, *test = NULL;
+	int size = 0, n = 0;
+	struct stat st = {0};
 
-	if (input == NULL)
+	size = args(str);
+	array = malloc(sizeof(char *) * (size + 1));
+	if (!array)
 		return (NULL);
-	tokens = malloc(sizeof(char *) * buffsize);
-	if (!tokens)
+	token = _strtok(str, ' ');
+	while (token != NULL)
 	{
-		perror("hsh");
-		return (NULL);
+		array[n] = _strdup(token);
+		token = _strtok(NULL, ' ');
+		n++;
 	}
-
-	token = _strtok(input, "\n ");
-	for (i = 0; token; i++)
+	if (builtIn == 0 && array[0][0] != '/')
 	{
-		tokens[i] = token;
-		token = _strtok(NULL, "\n ");
+		test = path(array[0]);
+		if (test != NULL)
+		{
+			free(array[0]);
+			array[0] = _strdup(test);
+		}
+		else
+		{
+			if ((stat(array[0], &st) == 0) || (isDir(array[0]) == 0))
+				;
+			else
+				perror(array[0]);
+		}
+		free(test);
 	}
-	tokens[i] = NULL;
-
-	return (tokens);
+	array[n] = NULL;
+	return (array);
 }
