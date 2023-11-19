@@ -21,10 +21,8 @@ char *_getline()
 		fflush(stdin);
 		rd = read(STDIN_FILENO, &c, 1);
 		if (rd == 0)
-		{
-			free(buff);
-			exit(EXIT_SUCCESS);
-		}
+			free_and_exit(buff);
+
 		buff[i] = c;
 		if (buff[0] == '\n')
 		{
