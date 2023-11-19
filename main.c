@@ -32,11 +32,10 @@ int main(__attribute__((unused)) int argc, char **argv)
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 		lineptr[i] = '\0';
+
 		cmd = tokenizer(lineptr);
 		if (_strcmp(cmd[0], "exit") == 0)
-		{
 			exit_func(cmd, lineptr, argv, counter);
-		}
 		else if (check_builtin_func(cmd) == 0)
 		{
 			st = run_builtin_func(cmd, st);
@@ -44,27 +43,24 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		else
-		{
 			st = execute(cmd, lineptr, counter, argv);
-		}
 		_free(cmd, lineptr);
 	}
 	return (statue);
 }
 /**
- * check_builtin - check builtin
+ * check_builtin_func - check builtin functions if it exist
  *
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin(char **cmd)
+int check_builtin_func(char **cmd)
 {
 	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
+
 	if (*cmd == NULL)
-	{
 		return (-1);
-	}
 
 	while ((fun + i)->command)
 	{
