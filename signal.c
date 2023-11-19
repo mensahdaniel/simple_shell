@@ -1,0 +1,15 @@
+#include "main.h"
+
+/**
+ * handle_signal - Handle ^C
+ * @sig:Captured Signal
+ * Return: Void
+ */
+void handle_signal(int sig)
+{
+	if (sig == SIGINT)
+	{
+		PRINT("\n");
+		PRINT(PROMPT);
+	}
+}
