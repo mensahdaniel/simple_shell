@@ -8,7 +8,7 @@
 char *_getline()
 {
 	int i, buffsize = BUFSIZE, rd;
-	char c = 0;
+	char ch = 0;
 	char *lineptr = malloc(buffsize);
 
 	if (lineptr == NULL)
@@ -17,16 +17,16 @@ char *_getline()
 		return (NULL);
 	}
 
-	for (i = 0; lineptr[i] != EOF && lineptr[i] != '\n'; i++)
+	for (i = 0; ch != EOF && ch != '\n'; i++)
 	{
 		fflush(stdin);
-		rd = read(STDIN_FILENO, &lineptr, 1);
+		rd = read(STDIN_FILENO, &ch, 1);
 		if (rd == 0)
 		{
 			free(lineptr);
 			exit(EXIT_SUCCESS);
 		}
-		// buff[i] = c;
+		lineptr[i] = ch;
 		if (lineptr[0] == '\n')
 		{
 			free(lineptr);
