@@ -1,14 +1,15 @@
 #include "main.h"
 
 /**
- * signal_to_handel - Handle ^C
+ * handle_signal - Handle ^C
  * @sig:Captured Signal
  * Return: Void
  */
-void signal_to_handel(int sig)
+void handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
-		PRINT("\n$ ");
+		PRINT("\n");
+		PRINT(PROMPT);
 	}
 }

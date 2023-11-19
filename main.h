@@ -22,6 +22,7 @@ extern char **environ;
 /**##### MACROS ######*/
 
 #define BUFSIZE 1024
+#define PROMPT "(HSH)>>$ "
 #define DELIM " \t\r\n\a"
 #define PRINT(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
@@ -57,7 +58,7 @@ void free_all(char **input, char *line);
 /**###### INPUT Function ######*/
 
 void prompt(void);
-void signal_to_handel(int sig);
+void handle_signal(int sig);
 char *_getline(void);
 
 /** ###### Command parser and extractor ###*/
