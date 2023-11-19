@@ -6,7 +6,6 @@ This is a Project by ALX Software Engineering School, this is to equip studens w
 
 | SN | File | Description |
 | --- | ---- | ----------- |
-| 1. | [builtinfunc.c](./builtinfunc.c) |  |
 | 2. | [cmd\_tokenizer.c](./cmd_tokenizer.c) |  |
 | 3. | [execute\_file.c](./execute_file.c) |  |
 | 4. | [execute\_func.c](./execute_func.c) |  |

@@ -3,7 +3,7 @@
 /**
  * printenv - Prints out all the environment variables
  */
-void printenv(void)
+void print_env(void)
 {
 	int i = 0;
 
