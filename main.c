@@ -21,8 +21,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			prompt();
 		input = _getline();
-		while (input[0] == ' ' || input[0] == '\t')
-			input++;
 		if (input[0] == '\0')
 			continue;
 		history(input);
