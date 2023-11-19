@@ -21,7 +21,9 @@ int main(__attribute__((unused)) int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			prompt();
 		input = _getline();
-		if (input[0] == '\0')
+		while (input[0] == ' ' || input[0] == '\t')
+			input++;
+		if (input[0] == '\0' || input[0] == '\n')
 			continue;
 		history(input);
 		cmd = parse_cmd(input);
