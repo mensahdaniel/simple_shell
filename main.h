@@ -19,10 +19,10 @@ extern char **environ;
  * @next: next
  */
 
-typedef struct builtin_s {
-  char *str;
-  struct builtin_s *next;
-} builtin_t;
+// typedef struct builtin_s {
+//   char *str;
+//   struct builtin_s *next;
+// } builtin_t;
 
 /* String Functions */
 int _strlen(const char *s);
