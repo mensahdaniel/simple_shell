@@ -1,16 +1,15 @@
-#include "main.h"
+#include "shell.h"
 /**
- * exit_func - Exit Status Shell
- *
+ * exit_bul - Exit Statue Shell
  * @cmd: Parsed Command
  * @input: User Input
  * @argv:Program Name
  * @c:Excute Count
- * Return: Void (Exit Status)
+ * Return: Void (Exit Statue)
  */
-void exit_func(char **cmd, char *input, char **argv, int c)
+void  exit_bul(char **cmd, char *input, char **argv, int c)
 {
-	int status, i = 0;
+	int statue, i = 0;
 
 	if (cmd[1] == NULL)
 	{
@@ -27,21 +26,22 @@ void exit_func(char **cmd, char *input, char **argv, int c)
 		}
 		else
 		{
-			status = _atoi(cmd[1]);
+			statue = _atoi(cmd[1]);
 			free(input);
 			free(cmd);
-			exit(status);
+			exit(statue);
 		}
 	}
 }
 
+
 /**
  * change_dir - Change Dirctorie
  * @cmd: Parsed Command
- * @er: Status Last Command Excuted
+ * @er: Statue Last Command Excuted
  * Return: 0 Succes 1 Failed (For Old Pwd Always 0 Case No Old PWD)
  */
-int change_dir(char **cmd, __attribute__((unused)) int er)
+int change_dir(char **cmd, __attribute__((unused))int er)
 {
 	int value = -1;
 	char cwd[PATH_MAX];
@@ -69,14 +69,14 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
 	return (0);
 }
 /**
- * display_env - Display Enviroment Variable
+ * dis_env - Display Enviroment Variable
  * @cmd:Parsed Command
- * @er:Status of Last command Excuted
+ * @er:Statue of Last command Excuted
  * Return:Always 0
  */
-int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
+int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
-	size_t i;
+size_t i;
 	int len;
 
 	for (i = 0; environ[i] != NULL; i++)
@@ -89,12 +89,11 @@ int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int 
 }
 /**
  * display_help - Displaying Help For Builtin
- *
  * @cmd:Parsed Command
- * @er: Status Of Last Command Excuted
+ * @er: Statue Of Last Command Excuted
  * Return: 0 Succes -1 Fail
  */
-int display_help(char **cmd, __attribute__((unused)) int er)
+int display_help(char **cmd, __attribute__((unused))int er)
 {
 	int fd, fw, rd = 1;
 	char c;
@@ -118,32 +117,34 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 	return (0);
 }
 /**
- * echo_func - Excute Echo Cases
- * @st:Status Of Last Command Excuted
+ * echo_bul - Excute Echo Cases
+ * @st:Statue Of Last Command Excuted
  * @cmd: Parsed Command
  * Return: Always 0 Or Excute Normal Echo
  */
-int echo_func(char **cmd, int st)
+int echo_bul(char **cmd, int st)
 {
 	char *path;
-	unsigned int pid = getppid();
+	unsigned int  pid = getppid();
 
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_in(st);
-		PRINT("\n");
+		PRINTER("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
-		PRINT("\n");
+		PRINTER("\n");
+
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
-		path = get_path("PATH");
-		PRINT(path);
-		PRINT("\n");
+		path = _getenv("PATH");
+		PRINTER(path);
+		PRINTER("\n");
 		free(path);
+
 	}
 	else
 		return (print_echo(cmd));

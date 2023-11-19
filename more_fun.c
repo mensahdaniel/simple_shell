@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * _strcpy - Copie Source To Destination Char
  * @dest:Destination
@@ -7,16 +7,16 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i;
+int i;
 
-	i = 0;
+i = 0;
 	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+dest[i] = '\0';
+return (dest);
 }
 /**
  * _strcat - Concat Two String
@@ -51,15 +51,15 @@ char *_strcat(char *dest, char *src)
 char *_strchr(char *s, char c)
 {
 
-	do {
+	do		{
 
 		if (*s == c)
-		{
+			{
 			break;
-		}
-	} while (*s++);
+			}
+		}	while (*s++);
 
-	return (s);
+return (s);
 }
 /**
  * _strncmp - Compare Amount (n) Of Characters Of Two Strings.

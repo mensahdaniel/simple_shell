@@ -1,31 +1,25 @@
-#include "main.h"
+#include "shell.h"
 /**
- * add_history - store user input in file
- *
- * @lineptr: User Input
+ * history - Fill File By User Input
+ * @input: User Input
  * Return: -1 Fail 0 Succes
  */
-int add_history(char *lineptr)
+int history(char *input)
 {
-	char *filename = ".shell_history";
+	char *filename = ".simple_shell_history";
 	ssize_t fd, w;
-	int len = 0, i;
+	int len = 0;
 
 	if (!filename)
 		return (-1);
 	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 00600);
 	if (fd < 0)
 		return (-1);
-
-	for (i = 0; lineptr[i] != '\0'; i++)
-		;
-	lineptr[i] = '\n';
-
-	if (lineptr)
+	if (input)
 	{
-		while (lineptr[len])
+		while (input[len])
 			len++;
-		w = write(fd, lineptr, len);
+		w = write(fd, input, len);
 		if (w < 0)
 			return (-1);
 	}

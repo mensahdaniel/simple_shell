@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * read_file - Read Command From File
  * @filename:Filename
@@ -22,6 +22,7 @@ void read_file(char *filename, char **argv)
 	{
 		counter++;
 		treat_file(line, counter, fp, argv);
+
 	}
 	if (line)
 		free(line);
@@ -41,21 +42,22 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
 	char **cmd;
 	int st = 0;
 
-	cmd = tokenizer(line);
+	cmd = parse_cmd(line);
 
-	if (_strncmp(cmd[0], "exit", 4) == 0)
-		exit_bul_for_file(cmd, line, fp);
-
-	else if (check_builtin_func(cmd) == 0)
-	{
-		st = run_builtin_func(cmd, st);
-		free(cmd);
-	}
-	else
-	{
-		st = execute(cmd, line, counter, argv);
-		free(cmd);
-	}
+		if (_strncmp(cmd[0], "exit", 4) == 0)
+		{
+			exit_bul_for_file(cmd, line, fp);
+		}
+		else if (check_builtin(cmd) == 0)
+		{
+			st = handle_builtin(cmd, st);
+			free(cmd);
+		}
+		else
+		{
+			st = check_cmd(cmd, line, counter, argv);
+			free(cmd);
+		}
 }
 /**
  * exit_bul_for_file - Exit Shell Case Of File
@@ -66,7 +68,7 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
  */
 void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 {
-	int status, i = 0;
+	int statue, i = 0;
 
 	if (cmd[1] == NULL)
 	{
@@ -82,9 +84,12 @@ void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 			perror("illegal number");
 		}
 	}
-	status = _atoi(cmd[1]);
+	statue = _atoi(cmd[1]);
 	free(line);
 	free(cmd);
 	fclose(fd);
-	exit(status);
+	exit(statue);
+
+
+
 }

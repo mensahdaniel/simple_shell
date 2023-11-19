@@ -1,14 +1,14 @@
-#include "main.h"
+#include "shell.h"
 
 /**
- * display_history - Display History Of User Input Simple Shell
+ * history_dis - Display History Of User Input Simple Shell
  * @c:Parsed Command
- * @s:Status Of Last Excute
+ * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int display_history(__attribute__((unused)) char **c, __attribute__((unused)) int s)
+int history_dis(__attribute__((unused))char **c, __attribute__((unused))int s)
 {
-	char *filename = ".shell_history";
+	char *filename = ".simple_shell_history";
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
@@ -24,10 +24,11 @@ int display_history(__attribute__((unused)) char **c, __attribute__((unused)) in
 	{
 		counter++;
 		er = _itoa(counter);
-		PRINT(er);
+		PRINTER(er);
 		free(er);
-		PRINT(" ");
-		PRINT(line);
+		PRINTER(" ");
+		PRINTER(line);
+
 	}
 	if (line)
 		free(line);
@@ -47,12 +48,16 @@ int print_echo(char **cmd)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve("/bin/echo", cmd, environ) == -1)
-			return (-1);
+	if (execve("/bin/echo", cmd, environ) == -1)
+	{
+		return (-1);
+	}
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
+	{
 		return (-1);
+	}
 	else
 	{
 		do {
