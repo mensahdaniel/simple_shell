@@ -26,6 +26,29 @@ void _puts(char *str)
 		_putchar(str[i]);
 	}
 	_putchar('\n');
+	return;
+}
+
+/**
+ *  _prerror - Print Custome Error
+ * @argv:Program Name
+ * @c:Error Count
+ * @cmd:Command
+ * Return: Void
+ */
+void _prerror(char **argv, int c, char **cmd)
+{
+	char *er = _itoa(c);
+
+	PRINT(argv[0]);
+	PRINT(": ");
+	PRINT(er);
+	PRINT(": ");
+	PRINT(cmd[0]);
+	PRINT(": Illegal number: ");
+	PRINT(cmd[1]);
+	PRINT("\n");
+	free(er);
 }
 
 /**
@@ -60,26 +83,4 @@ void print_number_in(int n)
 		print_number(x / 10);
 
 	_putchar(x % 10 + '0');
-}
-
-/**
- *  _prerror - Print Custome Error
- * @argv:Program Name
- * @c:Error Count
- * @cmd:Command
- * Return: Void
- */
-void _prerror(char **argv, int c, char **cmd)
-{
-	char *er = _itoa(c);
-
-	PRINT(argv[0]);
-	PRINT(": ");
-	PRINT(er);
-	PRINT(": ");
-	PRINT(cmd[0]);
-	PRINT(": Illegal number: ");
-	PRINT(cmd[1]);
-	PRINT("\n");
-	free(er);
 }

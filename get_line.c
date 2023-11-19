@@ -8,42 +8,42 @@
 char *_getline()
 {
 	int i, buffsize = BUFSIZE, rd;
-	char ch = 0;
-	char *lineptr = malloc(buffsize);
+	char c = 0;
+	char *buff = malloc(buffsize);
 
-	if (lineptr == NULL)
+	if (buff == NULL)
 	{
-		free(lineptr);
+		free(buff);
 		return (NULL);
 	}
 
-	for (i = 0; ch != EOF && ch != '\n'; i++)
+	for (i = 0; c != EOF && c != '\n'; i++)
 	{
 		fflush(stdin);
-		rd = read(STDIN_FILENO, &ch, 1);
+		rd = read(STDIN_FILENO, &c, 1);
 		if (rd == 0)
 		{
-			free(lineptr);
+			free(buff);
 			exit(EXIT_SUCCESS);
 		}
-		lineptr[i] = ch;
-		if (lineptr[0] == '\n')
+		buff[i] = c;
+		if (buff[0] == '\n')
 		{
-			free(lineptr);
+			free(buff);
 			return ("\0");
 		}
 		if (i >= buffsize)
 		{
-			lineptr = _realloc(lineptr, buffsize, buffsize + 1);
-			if (lineptr == NULL)
+			buff = _realloc(buff, buffsize, buffsize + 1);
+			if (buff == NULL)
 			{
 				return (NULL);
 			}
 		}
 	}
-	lineptr[i - 1] = '\0';
-	hashtag_handle(lineptr);
-	return (lineptr);
+	buff[i -1] = '\0';
+	hashtag_handle(buff);
+	return (buff);
 }
 
 /**

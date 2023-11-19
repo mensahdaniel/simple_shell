@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * _realloc -  Reallocates A Memory Block Using Malloc And Free
- * @ptr: Pointer
- * @old_size: Previous Size Of The Pointer
- * @new_size: New Size Of The Pointer
- * Return: Void Pointer Rellocated Memory
+ **_realloc -  Reallocates A Memory Block Using Malloc And Free
+ *@ptr: Pointer
+ *@old_size: Previous Size Of The Pointer
+ *@new_size: New Size Of The Pointer
+ *Return: Void Pointer Rellocated Memory
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -34,15 +34,15 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	return (result);
 }
 /**
- * _free - Free Array Of Char Pointer And Char Pointer
+ * free_all - Free Array Of Char Pointer And Char Pointer
  * @cmd:Array Pointer
  * @line:Char Pointer
  * Return: Void
  */
-void _free(char **cmd, char *line)
+void free_all(char **cmd, char *line)
 {
 	free(cmd);
-	(void)line;
+	free(line);
 	cmd = NULL;
 	line = NULL;
 }

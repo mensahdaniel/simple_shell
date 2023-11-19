@@ -1,107 +1,111 @@
 #include "main.h"
-
 /**
- * _strcmp - Compare Two String
- * @s1:String 1
- * @s2:String 2
- * Return: 0 If Identical Otherwise How Much Diffrent
+ * _strcpy - Copie Source To Destination Char
+ * @dest:Destination
+ * @src:Source
+ * Return: Copie Of Char *
  */
-int _strcmp(char *s1, char *s2)
+char *_strcpy(char *dest, char *src)
 {
-	int cmp = 0, i, len1, len2;
+	int i;
 
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-
-	if (s1 == NULL || s2 == NULL)
-		return (1);
-	if (len1 != len2)
-		return (1);
-	for (i = 0; s1[i]; i++)
+	i = 0;
+	while (src[i])
 	{
-		if (s1[i] != s2[i])
-		{
-			cmp = s1[i] - s2[i];
-			break;
-		}
-		else
-			continue;
-	}
-	return (cmp);
-}
-/**
- * _isalpha - Check if Alphabtic
- *@c: Character
- * Return: 1 If True 0 If Not
- */
-int _isalpha(int c)
-{
-	if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
-/**
- * _itoa - Convert Integer To Char
- * @n: Int To Convert
- * Return: Char Pointer
- */
-char *_itoa(unsigned int n)
-{
-	int len = 0, i = 0;
-	char *s;
-
-	len = intlen(n);
-	s = malloc(len + 1);
-	if (!s)
-		return (NULL);
-	*s = '\0';
-	while (n / 10)
-	{
-		s[i] = (n % 10) + '0';
-		n /= 10;
+		dest[i] = src[i];
 		i++;
 	}
-	s[i] = (n % 10) + '0';
-	array_rev(s, len);
-	s[i + 1] = '\0';
+	dest[i] = '\0';
+	return (dest);
+}
+/**
+ * _strcat - Concat Two String
+ * @dest:First String
+ * @src:Second String
+ * Return:First String + Second String Char *
+ */
+char *_strcat(char *dest, char *src)
+{
+	char *s = dest;
+
+	while (*dest != '\0')
+	{
+		dest++;
+	}
+
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
 	return (s);
 }
 /**
- *  array_rev - Reverse Array
- * @arr:Array To Reverse
- * @len:Length Of Array
- * Return: Void(Reverse Array)
+ * _strchr - Locate Charactere In String
+ * @s:String Search In
+ * @c:Char To Search For
+ * Return: Pointer To Char*
  */
-void array_rev(char *arr, int len)
+char *_strchr(char *s, char c)
 {
-	int i;
-	char tmp;
 
-	for (i = 0; i < (len / 2); i++)
+	do
 	{
-		tmp = arr[i];
-		arr[i] = arr[(len - 1) - i];
-		arr[(len - 1) - i] = tmp;
-	}
+
+		if (*s == c)
+		{
+			break;
+		}
+	} while (*s++);
+
+	return (s);
 }
 /**
- * intlen - Determine Length Of Int
- * @num: Given Int
- * Return: Length Of Int
+ * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
+ * @s1: A String.
+ * @s2: A String.
+ * @n: Amount Of Characters To Compare.
+ *
+ * Return: 1 If The Strings Don't Match Otherwise 0
  */
-int intlen(int num)
+int _strncmp(const char *s1, const char *s2, size_t n)
 {
-	int len = 0;
+	size_t i;
 
-	while (num != 0)
+	if (s1 == NULL)
+		return (-1);
+	for (i = 0; i < n && s2[i]; i++)
 	{
-		len++;
-		num /= 10;
+		if (s1[i] != s2[i])
+		{
+			return (1);
+		}
 	}
-	return (len);
+	return (0);
+}
+/**
+ * _strdup - Duplicate A String
+ * @str:String
+ * Return: Duplicate String Failed Null
+ */
+char *_strdup(char *str)
+{
+	size_t len, i;
+	char *str2;
+
+	len = _strlen(str);
+	str2 = malloc(sizeof(char) * (len + 1));
+	if (!str2)
+	{
+		return (NULL);
+	}
+
+	for (i = 0; i <= len; i++)
+	{
+		str2[i] = str[i];
+	}
+
+	return (str2);
 }

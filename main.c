@@ -9,13 +9,13 @@
 
 int main(__attribute__((unused)) int argc, char **argv)
 {
-	char *lineptr = NULL, **cmd;
-	int counter = 0, status = 1, st = 0, i;
+	char *lineptr, **cmd;
+	int counter = 0, statue = 1, st = 0, i;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
 	signal(SIGINT, handle_signal);
-	while (status)
+	while (statue)
 	{
 		counter++;
 		if (isatty(STDIN_FILENO))
@@ -24,20 +24,19 @@ int main(__attribute__((unused)) int argc, char **argv)
 
 		while (lineptr[0] == ' ' || lineptr[0] == '\t')
 			lineptr++;
-
 		if (lineptr[0] == '\0')
-		{
 			continue;
-		}
+
 		add_history(lineptr);
+
 		for (i = 0; lineptr[i] != '\n'; i++)
 			;
 		lineptr[i] = '\0';
-
 		cmd = tokenizer(lineptr);
-
 		if (_strcmp(cmd[0], "exit") == 0)
+		{
 			exit_func(cmd, lineptr, argv, counter);
+		}
 		else if (check_builtin_func(cmd) == 0)
 		{
 			st = run_builtin_func(cmd, st);
@@ -45,24 +44,27 @@ int main(__attribute__((unused)) int argc, char **argv)
 			continue;
 		}
 		else
+		{
 			st = execute(cmd, lineptr, counter, argv);
+		}
 		_free(cmd, lineptr);
 	}
-	return (status);
+	return (statue);
 }
 /**
- * check_builtin_func - check builtin functions if exists.
+ * check_builtin - check builtin
  *
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin_func(char **cmd)
+int check_builtin(char **cmd)
 {
 	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
-
 	if (*cmd == NULL)
+	{
 		return (-1);
+	}
 
 	while ((fun + i)->command)
 	{

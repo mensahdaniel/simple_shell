@@ -22,8 +22,8 @@ extern char **environ;
 /**##### MACROS ######*/
 
 #define BUFSIZE 1024
-// #define DELIM " \t\r\n\a"
 #define PROMPT "(HSH)>>$ "
+#define DELIM " \t\r\n\a"
 #define PRINT(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/

@@ -9,15 +9,15 @@
 
 int run_builtin_func(char **cmd, int er)
 {
-	builtin_t builtin[] = {{"cd", change_dir},	{"env", display_env},					{"help", display_help},
+	builtin_t bil[] = {{"cd", change_dir},	{"env", display_env},					{"help", display_help},
 										 {"echo", echo_func}, {"history", display_history}, {NULL, NULL}};
 	int i = 0;
 
-	while ((builtin + i)->command)
+	while ((bil + i)->command)
 	{
-		if (_strcmp(cmd[0], (builtin + i)->command) == 0)
+		if (_strcmp(cmd[0], (bil + i)->command) == 0)
 		{
-			return ((builtin + i)->function(cmd, er));
+			return ((bil + i)->function(cmd, er));
 		}
 		i++;
 	}

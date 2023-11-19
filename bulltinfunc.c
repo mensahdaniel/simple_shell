@@ -1,11 +1,12 @@
 #include "main.h"
 /**
- * exit_func - Exit Status Shell
+ * exit_func - Exit Statue Shell
+ *
  * @cmd: Parsed Command
  * @input: User Input
  * @argv:Program Name
  * @c:Excute Count
- * Return: Void (Exit Status)
+ * Return: Void (Exit Statue)
  */
 void exit_func(char **cmd, char *input, char **argv, int c)
 {
@@ -70,16 +71,14 @@ int change_dir(char **cmd, __attribute__((unused)) int er)
 /**
  * display_env - Display Enviroment Variable
  * @cmd:Parsed Command
- * @er:Status of Last command Excuted
+ * @er:Statue of Last command Excuted
  * Return:Always 0
  */
-int display_env(char **cmd, int er)
+int display_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int er)
 {
 	size_t i;
 	int len;
 
-	(void)cmd;
-	(void)er;
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		len = _strlen(environ[i]);
@@ -90,6 +89,7 @@ int display_env(char **cmd, int er)
 }
 /**
  * display_help - Displaying Help For Builtin
+ *
  * @cmd:Parsed Command
  * @er: Statue Of Last Command Excuted
  * Return: 0 Succes -1 Fail
@@ -119,7 +119,7 @@ int display_help(char **cmd, __attribute__((unused)) int er)
 }
 /**
  * echo_func - Excute Echo Cases
- * @st:Status Of Last Command Excuted
+ * @st:Statue Of Last Command Excuted
  * @cmd: Parsed Command
  * Return: Always 0 Or Excute Normal Echo
  */

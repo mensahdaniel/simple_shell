@@ -2,7 +2,6 @@
 
 /**
  * get_cmdpath -  Search In $PATH For Excutable Command
- *
  * @cmd: Parsed Input
  * Return: 1  Failure  0  Success.
  */
@@ -32,17 +31,17 @@ int get_cmdpath(char **cmd)
 }
 /**
  * add_fullpath - Build Command
- *
  * @token: Excutable Command
  * @value: Dirctory Conatining Command
+ *
  * Return: Parsed Full Path Of Command Or NULL Case Failed
  */
-char *add_fullpath(char *token, char *value)
+char *add_fullpath(char *command, char *directory)
 {
 	char *cmd;
 	size_t len;
 
-	len = _strlen(value) + _strlen(token) + 2;
+	len = _strlen(directory) + _strlen(command) + 2;
 	cmd = malloc(sizeof(char) * len);
 	if (cmd == NULL)
 	{
@@ -51,15 +50,14 @@ char *add_fullpath(char *token, char *value)
 
 	memset(cmd, 0, len);
 
-	cmd = _strcat(cmd, value);
+	cmd = _strcat(cmd, directory);
 	cmd = _strcat(cmd, "/");
-	cmd = _strcat(cmd, token);
+	cmd = _strcat(cmd, command);
 
 	return (cmd);
 }
 /**
  * get_path - Gets The Value Of Enviroment Variable By Name
- *
  * @var_name: Environment Variable Name
  * Return: The Value of the Environment Variable Else NULL.
  */
