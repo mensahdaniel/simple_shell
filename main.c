@@ -1,84 +1,49 @@
 #include "main.h"
 
 /**
- * main - Simple Shell (Hsh)
- * @argc: Argument Count
- * @argv:Argument Value
- * Return: Exit Value By Status
- */
-
-int main(__attribute__((unused)) int argc, char **argv)
-{
-	char *input, **cmd;
-	int counter = 0, statue = 1, st = 0;
-
-	if (argv[1] != NULL)
-		read_file(argv[1], argv);
-	signal(SIGINT, handle_signal);
-	while (statue)
-	{
-		counter++;
-		if (isatty(STDIN_FILENO))
-			prompt();
-		input = _getline();
-		while (input[0] == ' ' || input[0] == '\t')
-			input++;
-		if (input[0] == '\0' || input[0] == '\n')
-			continue;
-		history(input);
-		cmd = parse_cmd(input);
-		if (_strcmp(cmd[0], "exit") == 0)
-		{
-			exit_bul(cmd, input, argv, counter);
-		}
-		else if (check_builtin(cmd) == 0)
-		{
-			st = handle_builtin(cmd, st);
-			free_all(cmd, input);
-			continue;
-		}
-		else
-		{
-			st = check_cmd(cmd, input, counter, argv);
-		}
-		free_all(cmd, input);
-	}
-	return (statue);
-}
-/**
- * check_builtin - check builtin
+ * main - Recreation of a "sh"
  *
- * @cmd:command to check
- * Return: 0 Succes -1 Fail
+ * Return: 0 If succeed, or the number of the error
  */
-int check_builtin(char **cmd)
+int main(void)
 {
-	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
-	int i = 0;
+	size_t i = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
+	char *buffer = NULL, **argv = NULL, *dup = NULL;
 
-	if (*cmd == NULL)
+	while (1)
 	{
-		return (-1);
+		_isattyAndSignal();
+		counter = getline(&buffer, &i, stdin);
+		if (counter == -1)
+			free_and_exit(buffer);
+		if (_checkChars(buffer) == -1)
+			continue;
+		buffer = clearBuffer(buffer, counter);
+		builtIn = _checkBuiltIn(buffer);
+		if (builtIn == 1)
+		{
+			exitValue = getReturnValue(buffer);
+			if (exitValue >= 0)
+				break;
+			continue;
+		}
+		dup = _strdup(buffer);
+		argv = tokenizer(dup, builtIn);
+		if ((builtIn == 0 && itsExecutable(argv[0]) == 0))
+			child_pid = child_fork(child_pid, argv[0]);
+		else
+			child_pid = 1;
+		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
+		{
+			perror(argv[0]);
+			break;
+		}
+		if (child_pid != 0)
+			waitAndFree(status, argv, dup);
 	}
-
-	while ((fun + i)->command)
-	{
-		if (_strcmp(cmd[0], (fun + i)->command) == 0)
-			return (0);
-		i++;
-	}
-	return (-1);
-}
-/**
- * creat_envi - Creat Array of Enviroment Variable
- * @envi: Array of Enviroment Variable
- * Return: Void
- */
-void creat_envi(char **envi)
-{
-	int i;
-
-	for (i = 0; environ[i]; i++)
-		envi[i] = _strdup(environ[i]);
-	envi[i] = NULL;
+	if (builtIn != 1)
+		free_array_dup(argv, dup);
+	free_buff_and_env(buffer);
+	return (exitValue);
 }
