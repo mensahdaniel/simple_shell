@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * handle_builtin - Handle Builtin Command
@@ -9,21 +9,15 @@
 
 int handle_builtin(char **cmd, int er)
 {
-	 bul_t bil[] = {
-		{"cd", change_dir},
-		{"env", dis_env},
-		{"help", display_help},
-		{"echo", echo_bul},
-		{"history", history_dis},
-		{NULL, NULL}
-	};
+	builtin_t bil[] = {{"cd", change_dir}, {"env", dis_env},				 {"help", display_help},
+										 {"echo", echo_bul}, {"history", history_dis}, {NULL, NULL}};
 	int i = 0;
 
 	while ((bil + i)->command)
 	{
 		if (_strcmp(cmd[0], (bil + i)->command) == 0)
 		{
-			return ((bil + i)->fun(cmd, er));
+			return ((bil + i)->function(cmd, er));
 		}
 		i++;
 	}
@@ -73,16 +67,4 @@ int check_cmd(char **cmd, char *input, int c, char **argv)
 	}
 	wait(&status);
 	return (0);
-}
-/**
- * signal_to_handel - Handle ^C
- * @sig:Captured Signal
- * Return: Void
- */
-void signal_to_handel(int sig)
-{
-	if (sig == SIGINT)
-	{
-		PRINTER("\n$ ");
-	}
 }

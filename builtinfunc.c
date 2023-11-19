@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /**
  * exit_bul - Exit Statue Shell
  * @cmd: Parsed Command
@@ -130,19 +130,19 @@ int echo_bul(char **cmd, int st)
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
 		print_number_in(st);
-		PRINTER("\n");
+		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
 	{
 		print_number(pid);
-		PRINTER("\n");
+		PRINT("\n");
 
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
 		path = _getenv("PATH");
-		PRINTER(path);
-		PRINTER("\n");
+		PRINT(path);
+		PRINT("\n");
 		free(path);
 
 	}

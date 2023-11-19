@@ -1,19 +1,19 @@
-#ifndef _SHELL_H_
-#define _SHELL_H_
+#ifndef MAIN_H
+#define MAIN_H
 
 /**###### LIBS USED ######*/
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <errno.h>
+#include <fcntl.h>
 #include <linux/limits.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 /**###### environ var ######*/
 
@@ -23,12 +23,7 @@ extern char **environ;
 
 #define BUFSIZE 1024
 #define DELIM " \t\r\n\a"
-#define PRINTER(c) (write(STDOUT_FILENO, c, _strlen(c)))
-
-
-
-
-
+#define PRINT(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
 /**###### STRING FUNCTION ######*/
 
@@ -88,7 +83,7 @@ int dis_env(char **cmd, int er);
 int change_dir(char **cmd, int er);
 int display_help(char **cmd, int er);
 int echo_bul(char **cmd, int er);
-void  exit_bul(char **cmd, char *input, char **argv, int c);
+void exit_bul(char **cmd, char *input, char **argv, int c);
 int print_echo(char **cmd);
 
 /** ####error handle and Printer ####*/
@@ -97,17 +92,15 @@ void print_number_in(int n);
 void print_error(char *line, int c, char **argv);
 void _prerror(char **argv, int c, char **cmd);
 
-
 /**
  * struct bulltin - contain bultin to handle and function to excute
  * @command:pointer to char
- * @fun:fun to excute when bultin true
+ * @function:fun to excute when bultin true
  */
 
-typedef struct  bulltin
-{
-	char *command;
-	int (*fun)(char **line, int er);
-} bul_t;
+typedef struct bulltin {
+  char *command;
+  int (*function)(char **line, int er);
+} builtin_t;
 
-#endif
+#endif /* MAIN_H */

@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * main - Simple Shell (Hsh)
@@ -40,7 +40,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 		else
 		{
 			st = check_cmd(cmd, input, counter, argv);
-
 		}
 		free_all(cmd, input);
 	}
@@ -54,15 +53,9 @@ int main(__attribute__((unused)) int argc, char **argv)
  */
 int check_builtin(char **cmd)
 {
-	bul_t fun[] = {
-		{"cd", NULL},
-		{"help", NULL},
-		{"echo", NULL},
-		{"history", NULL},
-		{NULL, NULL}
-	};
+	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
-		if (*cmd == NULL)
+	if (*cmd == NULL)
 	{
 		return (-1);
 	}

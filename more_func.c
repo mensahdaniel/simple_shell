@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * history_dis - Display History Of User Input Simple Shell
@@ -6,7 +6,7 @@
  * @s:Statue Of Last Excute
  * Return: 0 Succes -1 Fail
  */
-int history_dis(__attribute__((unused))char **c, __attribute__((unused))int s)
+int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
 	char *filename = ".simple_shell_history";
 	FILE *fp;
@@ -24,11 +24,10 @@ int history_dis(__attribute__((unused))char **c, __attribute__((unused))int s)
 	{
 		counter++;
 		er = _itoa(counter);
-		PRINTER(er);
+		PRINT(er);
 		free(er);
-		PRINTER(" ");
-		PRINTER(line);
-
+		PRINT(" ");
+		PRINT(line);
 	}
 	if (line)
 		free(line);
@@ -48,10 +47,10 @@ int print_echo(char **cmd)
 	pid = fork();
 	if (pid == 0)
 	{
-	if (execve("/bin/echo", cmd, environ) == -1)
-	{
-		return (-1);
-	}
+		if (execve("/bin/echo", cmd, environ) == -1)
+		{
+			return (-1);
+		}
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
@@ -60,7 +59,8 @@ int print_echo(char **cmd)
 	}
 	else
 	{
-		do {
+		do
+		{
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}

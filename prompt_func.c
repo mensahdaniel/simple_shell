@@ -1,11 +1,11 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * prompt - Display Shell Prompt
  */
 void prompt(void)
 {
-	PRINTER("$ ");
+	PRINT("$ ");
 }
 /**
  * print_error - Display Error Based on Command and How Many Time Shell Looped
@@ -18,12 +18,12 @@ void print_error(char *input, int counter, char **argv)
 {
 	char *er;
 
-	PRINTER(argv[0]);
-	PRINTER(": ");
+	PRINT(argv[0]);
+	PRINT(": ");
 	er = _itoa(counter);
-	PRINTER(er);
+	PRINT(er);
 	free(er);
-	PRINTER(": ");
-	PRINTER(input);
-	PRINTER(": not found\n");
+	PRINT(": ");
+	PRINT(input);
+	PRINT(": not found\n");
 }
