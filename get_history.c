@@ -7,7 +7,7 @@
  */
 int add_history(char *lineptr)
 {
-	char *filename = ".simple_shell_history";
+	char *filename = ".shell_history";
 	ssize_t fd, w;
 	int len = 0, i;
 
