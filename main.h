@@ -40,10 +40,10 @@ char *_getenv(const char *name);
 void print_env(void);
 int _checkChars(char *str);
 char *path(char *filename);
-int exists(char *path);
+// int exists(char *path);
 
 int _setenv(char *name, char *value, int overwrite);
-int checkUnset(char *str);
+// int checkUnset(char *str);
 int checkSetenv(char *str);
 int checkHelp(char *str);
 int _unsetenv(char *name);
@@ -55,8 +55,8 @@ void free_buff_and_env(char *str);
 int _isdigit(char *str);
 
 int checkExit(char *str);
-char *searchAndReplace(char *str);
-int checkRoute(char *str);
+// char *searchAndReplace(char *str);
+// int checkRoute(char *str);
 char *create_variable(char *name, char *value);
 char *comments(char *str);
 int getReturnValue(char *str);
