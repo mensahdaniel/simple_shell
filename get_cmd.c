@@ -14,10 +14,10 @@ char *path(char *filename)
 	struct stat st;
 
 	token = _strtok(cpy, ':');
-	concatenated = str_concat("/", filename);
+	concatenated = str_cat("/", filename);
 	while (token != NULL)
 	{
-		absolute = str_concat(token, concatenated);
+		absolute = str_cat(token, concatenated);
 		if (stat(absolute, &st) == 0)
 		{
 			free(PATH);
