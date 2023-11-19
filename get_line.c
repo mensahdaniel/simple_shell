@@ -38,7 +38,7 @@ char *_getline(void)
 			}
 		}
 	}
-	buff[i] = '\0';
+	buff[i - 1] = '\0';
 	// hashtag_handle(buff);
 	return (buff);
 }
