@@ -68,7 +68,7 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
  */
 void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 {
-	int statue, i = 0;
+	int status, i = 0;
 
 	if (cmd[1] == NULL)
 	{
@@ -84,11 +84,11 @@ void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 			perror("illegal number");
 		}
 	}
-	statue = _atoi(cmd[1]);
+	status = _atoi(cmd[1]);
 	free(line);
 	free(cmd);
 	fclose(fd);
-	exit(statue);
+	exit(status);
 
 
 

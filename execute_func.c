@@ -3,28 +3,28 @@
 /**
  * run_builtin_func - Handle Builtin Command
  * @cmd: Parsed Command
- * @er:statue of last Excute
+ * @er:status of last Excute
  * Return: -1 Fail 0 Succes (Return :Excute Builtin)
  */
 
 int run_builtin_func(char **cmd, int er)
 {
-	builtin_t bil[] = {{"cd", change_dir},	{"env", display_env},					{"help", display_help},
+	builtin_t builtin[] = {{"cd", change_dir},	{"env", display_env},					{"help", display_help},
 										 {"echo", echo_func}, {"history", display_history}, {NULL, NULL}};
 	int i = 0;
 
-	while ((bil + i)->command)
+	while ((builtin + i)->command)
 	{
-		if (_strcmp(cmd[0], (bil + i)->command) == 0)
+		if (_strcmp(cmd[0], (builtin + i)->command) == 0)
 		{
-			return ((bil + i)->function(cmd, er));
+			return ((builtin + i)->function(cmd, er));
 		}
 		i++;
 	}
 	return (-1);
 }
 /**
- * v - Excute Simple Shell Command (Fork,Wait,Excute)
+ * execute - Excute Simple Shell Command (Fork,Wait,Excute)
  *
  * @cmd:Parsed Command
  * @input: User Input
@@ -32,7 +32,7 @@ int run_builtin_func(char **cmd, int er)
  * @argv:Program Name
  * Return: 1 Case Command Null -1 Wrong Command 0 Command Excuted
  */
-int c(char **cmd, char *input, int c, char **argv)
+int execute(char **cmd, char *input, int c, char **argv)
 {
 	int status;
 	pid_t pid;

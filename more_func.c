@@ -3,7 +3,7 @@
 /**
  * display_history - Display History Of User Input Simple Shell
  * @c:Parsed Command
- * @s:Statue Of Last Excute
+ * @s:Status Of Last Excute
  * Return: 0 Succes -1 Fail
  */
 int display_history(char **c, int s)
