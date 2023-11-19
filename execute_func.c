@@ -68,15 +68,3 @@ int c(char **cmd, char *input, int c, char **argv)
 	wait(&status);
 	return (0);
 }
-/**
- * handle_signal - Handle ^C
- * @sig:Captured Signal
- * Return: Void
- */
-void handle_signal(int sig)
-{
-	if (sig == SIGINT)
-	{
-		PRINT("\n$ ");
-	}
-}

@@ -13,6 +13,22 @@ int _putchar(char c)
 }
 
 /**
+ * _puts - print a string
+ * @str:pointer char
+ * return:void
+ */
+void _puts(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		_putchar(str[i]);
+	}
+	_putchar('\n');
+}
+
+/**
  * print_number -Print Unsigned Int Putchar
  * @n: Unisigned Integer
  * Return: Void
