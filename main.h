@@ -11,7 +11,6 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define BUFFSIZE 1024
 /** ENVIRON VARIABLE **/
 extern char **environ;
 
@@ -67,18 +66,12 @@ void helpCase(char *name);
 
 int getLineAndCheck(char *str);
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void *fill_an_array(void *a, int el, unsigned int len);
-
 void free_environ(char *var_name);
 char *searchAndDestroy(char *str);
 int itsExecutable(char *str);
 int isDir(const char *fileName);
 
 char *addTilde(char *path);
-
-char *_getline(void);
 
 int child_fork(pid_t child_pid, char *name);
 int checkEnv(char *str);
