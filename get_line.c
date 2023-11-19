@@ -9,41 +9,41 @@ char *_getline()
 {
 	int i, buffsize = BUFSIZE, rd;
 	char c = 0;
-	char *buff = malloc(buffsize);
+	char *lineptr = malloc(buffsize);
 
-	if (buff == NULL)
+	if (lineptr == NULL)
 	{
-		free(buff);
+		free(lineptr);
 		return (NULL);
 	}
 
-	for (i = 0; c != EOF && c != '\n'; i++)
+	for (i = 0; lineptr[i] != EOF && lineptr[i] != '\n'; i++)
 	{
 		fflush(stdin);
-		rd = read(STDIN_FILENO, &c, 1);
+		rd = read(STDIN_FILENO, &lineptr, 1);
 		if (rd == 0)
 		{
-			free(buff);
+			free(lineptr);
 			exit(EXIT_SUCCESS);
 		}
-		buff[i] = c;
-		if (buff[0] == '\n')
+		// buff[i] = c;
+		if (lineptr[0] == '\n')
 		{
-			free(buff);
+			free(lineptr);
 			return ("\0");
 		}
 		if (i >= buffsize)
 		{
-			buff = _realloc(buff, buffsize, buffsize + 1);
-			if (buff == NULL)
+			lineptr = _realloc(lineptr, buffsize, buffsize + 1);
+			if (lineptr == NULL)
 			{
 				return (NULL);
 			}
 		}
 	}
-	buff[i - 1] = '\0';
-	hashtag_handle(buff);
-	return (buff);
+	lineptr[i - 1] = '\0';
+	hashtag_handle(lineptr);
+	return (lineptr);
 }
 
 /**
