@@ -21,10 +21,10 @@ int main(__attribute__((unused)) int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			prompt();
 		input = _getline();
+		while (input[0] == ' ' || input[0] == '\t')
+			input++;
 		if (input[0] == '\0')
-		{
 			continue;
-		}
 		history(input);
 		cmd = parse_cmd(input);
 		if (_strcmp(cmd[0], "exit") == 0)
@@ -55,6 +55,7 @@ int check_builtin(char **cmd)
 {
 	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
+
 	if (*cmd == NULL)
 	{
 		return (-1);
