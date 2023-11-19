@@ -47,12 +47,12 @@ int main(__attribute__((unused)) int argc, char **argv)
 	return (status);
 }
 /**
- * check_builtin - check builtin
+ * check_builtin_func - check builtin functions if exists.
  *
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
  */
-int check_builtin(char **cmd)
+int check_builtin_func(char **cmd)
 {
 	builtin_t fun[] = {{"cd", NULL}, {"help", NULL}, {"echo", NULL}, {"history", NULL}, {NULL, NULL}};
 	int i = 0;
