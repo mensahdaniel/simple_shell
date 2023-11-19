@@ -9,6 +9,6 @@ void handle_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
-		PRINT("\n$ ");
+		PRINT("\n(HSH)>>$ ");
 	}
 }
