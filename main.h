@@ -18,13 +18,13 @@ extern char **environ;
  * struct list_s - lista
  * @str: str
  * @next: next
- */
+ *\/
 
-// typedef struct builtin_s {
-//   char *str;
-//   struct builtin_s *next;
-// } builtin_t;
-
+*typedef struct builtin_s {
+*   char *str;
+*   struct builtin_s *next;
+* } builtin_t;
+*/
 /* String Functions */
 int _strlen(const char *s);
 char *_strdup(const char *str);
