@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * parse_cmd - Parse Line Of Input
+ * tokenizer - Parse Line Of Input
  * @input:User Input To Parse
  * Return: Array Of Char (Parsed):Simple Shell
  */
