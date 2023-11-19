@@ -5,7 +5,7 @@
  */
 void prompt(void)
 {
-	PRINT(PROMPT);
+	PRINT("(HSH)>>$ ");
 }
 /**
  * print_error - Display Error Based on Command and How Many Time Shell Looped
