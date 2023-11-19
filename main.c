@@ -15,8 +15,7 @@ int main(void)
 	{
 		_isattyAndSignal();
 		counter = getline(&buffer, &i, stdin);
-		if (counter == -1)
-			free_and_exit(buffer);
+
 		if (_checkChars(buffer) == -1)
 			continue;
 		buffer = clearBuffer(buffer, counter);
