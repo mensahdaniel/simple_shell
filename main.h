@@ -40,7 +40,7 @@ char *_getenv(const char *name);
 void print_env(void);
 int _checkChars(char *str);
 char *path(char *filename);
-// int exists(char *path);
+/* int exists(char *path);*/
 
 int _setenv(char *name, char *value, int overwrite);
 int checkUnset(char *str);
@@ -55,8 +55,8 @@ void free_buff_and_env(char *str);
 int _isdigit(char *str);
 
 int checkExit(char *str);
-// char *searchAndReplace(char *str);
-// int checkRoute(char *str);
+/* char *searchAndReplace(char *str);*/
+/* int checkRoute(char *str);*/
 char *create_variable(char *name, char *value);
 char *comments(char *str);
 int getReturnValue(char *str);
@@ -64,14 +64,14 @@ char *clearBuffer(char *str, int counter);
 
 void helpCase(char *name);
 
-// int getLineAndCheck(char *str);
+/* int getLineAndCheck(char *str); */
 
 void free_environ(char *var_name);
 char *searchAndDestroy(char *str);
 int itsExecutable(char *str);
 int isDir(const char *fileName);
 
-// char *addTilde(char *path);
+/* char *addTilde(char *path); */
 
 int child_fork(pid_t child_pid, char *name);
 int checkEnv(char *str);
