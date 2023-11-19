@@ -4,9 +4,9 @@
  * handle_signal - Signal handler for ^C
  * @sig: Signal number
  */
-void handle_signal(__attribute__((unused))int signo)
+void handle_signal(__attribute__((unused)) int signo)
 {
-	write(STDOUT_FILENO, "\n$ ", 4);
+	write(STDOUT_FILENO, "\n(HSH)>>$ ", 9);
 }
 
 /**

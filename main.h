@@ -11,8 +11,6 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define PROMPT "(HSH)>>$ "
-
 /** ENVIRON VARIABLE **/
 extern char **environ;
 
