@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * sig_handler - Signal handler for ^C
- * @signo: Signal number
+ * handle_signal - Signal handler for ^C
+ * @sig: Signal number
  */
-void sig_handler(__attribute__((unused))int signo)
+void handle_signal(__attribute__((unused))int signo)
 {
 	write(STDOUT_FILENO, "\n$ ", 4);
 }
