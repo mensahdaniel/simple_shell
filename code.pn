@@ -1,0 +1,1163 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <signal.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+/** ENVIRON VARIABLE **/
+extern char **environ;
+
+/**
+ * struct list_s - lista
+ * @str: str
+ * @next: next
+ *\/
+
+*typedef struct builtin_s {
+*   char *str;
+*   struct builtin_s *next;
+* } builtin_t;
+*/
+/* String Functions */
+int _strlen(const char *s);
+char *_strdup(const char *str);
+int _strcmp(const char *s1, const char *s2);
+char *str_cat(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+char *_strtok(char *str, char delim);
+char *_strncpy(char *dest, char *src, int n);
+int _atoi(char *s);
+
+void _isattyAndSignal(void);
+char *_getenv(const char *name);
+void print_env(void);
+int _checkChars(char *str);
+char *path(char *filename);
+/* int exists(char *path);*/
+
+int _setenv(char *name, char *value, int overwrite);
+int checkUnset(char *str);
+int checkSetenv(char *str);
+int checkHelp(char *str);
+int _unsetenv(char *name);
+void handle_signal(int signo);
+
+int checkDir(char *str);
+int args(char *str);
+void free_buff_and_env(char *str);
+int _isdigit(char *str);
+
+int checkExit(char *str);
+/* char *searchAndReplace(char *str);*/
+/* int checkRoute(char *str);*/
+char *create_variable(char *name, char *value);
+char *comments(char *str);
+int getReturnValue(char *str);
+char *clearBuffer(char *str, int counter);
+
+void helpCase(char *name);
+
+/* int getLineAndCheck(char *str); */
+
+void free_environ(char *var_name);
+char *searchAndDestroy(char *str);
+int itsExecutable(char *str);
+int isDir(const char *fileName);
+
+/* char *addTilde(char *path); */
+
+int child_fork(pid_t child_pid, char *name);
+int checkEnv(char *str);
+
+void waitAndFree(int status, char **argv, char *dup);
+void free_array_dup(char **array, char *dup);
+void free_and_exit(char *str);
+
+int _checkBuiltIn(char *str);
+char **tokenizer(char *str, int builtIn);
+
+#endif /* MAIN_H */
+#include "main.h"
+
+/**
+ * tokenizer - Tokenizes a given string
+ * @str: String to tokenize
+ * @builtIn: Indicates if there's a built-in or not
+ *
+ * Return: An array of tokenized strings
+ */
+char **tokenizer(char *str, int builtIn)
+{
+	char *token = NULL, **array = NULL, *test = NULL;
+	int size = 0, n = 0;
+	struct stat st = {0};
+
+	size = args(str);
+	array = malloc(sizeof(char *) * (size + 1));
+	if (!array)
+		return (NULL);
+	token = _strtok(str, ' ');
+	while (token != NULL)
+	{
+		array[n] = _strdup(token);
+		token = _strtok(NULL, ' ');
+		n++;
+	}
+	if (builtIn == 0 && array[0][0] != '/')
+	{
+		test = path(array[0]);
+		if (test != NULL)
+		{
+			free(array[0]);
+			array[0] = _strdup(test);
+		}
+		else
+		{
+			if ((stat(array[0], &st) == 0) || (isDir(array[0]) == 0))
+				;
+			else
+				perror(array[0]);
+		}
+		free(test);
+	}
+	array[n] = NULL;
+	return (array);
+}
+#include "main.h"
+
+/**
+ * _checkChars - Looks for a character in the buffer
+ * @str: The buffer
+ * Return: If there's a char or not
+ */
+int _checkChars(char *str)
+{
+	int i = 0, r = -1;
+
+	if (str[0] == '#')
+		return (r);
+	while (str[i])
+	{
+		if (str[i] != 32 && str[i] != 10 && str[i] != '\t' && str[i] != '#')
+		{
+			r = 0;
+			if (str[0] == ' ' && str[1] != ' ')
+			{
+				str = _strtok(str, ' ');
+			}
+			break;
+		}
+		if (str[i] == '#')
+			break;
+		i++;
+	}
+	return (r);
+}
+/**
+ * checkDir - Built-In checker for cd (cd function)
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkDir(char *str)
+{
+	char *cpy = _strdup(str), *dir = NULL, *PWD = NULL, *buffer = NULL;
+	int builtIn = 0, flag = 0;
+
+	if (_strcmp(_strtok(cpy, ' '), "cd") == 0)
+	{
+		dir = _strtok(NULL, ' ');
+		if (dir == NULL)
+		{
+			dir = _getenv("HOME");
+			flag++;
+		}
+		if (_strcmp(dir, "-") == 0)
+		{
+			dir = _getenv("OLDPWD");
+			flag++;
+		}
+		PWD = _getenv("PWD");
+		_setenv("OLDPWD", PWD, 1);
+		_setenv("PWD", dir, 1);
+		if (chdir(dir) != 0)
+			perror(dir);
+		builtIn++;
+	}
+	if (flag > 0)
+		free(dir);
+	free(cpy);
+	free(buffer);
+	free(PWD);
+	return (builtIn);
+}
+/**
+ * _checkBuiltIn - Checks if there's a Built-In in the buffer or not
+ * @str: String to traverse
+ *
+ * Return: If there's a coincidence or not
+ */
+int _checkBuiltIn(char *str)
+{
+	if (checkDir(str) == 1)
+		return (2);
+	if (checkExit(str) == 1)
+		return (1);
+	if (checkEnv(str) == 1)
+		return (3);
+	if (checkUnset(str) == 1)
+		return (4);
+	if (checkSetenv(str) == 1)
+		return (5);
+	if (checkHelp(str) == 1)
+		return (6);
+	return (0);
+}
+
+/**
+ * checkHelp - Built-In checker for Help
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkHelp(char *str)
+{
+	char *cpy = _strdup(str), *name = NULL;
+
+	if (_strcmp(_strtok(cpy, ' '), "help") == 0)
+	{
+		name = _strtok(NULL, ' ');
+		if (name == NULL)
+		{
+			write(1, "Usage: help [BUILTIN]\nList of Built-Ins\n", 41);
+			write(1, "cd\nexit\nsetenv\nunsetenv\nenv\nhelp\n", 34);
+			free(cpy);
+			return (1);
+		}
+		else
+		{
+			while (name != NULL)
+			{
+				helpCase(name);
+				name = _strtok(NULL, ' ');
+			}
+		}
+		free(cpy);
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+/**
+ * helpCase - Prints out a shor help message
+ * @name: Name of the Built-In
+ */
+void helpCase(char *name)
+{
+	if (_strcmp(name, "cd") == 0)
+	{
+		write(1, "cd [dir]\nChange the shell working directory.\n", 46);
+	}
+	else if (_strcmp(name, "exit") == 0)
+	{
+		write(1, "exit [n]\nExits the shell with a status of N.\n", 46);
+	}
+	else if (_strcmp(name, "setenv") == 0)
+	{
+		write(1, "setenv [var] [value]\nSet environment variables.\n", 49);
+	}
+	else if (_strcmp(name, "unsetenv") == 0)
+	{
+		write(1, "unsetenv [var]\nUnset environment variables.\n", 45);
+	}
+	else if (_strcmp(name, "help") == 0)
+	{
+		write(1, "help [BUILTIN]\nDisplays information for Buitlt-Ins.\n", 53);
+	}
+	else if (_strcmp(name, "env") == 0)
+	{
+		write(1, "env\nPrint all environment variables.\n", 38);
+	}
+	else
+	{
+		write(1, "Wrong Built-In, use help to list all Built-Ins\n", 48);
+	}
+}
+#include "main.h"
+
+/**
+ * path - Checks if a file exists
+ * @filename: name of the file
+ *
+ * Return: Returns the absolute route of a file or NULL
+ */
+char *path(char *filename)
+{
+	char *PATH = _getenv("PATH");
+	char *cpy = _strdup(PATH), *concatenated = NULL;
+	char *token = NULL, *absolute = NULL;
+	struct stat st;
+
+	token = _strtok(cpy, ':');
+	concatenated = str_cat("/", filename);
+	while (token != NULL)
+	{
+		absolute = str_cat(token, concatenated);
+		if (stat(absolute, &st) == 0)
+		{
+			free(PATH);
+			free(cpy);
+			free(concatenated);
+			return (absolute);
+		}
+		token = _strtok(NULL, ':');
+		free(absolute);
+	}
+	free(PATH);
+	free(concatenated);
+	free(cpy);
+	return (NULL);
+}
+#include "main.h"
+
+/**
+ * itsExecutable - Checks if a given path is an executable
+ * @path: Route of the file
+ *
+ * Return: If it is an executable file or not
+ */
+int itsExecutable(char *path)
+{
+	if (isDir(path) == 0)
+	{
+		if (path[0] == '/')
+			perror(path);
+		else
+			perror(path);
+		return (1);
+	}
+	if (access(path, X_OK))
+		return (2);
+	else
+		return (0);
+}
+
+/**
+ * isDir - Checks if the path is a directory
+ * @path: Route of the file
+ *
+ * Return: If it is a directory or not
+ */
+int isDir(const char *path)
+{
+	struct stat st = {0};
+
+	stat(path, &st);
+	return (S_ISREG(st.st_mode));
+}
+
+/**
+ * getReturnValue - Get exit value
+ * @str: String to traverse
+ *
+ * Return: The exit value
+ */
+int getReturnValue(char *str)
+{
+	char *cpy = _strdup(str), *token;
+	int exitValue = 0;
+
+	token = _strtok(cpy, ' ');
+	token = _strtok(NULL, ' ');
+	if (token == NULL)
+	{
+		free(cpy);
+		return (0);
+	}
+	if (_isdigit(token) == 0)
+		exitValue = _atoi(token);
+	else
+	{
+		free(cpy);
+		write(STDERR_FILENO, "exit: Illegal number\n", 22);
+		return (-1);
+	}
+	free(cpy);
+	if (exitValue < 0)
+	{
+		write(STDERR_FILENO, "exit: Illegal number\n", 22);
+		exitValue = (-1);
+	}
+	return (exitValue);
+}
+
+/**
+ * _isdigit - Chekcs if there are only digits in a given string
+ * @str: String to traverse
+ *
+ * Return: If it's only digits or not
+ */
+int _isdigit(char *str)
+{
+	int i = 0, flag = 0;
+
+	while (str[i])
+	{
+		if (str[i] >= 48 && str[i] <= 57)
+		{
+			i++;
+			continue;
+		}
+		else
+		{
+			flag++;
+			break;
+		}
+	}
+	return (flag);
+}
+/**
+ * child_fork - Forks a process
+ * @child_pid: Process ID of the child process
+ * @name: Name of the program
+ *
+ * Return: The child process ID
+ */
+int child_fork(pid_t child_pid, char *name)
+{
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror(name);
+		exit(EXIT_FAILURE);
+	}
+	return (child_pid);
+}
+#include "main.h"
+
+/**
+ * main - Recreation of a "sh"
+ *
+ * Return: 0 If succeed, or the number of the error
+ */
+int main(void)
+{
+	size_t i = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
+	char *buffer = NULL, **argv = NULL, *dup = NULL;
+
+	while (1)
+	{
+		_isattyAndSignal();
+		counter = getline(&buffer, &i, stdin);
+		if (counter == -1)
+			free_and_exit(buffer);
+		if (_checkChars(buffer) == -1)
+			continue;
+		buffer = clearBuffer(buffer, counter);
+		builtIn = _checkBuiltIn(buffer);
+		if (builtIn == 1)
+		{
+			exitValue = getReturnValue(buffer);
+			if (exitValue >= 0)
+				break;
+			continue;
+		}
+		dup = _strdup(buffer);
+		argv = tokenizer(dup, builtIn);
+		if ((builtIn == 0 && itsExecutable(argv[0]) == 0))
+			child_pid = child_fork(child_pid, argv[0]);
+		else
+			child_pid = 1;
+		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
+		{
+			perror(argv[0]);
+			break;
+		}
+		if (child_pid != 0)
+			waitAndFree(status, argv, dup);
+	}
+	if (builtIn != 1)
+		free_array_dup(argv, dup);
+	free_buff_and_env(buffer);
+	return (exitValue);
+}
+#include "main.h"
+
+/**
+ * print_env - Prints out all the environment variables
+ */
+void print_env(void)
+{
+	int i = 0;
+
+	while (environ[i])
+	{
+		write(1, environ[i], _strlen(environ[i]));
+		write(1, "\n", 1);
+		i++;
+	}
+}
+/**
+ * _unsetenv - deletes the variable name from the environment
+ * @name: the name of the variable
+ *
+ * Return: 0 on success or -1 on error
+ */
+int _unsetenv(char *name)
+{
+	size_t len = 0;
+	int i = 0, flag = 0;
+
+	len = _strlen(name);
+	while (environ[i] != NULL)
+	{
+		if (strncmp(environ[i], name, len) == 0)
+		{
+			while (environ[i] != NULL)
+			{
+				environ[i] = environ[i + 1];
+				i++;
+			}
+			flag++;
+			break;
+		}
+		i++;
+	}
+	if (flag > 0)
+		return (0);
+	return (-1);
+}
+
+/**
+ * _setenv - changes or adds an environment variable
+ * @name: the name of the variable
+ * @value: the value of the variable
+ * @overwrite: if the variable most be overwrited or not
+ *
+ * Return: 0 on success or -1 on error
+ */
+int _setenv(char *name, char *value, int overwrite)
+{
+	size_t len;
+	int i = 0;
+
+	len = _strlen(name);
+	while (environ[i] != NULL)
+	{
+		if ((strncmp(environ[i], name, len) == 0) && overwrite != 0)
+		{
+			if (overwrite == 2)
+			{
+				free(environ[i]);
+			}
+			environ[i] = create_variable(name, value);
+			if (!environ[i])
+				return (-1);
+			return (0);
+		}
+		i++;
+	}
+	environ[i] = create_variable(name, value);
+	if (!environ[i])
+		return (-1);
+	environ[i + 1] = NULL;
+	return (0);
+}
+
+/**
+ * create_variable - creates a variable
+ * @name: the name of the variable
+ * @value: the value of the variable
+ *
+ * Return: the new variable
+ */
+char *create_variable(char *name, char *value)
+{
+	char *var = NULL, *aux = NULL;
+
+	aux = str_cat(name, "=");
+	if (!aux)
+		return (NULL);
+	var = str_cat(aux, value);
+	if (!var)
+		return (NULL);
+	free(aux);
+	return (var);
+}
+/**
+ * _getenv - Uses the environ variable in order to get a variable
+ * @name: name of the variable
+ *
+ * Return: Returns the value of the variable or NULL
+ */
+char *_getenv(const char *name)
+{
+	char *token, *value, *cpy;
+	size_t i = 0;
+
+	if (!name)
+		exit(1);
+	while (environ[i] != NULL)
+	{
+		cpy = _strdup(environ[i]);
+		token = _strtok(cpy, '=');
+		if (_strcmp(name, token) == 0)
+		{
+			token = _strtok(NULL, '=');
+			value = malloc(sizeof(char) * _strlen(token) + 1);
+			if (!value)
+			{
+				free(cpy);
+				return (NULL);
+			}
+			_strcpy(value, token);
+			free(cpy);
+			break;
+		}
+		i++;
+		free(cpy);
+	}
+	return (value);
+}
+#include "main.h"
+
+/**
+ * checkSetenv - Built-In checker for setenv
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkSetenv(char *str)
+{
+	char *cpy = _strdup(str), *name = NULL, *value = NULL;
+
+	if (strcmp(_strtok(cpy, ' '), "setenv") == 0)
+	{
+		name = _strtok(NULL, ' ');
+		value = _strtok(NULL, ' ');
+		if (name == NULL || value == NULL)
+		{
+			write(STDERR_FILENO, "Usage: setenv [VARIABLE] [VALUE]\n", 34);
+			free(cpy);
+			return (1);
+		}
+		_setenv(name, value, 1);
+		free(cpy);
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+
+/**
+ * checkUnset - Built-In checker for unsetenv
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkUnset(char *str)
+{
+	char *cpy = _strdup(str), *token = NULL;
+
+	if (strcmp(_strtok(cpy, ' '), "unsetenv") == 0)
+	{
+		token = _strtok(NULL, ' ');
+		if (token == NULL)
+		{
+			write(STDERR_FILENO, "Usage: unsetenv [VARIABLE]\n", 28);
+			free(cpy);
+			return (1);
+		}
+		if (_unsetenv(token) == -1)
+		{
+			write(STDERR_FILENO, "can't unset non-existent variable\n", 35);
+			free(cpy);
+			return (1);
+		}
+		free(cpy);
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+
+/**
+ * checkExit - Built-In checker for exit
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkExit(char *str)
+{
+	char *cpy = _strdup(str);
+
+	if (strcmp(_strtok(cpy, ' '), "exit") == 0)
+	{
+		free(cpy);
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+
+/**
+ * checkEnv - Built-In checker for env
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkEnv(char *str)
+{
+	char *cpy = _strdup(str);
+
+	if (strcmp(_strtok(cpy, ' '), "env") == 0)
+	{
+		free(cpy);
+		print_env();
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+#include "main.h"
+
+/**
+ * free_buff_and_env - Frees the buffer and an environ variable
+ * @str: Buffer to free
+ */
+void free_buff_and_env(char *str)
+{
+	free(str);
+}
+/**
+ * waitAndFree - Waits and frees things
+ * @status: Status of the process
+ * @argv: Array to free
+ * @dup: Duplicated array to free
+ *
+ * Return: Returns the status of isatty
+ */
+void waitAndFree(int status, char **argv, char *dup)
+{
+	wait(&status);
+	free_array_dup(argv, dup);
+}
+/**
+ * free_and_exit - Frees a buffer and exits the function
+ * @buffer: Buffer to free
+ */
+void free_and_exit(char *buffer)
+{
+	if (isatty(STDIN_FILENO) == 1)
+		write(STDOUT_FILENO, "\n", 1);
+	free(buffer);
+	exit(0);
+}
+/**
+ * free_array_dup - Frees an array and the duplicated string
+ * @array: Array to free
+ * @dup: Duplicated string to free
+ */
+void free_array_dup(char **array, char *dup)
+{
+	int i = 0;
+
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array[i]);
+	free(array);
+	free(dup);
+}
+/**
+ * free_environ - frees all the environ[i] used in the function _setenv
+ * @var_name: the name of the variable
+ *
+ * Return: asd
+ */
+void free_environ(char *var_name)
+{
+	size_t len = 0;
+	int i = 0;
+
+	len = strlen(var_name);
+	while (environ[i] != NULL)
+	{
+		if (strncmp(environ[i], var_name, len) == 0)
+		{
+			free(environ[i]);
+		}
+		i++;
+	}
+}
+#include "main.h"
+
+/**
+ * _isattyAndSignal - Looks for signals and checks the isatty function
+ */
+void _isattyAndSignal(void)
+{
+	signal(SIGINT, handle_signal);
+	if ((isatty(STDIN_FILENO) == 1))
+		write(STDOUT_FILENO, "(HSH)>>$ ", 9);
+}
+/**
+ * clearBuffer - Removes the '\n' char, and looks for tabulations
+ * @str: The buffer
+ * @counter: Length of the string
+ *
+ * Return: The clean buffer
+ */
+char *clearBuffer(char *str, int counter)
+{
+	str[counter - 1] = '\0';
+	str = searchAndDestroy(str);
+	str = comments(str);
+	return (str);
+}
+
+/**
+ * comments - Checks for comments
+ * @str: String to traverse
+ *
+ * Return: The clean string in case of comments, if not, the same one
+ */
+char *comments(char *str)
+{
+	int i = 0, j = 0, hashtag = 0, flag = 0;
+
+	while (str[j])
+	{
+		if (str[j] == ' ' && str[j + 1] == '#')
+		{
+			hashtag++;
+			break;
+		}
+		j++;
+	}
+	if (hashtag == 0)
+		return (str);
+	while (str[i])
+	{
+		if (flag == 1)
+		{
+			str[i] = ' ';
+			i++;
+			continue;
+		}
+		if (str[i] == ' ' && str[i + 1] == '#')
+		{
+			flag++;
+			i++;
+			continue;
+		}
+		i++;
+	}
+	return (str);
+}
+/**
+ * searchAndDestroy - Looks for a tabulation and erases it
+ * @str: String to traverse
+ *
+ * Return: The modified string or just the string
+ */
+char *searchAndDestroy(char *str)
+{
+	int i = 0, tab = 0;
+
+	while (str[i])
+	{
+		if (str[i] == '\t')
+		{
+			tab++;
+		}
+		i++;
+	}
+	i = 0;
+	if (tab > 0)
+	{
+		while (str[i])
+		{
+			if (str[i] == '\t')
+			{
+				str[i] = ' ';
+			}
+			i++;
+		}
+	}
+	return (str);
+}
+#include "main.h"
+
+/**
+ * handle_signal - Signal handler for ^C
+ * @sig: Signal number
+ */
+void handle_signal(__attribute__((unused)) int sig)
+{
+	write(STDOUT_FILENO, "\n(HSH)>>$ ", 10);
+}
+
+/**
+ * args - Counts all the possibles arguments of a function
+ * @str: String to traverse
+ *
+ * Return: The possibles arguments
+ */
+int args(char *str)
+{
+	int i = 1, counter = 0;
+
+	if (str[0] != ' ')
+		counter++;
+	if (str[0] == ' ' && (str[1] != ' ' && str[1] != '\0'))
+		counter++;
+	while (str[i])
+	{
+		if (str[i] == ' ' && (str[i + 1] != ' ' && str[i + 1] != '\0'))
+			counter++;
+		i++;
+	}
+	return (counter);
+}
+#include "main.h"
+
+/**
+ * _strcpy - Takes a source string and copies it to the dest string
+ * @dest: Dest string
+ * @src: Source string
+ *
+ * Return: Returns a copy of the source string
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i]; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
+	return (dest);
+}
+/**
+ * _strncpy - copy a string
+ * @dest: string dest
+ * @src: string to cpy
+ * @n: bytes
+ *
+ * Return: copy a string to dest
+ */
+char *_strncpy(char *dest, char *src, int n)
+{
+	int i, a = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		if (src[i] == '\0')
+			a = 1;
+		if (a == 0)
+			dest[i] = src[i];
+		else
+		{
+			dest[i] = '\0';
+		}
+	}
+
+	return (dest);
+}
+/**
+ * str_cat - Concatenates two strings
+ * @s1: First string
+ * @s2: Second string
+ *
+ * Return: Returns the concatenated string
+ */
+char *str_cat(char *s1, char *s2)
+{
+	int i = 0, j = 0, n = 0;
+	char *str;
+
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+	do {
+		i++;
+	} while (s1[i - 1]);
+	do {
+		j++;
+	} while (s2[j - 1]);
+	str = malloc(sizeof(char) * (i + j - 1));
+	if (str == NULL)
+		return (NULL);
+
+	for (n = 0; n < i; n++)
+		str[n] = s1[n];
+	for (n = 0; n < j; n++)
+		str[n + i - 1] = s2[n];
+	return (str);
+}
+/**
+ * _strcmp - Strcmp function
+ * @s1: String 1
+ * @s2: String 2
+ *
+ * Return: Returns the difference of the strings
+ */
+int _strcmp(const char *s1, const char *s2)
+{
+	int i, ss1 = 0, ss2 = 0, result = 0;
+
+	for (i = 0; i > -1; i++)
+	{
+		if (s1[i] != s2[i])
+		{
+			ss1 = s1[i];
+			ss2 = s2[i];
+			break;
+		}
+		else
+		{
+			if (s1[i] == '\0' || s2[i] == '\0')
+				break;
+		}
+	}
+	result = ss1 - ss2;
+	return (result);
+}
+
+/**
+ * _atoi - converts string to an integer
+ * @s: string
+ *
+ * Return: an integer
+ */
+int _atoi(char *s)
+{
+	char c;
+	unsigned int i, n = 0, j = _strlen(s) - 1, null = -1;
+	int flag = 0, sign = 1;
+
+	for (i = 0; i <= j; i++)
+	{
+		c = s[i];
+		if (c == '-')
+			sign *= -1;
+		if (c >= 48 && c <= 57)
+		{
+			n = n * 10 + (c - '0');
+			flag = 1;
+		}
+		if (flag == 1)
+		{
+			if (!(c >= 48 && c <= 57))
+				break;
+		}
+	}
+	if (sign == -1)
+	{
+		n *= -1;
+	}
+	if (j == null)
+		return (0);
+	return (n);
+}
+#include "main.h"
+
+/**
+ * _strtok - strtok
+ * @str: str
+ * @delim: delim
+ *
+ * Return: ret
+ */
+char *_strtok(char *str, char delim)
+{
+	static char *tok1, *tok2;
+	unsigned int i;
+
+	if (str != NULL)
+		tok2 = str;
+	tok1 = tok2;
+	if (tok1 == NULL)
+		return (NULL);
+	for (i = 0; tok1[i] != '\0'; i++)
+	{
+		if (tok1[i] != delim)
+			break;
+	}
+	if (tok2[i] == '\0')
+	{
+		tok2 = NULL;
+		return (NULL);
+	}
+	tok1 = tok2 + i;
+	tok2 = tok1;
+	for (i = 0; tok2[i] != '\0'; i++)
+	{
+		if (tok2[i] == delim)
+			break;
+	}
+	if (tok2[i] == '\0')
+		tok2 = NULL;
+	else
+	{
+		tok2[i] = '\0';
+		tok2 += i + 1;
+		if (tok2[0] == '\0')
+			tok2 = NULL;
+	}
+	return (tok1);
+}
+/**
+ * _strlen - Calculates the length of a string
+ * @s: String
+ *
+ * Return: Returns the length of a string
+ */
+int _strlen(const char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		i++;
+	return (i);
+}
+/**
+ * _strdup - strdup C function
+ * @str: String to duplicate
+ *
+ * Return: A new copy of the given string
+ */
+char *_strdup(const char *str)
+{
+	int i, n = 0;
+	char *strcopy;
+
+	if (str == NULL)
+		return (NULL);
+	do {
+		n++;
+	} while (str[n - 1]);
+	strcopy = malloc(sizeof(char) * n);
+	if (strcopy == NULL)
+		return (NULL);
+
+	for (i = 0; i < n; i++)
+	{
+		strcopy[i] = str[i];
+	}
+	return (strcopy);
+}
