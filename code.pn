@@ -296,7 +296,7 @@ void helpCase(char *name)
 	}
 }
 
-```
+```get_cmd_help_func.c```
 #include "main.h"
 
 /**
@@ -332,6 +332,8 @@ char *path(char *filename)
 	free(cpy);
 	return (NULL);
 }
+
+```get_cmd.c```
 #include "main.h"
 
 /**
@@ -447,6 +449,8 @@ int child_fork(pid_t child_pid, char *name)
 	}
 	return (child_pid);
 }
+
+```main.c```
 #include "main.h"
 
 /**
@@ -496,6 +500,8 @@ int main(void)
 	free_buff_and_env(buffer);
 	return (exitValue);
 }
+
+```manage_environment_func.c```
 #include "main.h"
 
 /**
@@ -634,6 +640,8 @@ char *_getenv(const char *name)
 	}
 	return (value);
 }
+
+```manage_environment_var.c```
 #include "main.h"
 
 /**
@@ -734,6 +742,8 @@ int checkEnv(char *str)
 	free(cpy);
 	return (0);
 }
+
+```memory_management.c```
 #include "main.h"
 
 /**
@@ -807,6 +817,8 @@ void free_environ(char *var_name)
 		i++;
 	}
 }
+
+```more_func.c```
 #include "main.h"
 
 /**
@@ -904,6 +916,8 @@ char *searchAndDestroy(char *str)
 	}
 	return (str);
 }
+
+```signal.c```
 #include "main.h"
 
 /**
@@ -937,6 +951,8 @@ int args(char *str)
 	}
 	return (counter);
 }
+
+```strfunc.c```
 #include "main.h"
 
 /**
@@ -1081,6 +1097,8 @@ int _atoi(char *s)
 		return (0);
 	return (n);
 }
+
+```strfunc1.c```
 #include "main.h"
 
 /**
