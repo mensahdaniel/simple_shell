@@ -1,87 +1,110 @@
 #include "main.h"
-
 /**
- * _strtok - strtok
- * @str: str
- * @delim: delim
- *
- * Return: ret
+ * _strcpy - Copie Source To Destination Char
+ * @dest:Destination
+ * @src:Source
+ * Return: Copie Of Char *
  */
-char *_strtok(char *str, char delim)
+char *_strcpy(char *dest, char *src)
 {
-	static char *tok1, *tok2;
-	unsigned int i;
+	int i;
 
-	if (str != NULL)
-		tok2 = str;
-	tok1 = tok2;
-	if (tok1 == NULL)
-		return (NULL);
-	for (i = 0; tok1[i] != '\0'; i++)
+	i = 0;
+	while (src[i])
 	{
-		if (tok1[i] != delim)
-			break;
-	}
-	if (tok2[i] == '\0')
-	{
-		tok2 = NULL;
-		return (NULL);
-	}
-	tok1 = tok2 + i;
-	tok2 = tok1;
-	for (i = 0; tok2[i] != '\0'; i++)
-	{
-		if (tok2[i] == delim)
-			break;
-	}
-	if (tok2[i] == '\0')
-		tok2 = NULL;
-	else
-	{
-		tok2[i] = '\0';
-		tok2 += i + 1;
-		if (tok2[0] == '\0')
-			tok2 = NULL;
-	}
-	return (tok1);
-}
-/**
- * _strlen - Calculates the length of a string
- * @s: String
- *
- * Return: Returns the length of a string
- */
-int _strlen(const char *s)
-{
-	int i = 0;
-
-	while (s[i])
+		dest[i] = src[i];
 		i++;
-	return (i);
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 /**
- * _strdup - strdup C function
- * @str: String to duplicate
- *
- * Return: A new copy of the given string
+ * _strcat - Concat Two String
+ * @dest:First String
+ * @src:Second String
+ * Return:First String + Second String Char *
  */
-char *_strdup(const char *str)
+char *_strcat(char *dest, char *src)
 {
-	int i, n = 0;
-	char *strcopy;
+	char *s = dest;
 
-	if (str == NULL)
-		return (NULL);
-	do {
-		n++;
-	} while (str[n - 1]);
-	strcopy = malloc(sizeof(char) * n);
-	if (strcopy == NULL)
-		return (NULL);
-
-	for (i = 0; i < n; i++)
+	while (*dest != '\0')
 	{
-		strcopy[i] = str[i];
+		dest++;
 	}
-	return (strcopy);
+
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (s);
+}
+/**
+ * _strchr - Locate Charactere In String
+ * @s:String Search In
+ * @c:Char To Search For
+ * Return: Pointer To Char*
+ */
+char *_strchr(char *s, char c)
+{
+
+	do {
+
+		if (*s == c)
+		{
+			break;
+		}
+	} while (*s++);
+
+	return (s);
+}
+/**
+ * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
+ * @s1: A String.
+ * @s2: A String.
+ * @n: Amount Of Characters To Compare.
+ *
+ * Return: 1 If The Strings Don't Match Otherwise 0
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	if (s1 == NULL)
+		return (-1);
+	for (i = 0; i < n && s2[i]; i++)
+	{
+		if (s1[i] != s2[i])
+		{
+			return (1);
+		}
+	}
+	return (0);
+}
+/**
+ * _strdup - Duplicate A String
+ * @str:String
+ * Return: Duplicate String Failed Null
+ */
+char *_strdup(char *str)
+{
+	size_t len, i;
+	char *str2;
+
+	len = _strlen(str);
+	str2 = malloc(sizeof(char) * (len + 1));
+	if (!str2)
+	{
+		return (NULL);
+	}
+
+	for (i = 0; i <= len; i++)
+	{
+		str2[i] = str[i];
+	}
+
+	return (str2);
 }

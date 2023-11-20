@@ -1,97 +1,67 @@
 #include "main.h"
 
 /**
- * _isattyAndSignal - Looks for signals and checks the isatty function
+ * history_dis - Display History Of User Input Simple Shell
+ * @c:Parsed Command
+ * @s:Statue Of Last Excute
+ * Return: 0 Succes -1 Fail
  */
-void _isattyAndSignal(void)
+int history_dis(__attribute__((unused)) char **c, __attribute__((unused)) int s)
 {
-	signal(SIGINT, handle_signal);
-	if ((isatty(STDIN_FILENO) == 1))
-		write(STDOUT_FILENO, "(HSH)>>$ ", 9);
+	char *filename = ".shell_history";
+	FILE *fp;
+	char *line = NULL;
+	size_t len = 0;
+	int counter = 0;
+	char *er;
+
+	fp = fopen(filename, "r");
+	if (fp == NULL)
+	{
+		return (-1);
+	}
+	while ((getline(&line, &len, fp)) != -1)
+	{
+		counter++;
+		er = _itoa(counter);
+		PRINT(er);
+		free(er);
+		PRINT(" ");
+		PRINT(line);
+	}
+	if (line)
+		free(line);
+	fclose(fp);
+	return (0);
 }
 /**
- * clearBuffer - Removes the '\n' char, and looks for tabulations
- * @str: The buffer
- * @counter: Length of the string
- *
- * Return: The clean buffer
+ * print_echo - Excute Normal Echo
+ * @cmd: Parsed Command
+ * Return: 0 Succes -1 Fail
  */
-char *clearBuffer(char *str, int counter)
+int print_echo(char **cmd)
 {
-	str[counter - 1] = '\0';
-	str = searchAndDestroy(str);
-	str = comments(str);
-	return (str);
-}
+	pid_t pid;
+	int status;
 
-/**
- * comments - Checks for comments
- * @str: String to traverse
- *
- * Return: The clean string in case of comments, if not, the same one
- */
-char *comments(char *str)
-{
-	int i = 0, j = 0, hashtag = 0, flag = 0;
-
-	while (str[j])
+	pid = fork();
+	if (pid == 0)
 	{
-		if (str[j] == ' ' && str[j + 1] == '#')
+		if (execve("/bin/echo", cmd, environ) == -1)
 		{
-			hashtag++;
-			break;
+			return (-1);
 		}
-		j++;
+		exit(EXIT_FAILURE);
 	}
-	if (hashtag == 0)
-		return (str);
-	while (str[i])
+	else if (pid < 0)
 	{
-		if (flag == 1)
-		{
-			str[i] = ' ';
-			i++;
-			continue;
-		}
-		if (str[i] == ' ' && str[i + 1] == '#')
-		{
-			flag++;
-			i++;
-			continue;
-		}
-		i++;
+		return (-1);
 	}
-	return (str);
-}
-/**
- * searchAndDestroy - Looks for a tabulation and erases it
- * @str: String to traverse
- *
- * Return: The modified string or just the string
- */
-char *searchAndDestroy(char *str)
-{
-	int i = 0, tab = 0;
-
-	while (str[i])
+	else
 	{
-		if (str[i] == '\t')
-		{
-			tab++;
-		}
-		i++;
+		do {
+			waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-	i = 0;
-	if (tab > 0)
-	{
-		while (str[i])
-		{
-			if (str[i] == '\t')
-			{
-				str[i] = ' ';
-			}
-			i++;
-		}
-	}
-	return (str);
+	return (1);
 }

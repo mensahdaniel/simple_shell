@@ -1,33 +1,15 @@
 #include "main.h"
 
 /**
- * handle_signal - Signal handler for ^C
- * @sig: Signal number
+ * handle_signal - Handle ^C
+ * @sig:Captured Signal
+ * Return: Void
  */
-void handle_signal(__attribute__((unused)) int sig)
+void handle_signal(int sig)
 {
-	write(STDOUT_FILENO, "\n(HSH)>>$ ", 10);
-}
-
-/**
- * args - Counts all the possibles arguments of a function
- * @str: String to traverse
- *
- * Return: The possibles arguments
- */
-int args(char *str)
-{
-	int i = 1, counter = 0;
-
-	if (str[0] != ' ')
-		counter++;
-	if (str[0] == ' ' && (str[1] != ' ' && str[1] != '\0'))
-		counter++;
-	while (str[i])
+	if (sig == SIGINT)
 	{
-		if (str[i] == ' ' && (str[i + 1] != ' ' && str[i + 1] != '\0'))
-			counter++;
-		i++;
+		PRINT("\n");
+		PRINT(PROMPT);
 	}
-	return (counter);
 }
