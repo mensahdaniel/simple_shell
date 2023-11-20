@@ -83,4 +83,16 @@ void free_and_exit(char *str);
 int _checkBuiltIn(char *str);
 char **tokenizer(char *str, int builtIn);
 
+/** ALIASES FUNCTION **/
+typedef struct alias_s {
+  char *name;
+  char *value;
+  struct alias_s *next;
+} alias_t;
+
+void add_alias(alias_t **head, char *name, char *value);
+char *get_alias(alias_t *head, char *name);
+void free_aliases(alias_t *head);
+void print_aliases(alias_t *head);
+
 #endif /* MAIN_H */
