@@ -5,7 +5,7 @@
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
 	char *alias_prefix = "alias ";
-	int alias_prefix_len = strlen(alias_prefix);
+	int alias_prefix_len = _strlen(alias_prefix);
 
 	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
 	{
