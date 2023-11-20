@@ -1,70 +1,160 @@
 #include "main.h"
 
 /**
- * handle_builtin - Handle Builtin Command
- * @cmd: Parsed Command
- * @er:statue of last Excute
- * Return: -1 Fail 0 Succes (Return :Excute Builtin)
+ * _checkChars - Looks for a character in the buffer
+ * @str: The buffer
+ * Return: If there's a char or not
  */
-
-int handle_builtin(char **cmd, int er)
+int _checkChars(char *str)
 {
-	builtin_t bil[] = {{"cd", change_dir}, {"env", dis_env},				 {"help", display_help},
-										 {"echo", echo_bul}, {"history", history_dis}, {NULL, NULL}};
-	int i = 0;
+	int i = 0, r = -1;
 
-	while ((bil + i)->command)
+	if (str[0] == '#')
+		return (r);
+	while (str[i])
 	{
-		if (_strcmp(cmd[0], (bil + i)->command) == 0)
+		if (str[i] != 32 && str[i] != 10 && str[i] != '\t' && str[i] != '#')
 		{
-			return ((bil + i)->function(cmd, er));
+			r = 0;
+			if (str[0] == ' ' && str[1] != ' ')
+			{
+				str = _strtok(str, ' ');
+			}
+			break;
 		}
+		if (str[i] == '#')
+			break;
 		i++;
 	}
-	return (-1);
+	return (r);
 }
 /**
- * check_cmd - Excute Simple Shell Command (Fork,Wait,Excute)
+ * checkDir - Built-In checker for cd (cd function)
+ * @str: String to compare
  *
- * @cmd:Parsed Command
- * @input: User Input
- * @c:Shell Excution Time Case of Command Not Found
- * @argv:Program Name
- * Return: 1 Case Command Null -1 Wrong Command 0 Command Excuted
+ * Return: If there's a coincidence or not
  */
-int check_cmd(char **cmd, char *input, int c, char **argv)
+int checkDir(char *str)
 {
-	int status;
-	pid_t pid;
+	char *cpy = _strdup(str), *dir = NULL, *PWD = NULL, *buffer = NULL;
+	int builtIn = 0, flag = 0;
 
-	if (*cmd == NULL)
+	if (_strcmp(_strtok(cpy, ' '), "cd") == 0)
 	{
-		return (-1);
-	}
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("Error");
-		return (-1);
-	}
-
-	if (pid == 0)
-	{
-		if (_strncmp(*cmd, "./", 2) != 0 && _strncmp(*cmd, "/", 1) != 0)
+		dir = _strtok(NULL, ' ');
+		if (dir == NULL)
 		{
-			path_cmd(cmd);
+			dir = _getenv("HOME");
+			flag++;
 		}
-
-		if (execve(*cmd, cmd, environ) == -1)
+		if (_strcmp(dir, "-") == 0)
 		{
-			print_error(cmd[0], c, argv);
-			free(input);
-			free(cmd);
-			exit(EXIT_FAILURE);
+			dir = _getenv("OLDPWD");
+			flag++;
 		}
-		return (EXIT_SUCCESS);
+		PWD = _getenv("PWD");
+		_setenv("OLDPWD", PWD, 1);
+		_setenv("PWD", dir, 1);
+		if (chdir(dir) != 0)
+			perror(dir);
+		builtIn++;
 	}
-	wait(&status);
+	if (flag > 0)
+		free(dir);
+	free(cpy);
+	free(buffer);
+	free(PWD);
+	return (builtIn);
+}
+/**
+ * _checkBuiltIn - Checks if there's a Built-In in the buffer or not
+ * @str: String to traverse
+ *
+ * Return: If there's a coincidence or not
+ */
+int _checkBuiltIn(char *str)
+{
+	if (checkDir(str) == 1)
+		return (2);
+	if (checkExit(str) == 1)
+		return (1);
+	if (checkEnv(str) == 1)
+		return (3);
+	if (checkUnset(str) == 1)
+		return (4);
+	if (checkSetenv(str) == 1)
+		return (5);
+	if (checkHelp(str) == 1)
+		return (6);
 	return (0);
+}
+
+/**
+ * checkHelp - Built-In checker for Help
+ * @str: String to compare
+ *
+ * Return: If there's a coincidence or not
+ */
+int checkHelp(char *str)
+{
+	char *cpy = _strdup(str), *name = NULL;
+
+	if (_strcmp(_strtok(cpy, ' '), "help") == 0)
+	{
+		name = _strtok(NULL, ' ');
+		if (name == NULL)
+		{
+			write(1, "Usage: help [BUILTIN]\nList of Built-Ins\n", 41);
+			write(1, "cd\nexit\nsetenv\nunsetenv\nenv\nhelp\n", 34);
+			free(cpy);
+			return (1);
+		}
+		else
+		{
+			while (name != NULL)
+			{
+				helpCase(name);
+				name = _strtok(NULL, ' ');
+			}
+		}
+		free(cpy);
+		return (1);
+	}
+	free(cpy);
+	return (0);
+}
+/**
+ * helpCase - Prints out a shor help message
+ * @name: Name of the Built-In
+ */
+void helpCase(char *name)
+{
+	if (_strcmp(name, "cd") == 0)
+	{
+		write(1, "cd [dir]\nChange the shell working directory.\n", 46);
+	}
+	else if (_strcmp(name, "exit") == 0)
+	{
+		write(1, "exit [n]\nExits the shell with a status of N.\n", 46);
+	}
+	else if (_strcmp(name, "setenv") == 0)
+	{
+		write(1, "setenv [var] [value]\nSet environment variables.\n", 49);
+	}
+	else if (_strcmp(name, "unsetenv") == 0)
+	{
+		write(1, "unsetenv [var]\nUnset environment variables.\n", 45);
+	}
+	else if (_strcmp(name, "help") == 0)
+	{
+		write(1, "help [BUILTIN]\nDisplays information for Buitlt-Ins.\n", 53);
+	}
+	else if (_strcmp(name, "env") == 0)
+	{
+		write(1, "env\nPrint all environment variables.\n", 38);
+	}
+	else
+	{
+		write(1, "Wrong Built-In, use help to list all Built-Ins\n", 48);
+	}
 }
