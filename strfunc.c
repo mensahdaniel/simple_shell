@@ -72,7 +72,8 @@ char *_strdup(const char *str)
 
 	if (str == NULL)
 		return (NULL);
-	do {
+	do
+	{
 		n++;
 	} while (str[n - 1]);
 	strcopy = malloc(sizeof(char) * n);
@@ -84,4 +85,29 @@ char *_strdup(const char *str)
 		strcopy[i] = str[i];
 	}
 	return (strcopy);
+}
+
+/**
+ * _strncmp - Compare two strings
+ *
+ * @str1: The first string to be compared
+ * @str2: The second string to be compared
+ * @count: The number of characters to compare
+ * Return: size_t the difference between the two strings and 0 if equal
+ */
+
+int _strncmp(char *str1, char *str2, size_t count)
+{
+	size_t i;
+
+	if (str1 == NULL)
+		return (-1);
+	for (i = 0; i < count && str2[i]; i++)
+	{
+		if (str1[i] != str2[i])
+		{
+			return (1);
+		}
+	}
+	return (0);
 }

@@ -32,6 +32,7 @@ int _strcmp(const char *s1, const char *s2);
 char *str_cat(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strtok(char *str, char delim);
+int _strncmp(char *str1, char *str2, size_t count);
 char *_strncpy(char *dest, char *src, int n);
 int _atoi(char *s);
 
