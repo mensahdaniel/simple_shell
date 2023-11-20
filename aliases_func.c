@@ -23,20 +23,20 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 			char *newline = strchr(alias_value, '\n');
 			if (newline != NULL)
 			{
-				*newline = '\0'; // Terminate the value string at the newline character
+				*newline = '\0'; /* Terminate the value string at the newline character */
 			}
 
 			add_alias(aliases, alias_name, alias_value);
-			return 1; // Return 1 to indicate alias command handled
+			return (1); /* Return 1 to indicate alias command handled */
 		}
 	}
 	else if (strcmp(buffer, "alias\n") == 0)
 	{
-		// Print aliases command
+		/* Print aliases command */
 		print_aliases(*aliases);
-		return 1; // Return 1 to indicate alias command handled
+		return (1); /* Return 1 to indicate alias command handled */
 	}
-	return 0; // Return 0 for commands not related to alias
+	return (0); /* Return 0 for commands not related to alias */
 }
 
 /**
