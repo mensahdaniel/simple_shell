@@ -55,6 +55,22 @@ char *get_alias(alias_t *head, char *name)
 }
 
 /**
+ * print_aliases - Prints the alias list
+ *
+ * @head: Pointer to the start of the alias list
+ */
+void print_aliases(alias_t *head)
+{
+	printf("Current aliases:\n");
+	alias_t *current = head;
+	while (current != NULL)
+	{
+		printf("%s='%s'\n", current->name, current->value);
+		current = current->next;
+	}
+}
+
+/**
  * free_aliases - Frees the alias list
  *
  * @head: Pointer to the start of the alias list
