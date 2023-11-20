@@ -1,5 +1,44 @@
 #include "main.h"
 
+/* Helper function to handle alias commands */
+int handle_alias_command(char *buffer, alias_t **aliases)
+{
+	char *alias_prefix = "alias ";
+	int alias_prefix_len = strlen(alias_prefix);
+
+	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
+	{
+		/* Check if the buffer starts with "alias "*/
+		buffer += alias_prefix_len; /* Move buffer past "alias "*/
+
+		char *equal_sign = strchr(buffer, '=');
+		if (equal_sign != NULL)
+		{
+			/* Parsing the alias name and value */
+			*equal_sign = '\0'; /* Terminate the name string at the '=' character */
+			char *alias_name = buffer;
+			char *alias_value = equal_sign + 1; /* Points to the start of the value*/
+
+			/* Remove trailing newline character if present*/
+			char *newline = strchr(alias_value, '\n');
+			if (newline != NULL)
+			{
+				*newline = '\0'; // Terminate the value string at the newline character
+			}
+
+			add_alias(aliases, alias_name, alias_value);
+			return 1; // Return 1 to indicate alias command handled
+		}
+	}
+	else if (strcmp(buffer, "alias\n") == 0)
+	{
+		// Print aliases command
+		print_aliases(*aliases);
+		return 1; // Return 1 to indicate alias command handled
+	}
+	return 0; // Return 0 for commands not related to alias
+}
+
 /**
  * add_alias - Adds an alias to the alias list
  *
