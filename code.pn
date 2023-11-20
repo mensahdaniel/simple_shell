@@ -1,3 +1,4 @@
+```main.h```
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -84,6 +85,8 @@ int _checkBuiltIn(char *str);
 char **tokenizer(char *str, int builtIn);
 
 #endif /* MAIN_H */
+
+```cmd_tokenizer.c```
 #include "main.h"
 
 /**
@@ -130,6 +133,8 @@ char **tokenizer(char *str, int builtIn)
 	array[n] = NULL;
 	return (array);
 }
+
+```execute_func.c```
 #include "main.h"
 
 /**
