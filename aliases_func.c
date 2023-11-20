@@ -4,7 +4,7 @@
 /* Helper function to handle alias commands */
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
-	char *alias_prefix = "alias";
+	char *alias_prefix = "alias ";
 	size_t alias_prefix_len = _strlen(alias_prefix);
 
 	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
@@ -31,7 +31,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 			return (1); /* Return 1 to indicate alias command handled */
 		}
 	}
-	else if (strcmp(buffer, "alias\n") == 0)
+	else if (strcmp(buffer, "alias") == 0)
 	{
 		/* Print aliases command */
 		print_aliases(*aliases);
