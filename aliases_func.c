@@ -4,7 +4,7 @@
 /* Helper function to handle alias commands */
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
-	char *alias_prefix = "alias";
+	char *alias_prefix = "alias ";
 	int alias_prefix_len = strlen(alias_prefix);
 
 	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
@@ -21,26 +21,40 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 
 		if (buffer[0] == '\0')
 		{
-			// If 'alias' command was entered without arguments, print aliases
+			// If 'alias' command was entered without arguments, print all aliases
 			print_aliases(*aliases);
 			return 1; // Return 1 to indicate alias command handled
 		}
 		else
 		{
-			char *alias_name = buffer;
-
 			// Check if the input contains only an alias name (without '=value')
-			if (get_alias(*aliases, alias_name) == NULL)
+			char *equal_sign = strchr(buffer, '=');
+			if (equal_sign != NULL)
 			{
-				printf("alias: %s not found\n", alias_name);
+				*equal_sign = '\0'; // Terminate the alias name at the equal sign
+
+				char *alias_name = buffer;
+				char *alias_value = equal_sign + 1; // Points to the value after '='
+
+				add_alias(aliases, alias_name, alias_value);
 				return 1; // Return 1 to indicate alias command handled
 			}
 			else
 			{
-				// Print the alias value if it exists
+				// Check if the input contains an alias name
+				char *alias_name = buffer;
 				char *alias_value = get_alias(*aliases, alias_name);
-				printf("%s='%s'\n", alias_name, alias_value);
-				return 1; // Return 1 to indicate alias command handled
+
+				if (alias_value == NULL)
+				{
+					printf("alias: %s not found\n", alias_name);
+					return 1; // Return 1 to indicate alias command handled
+				}
+				else
+				{
+					printf("%s='%s'\n", alias_name, alias_value);
+					return 1; // Return 1 to indicate alias command handled
+				}
 			}
 		}
 	}
