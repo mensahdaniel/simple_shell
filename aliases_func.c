@@ -5,39 +5,46 @@
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
 	char *alias_prefix = "alias ";
-	size_t alias_prefix_len = _strlen(alias_prefix);
+	int alias_prefix_len = strlen(alias_prefix);
 
-	if (_strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
+	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
 	{
-		/* Check if the buffer starts with "alias "*/
-		buffer += alias_prefix_len; /* Move buffer past "alias "*/
+		// Check if the buffer starts with "alias "
+		buffer += alias_prefix_len; // Move buffer past "alias "
 
-		char *equal_sign = strchr(buffer, '=');
-		if (equal_sign != NULL)
+		// Remove trailing newline character if present
+		char *newline = strchr(buffer, '\n');
+		if (newline != NULL)
 		{
-			/* Parsing the alias name and value */
-			*equal_sign = '\0'; /* Terminate the name string at the '=' character */
+			*newline = '\0'; // Terminate the buffer string at the newline character
+		}
+
+		if (buffer[0] == '\0')
+		{
+			// If 'alias' command was entered without arguments, print aliases
+			print_aliases(*aliases);
+			return 1; // Return 1 to indicate alias command handled
+		}
+		else
+		{
 			char *alias_name = buffer;
-			char *alias_value = equal_sign + 1; /* Points to the start of the value*/
 
-			/* Remove trailing newline character if present*/
-			char *newline = strchr(alias_value, '\n');
-			if (newline != NULL)
+			// Check if the input contains only an alias name (without '=value')
+			if (get_alias(*aliases, alias_name) == NULL)
 			{
-				*newline = '\0'; /* Terminate the value string at the newline character */
+				printf("alias: %s not found\n", alias_name);
+				return 1; // Return 1 to indicate alias command handled
 			}
-
-			add_alias(aliases, alias_name, alias_value);
-			return (1); /* Return 1 to indicate alias command handled */
+			else
+			{
+				// Print the alias value if it exists
+				char *alias_value = get_alias(*aliases, alias_name);
+				printf("%s='%s'\n", alias_name, alias_value);
+				return 1; // Return 1 to indicate alias command handled
+			}
 		}
 	}
-	else if (_strcmp(buffer, "alias") == 0)
-	{
-		/* Print aliases command */
-		print_aliases(*aliases);
-		return (1); /* Return 1 to indicate alias command handled */
-	}
-	return (0); /* Return 0 for commands not related to alias */
+	return 0; // Return 0 for commands not related to alias
 }
 
 /**
