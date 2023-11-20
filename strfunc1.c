@@ -61,10 +61,12 @@ char *str_cat(char *s1, char *s2)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	do {
+	do
+	{
 		i++;
 	} while (s1[i - 1]);
-	do {
+	do
+	{
 		j++;
 	} while (s2[j - 1]);
 	str = malloc(sizeof(char) * (i + j - 1));
