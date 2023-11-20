@@ -20,12 +20,12 @@ int main(void)
 			free_and_exit(buffer);
 		if (_checkChars(buffer) == -1)
 			continue;
-		buffer = clearBuffer(buffer, counter);
-		builtIn = _checkBuiltIn(buffer);
-
 		/*Check for alias commands separately */
 		if (handle_alias_command(buffer, &aliases) == 1)
 			continue;
+		buffer = clearBuffer(buffer, counter);
+		builtIn = _checkBuiltIn(buffer);
+
 		if (builtIn == 1)
 		{
 			exitValue = getReturnValue(buffer);

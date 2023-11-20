@@ -7,7 +7,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 	char *alias_prefix = "alias ";
 	int alias_prefix_len = _strlen(alias_prefix);
 
-	if (strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
+	if (_strncmp(buffer, alias_prefix, alias_prefix_len) == 0)
 	{
 		// Check if the buffer starts with "alias "
 		buffer += alias_prefix_len; // Move buffer past "alias "
