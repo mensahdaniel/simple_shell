@@ -29,7 +29,6 @@ int execute(char **args, char *buffer, int builtin, alias_t *aliases, int count)
 		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
 		{
 			_perror(args, argv[0], count);
-			free_array_dup(argv, dup);
 			return (-1);
 		}
 	}
