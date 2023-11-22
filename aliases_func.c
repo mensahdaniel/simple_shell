@@ -119,21 +119,21 @@ int print_alias(char *name, char *value)
 	char *output = malloc(_strlen(name) + _strlen(value) + 4);
 
 	_strcpy(output, name);
-	_strcat(output, "='");
+	_strcat(output, "=");
 	_strcat(output, value);
-	_strcat(output, "'\n");
+	_strcat(output, "\n");
 
 	/* Replace double quotes with single quotes*/
 	char *ptr = output;
 
-	// while (*ptr != '\0')
-	// {
-	// 	if (*ptr == '"')
-	// 	{
-	// 		*ptr = '\'';
-	// 	}
-	// 	++ptr;
-	// }
+	while (*ptr != '\0')
+	{
+		if (*ptr == '"')
+		{
+			*ptr = '\'';
+		}
+		++ptr;
+	}
 	PRINT(output);
 
 	return (1);
