@@ -132,3 +132,19 @@ int _atoi(char *s)
 		return (0);
 	return (n);
 }
+
+/**
+ * _perror -
+ *
+ */
+int _perror(char *cmd, char **args, int count)
+{
+	char *num = _itoa(count);
+
+	PRINT(args[0]);
+	PRINT(": ");
+	PRINT(num);
+	PRINT(cmd);
+	PRINT(": not found");
+	return (0);
+}

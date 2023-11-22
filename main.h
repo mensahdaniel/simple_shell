@@ -27,6 +27,10 @@ char *_strcpy(char *dest, char *src);
 char *_strtok(char *str, char delim);
 int _strncmp(char *str1, char *str2, size_t count);
 char *_strncpy(char *dest, char *src, int n);
+
+char *_itoa(unsigned int n);
+int intlen(int num);
+void array_rev(char *arr, int len);
 int _atoi(char *s);
 
 void _isattyAndSignal(void);
