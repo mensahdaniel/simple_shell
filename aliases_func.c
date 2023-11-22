@@ -10,6 +10,7 @@
 void add_alias(alias_t **head, char *name, char *value)
 {
 	alias_t *new_alias = malloc(sizeof(alias_t));
+
 	if (!new_alias)
 	{
 		/* Handle allocation failure */
@@ -27,6 +28,7 @@ void add_alias(alias_t **head, char *name, char *value)
 	}
 
 	alias_t *current = *head;
+
 	while (current->next != NULL)
 	{
 		current = current->next;
@@ -44,15 +46,16 @@ void add_alias(alias_t **head, char *name, char *value)
 char *get_alias(alias_t *head, char *name)
 {
 	alias_t *current = head;
+
 	while (current != NULL)
 	{
 		if (_strcmp(current->name, name) == 0)
 		{
-			return current->value;
+			return (current->value);
 		}
 		current = current->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -64,9 +67,11 @@ char *get_alias(alias_t *head, char *name)
 int print_all_alias(alias_t *head)
 {
 	char header[] = "Current aliases:\n";
+
 	PRINT(header);
 
 	alias_t *current = head;
+
 	while (current != NULL)
 	{
 		print_alias(current->name, current->value);
@@ -85,6 +90,7 @@ void free_aliases(alias_t *head)
 	while (head != NULL)
 	{
 		alias_t *temp = head;
+
 		head = head->next;
 		free(temp->name);
 		free(temp->value);
@@ -103,6 +109,7 @@ int print_alias(char *name, char *value)
 {
 	/*Length of the output string */
 	char *output = malloc(_strlen(name) + _strlen(value) + 4);
+
 	_strcpy(output, name);
 	_strcat(output, "=");
 	_strcat(output, value);
@@ -110,6 +117,7 @@ int print_alias(char *name, char *value)
 
 	/* Replace double quotes with single quotes*/
 	char *ptr = output;
+
 	while (*ptr != '\0')
 	{
 		if (*ptr == '"')
