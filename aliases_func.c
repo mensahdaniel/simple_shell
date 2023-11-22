@@ -107,12 +107,13 @@ int print_alias(char *name, char *value)
 	_strcat(output, value);
 	_strcat(output, "\n");
 
+	/* Replace double quotes with single quotes*/
 	char *ptr = output;
 	while (*ptr != '\0')
 	{
 		if (*ptr == '"')
 		{
-			*ptr = '\''; // Replace double quotes with single quotes
+			*ptr = '\'';
 		}
 		++ptr;
 	}
