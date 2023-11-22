@@ -55,7 +55,7 @@ char *get_alias(alias_t *head, char *name)
 }
 
 /**
- * print_aliases - Prints the alias list
+ * print_all_alias - Prints the alias list
  *
  * @head: Pointer to the start of the alias list
  * Return: 1 always
@@ -92,9 +92,9 @@ void free_aliases(alias_t *head)
 }
 
 /**
- * print_allias - prints an alias name and value
+ * print_alias - prints an alias name and value
  *
- * @token: alias name
+ * @name: alias name
  * @value: alias value
  * Return: 1 always
  */
