@@ -56,12 +56,13 @@ int add_get_alias(char *buffer, alias_t **aliases)
 		 *to differentiate name=value pairs
 		 */
 		char *equal_sign = _strchr(token, '=');
+
 		if (equal_sign != NULL)
 		{
 			*equal_sign = '\0'; /* Terminate the alias name at the equal sign */
 
 			char *alias_name = token;
-			char *alias_value = (char *)(equal_sign + 1); /*Points to the value after '='*/
+			char *alias_value = (char *)(equal_sign + 1);
 
 			add_alias(aliases, alias_name, alias_value);
 		}
@@ -73,6 +74,7 @@ int add_get_alias(char *buffer, alias_t **aliases)
 			if (alias_value == NULL)
 			{
 				char msg[] = "alias: ", token_msg[] = " not found\n";
+
 				PRINT(_strcat(msg, token));
 				PRINT(token_msg);
 			}
