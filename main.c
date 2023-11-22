@@ -8,7 +8,7 @@
 int main(void)
 {
 	size_t i = 0;
-	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0;
 	char *buffer = NULL;
 	alias_t *aliases = NULL;
 
