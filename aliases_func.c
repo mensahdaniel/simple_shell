@@ -59,7 +59,8 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 						_strcat(output, "=");
 						_strcat(output, alias_value);
 						_strcat(output, "\n");
-						char *ptr = alias_msg;
+
+						char *ptr = output;
 						while (*ptr != '\0')
 						{
 							if (*ptr == '"')
@@ -68,8 +69,6 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 							}
 							++ptr;
 						}
-
-						PRINT(alias_msg);
 						PRINT(output);
 					}
 				}
