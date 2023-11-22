@@ -2,13 +2,13 @@
 
 int execute(char *buffer, int builtIn, alias_t *aliases)
 {
-	pid_t child_pid;
-	int status = 0;
+	int status = 0, child_pid;
 	char *dup = NULL, **argv = NULL;
 
 	dup = _strdup(buffer);
 	argv = tokenizer(dup, builtIn);
 	char *alias_value = get_alias(aliases, argv[0]);
+
 	if (alias_value != NULL)
 	{
 		/* If the command matches an alias, execute the alias value as a command*/
@@ -37,9 +37,8 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 		}
 	}
 	if (child_pid != 0)
-	{
 		waitAndFree(status, argv, dup);
-	}
+
 	if (builtIn != 1)
 		free_array_dup(argv, dup);
 	return (0);
