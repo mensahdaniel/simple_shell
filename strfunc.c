@@ -60,31 +60,30 @@ int _strlen(const char *s)
 	return (i);
 }
 /**
- * _strdup - strdup C function
- * @str: String to duplicate
+ * _strdup - Duplicate a string
  *
- * Return: A new copy of the given string
+ * @str: The string to be duplicated
+ * Return: char* The duplicated string
  */
-char *_strdup(const char *str)
+char *_strdup(char *str)
 {
-	int i, n = 0;
-	char *strcopy;
+	char *dupstr = NULL;
+	int i;
 
 	if (str == NULL)
 		return (NULL);
-	do
-	{
-		n++;
-	} while (str[n - 1]);
-	strcopy = malloc(sizeof(char) * n);
-	if (strcopy == NULL)
+
+	dupstr = malloc(sizeof(char) * (_strlen(str) + 1));
+
+	if (dupstr == NULL)
 		return (NULL);
 
-	for (i = 0; i < n; i++)
-	{
-		strcopy[i] = str[i];
-	}
-	return (strcopy);
+	for (i = 0; str[i] != '\0'; i++)
+		dupstr[i] = str[i];
+
+	dupstr[i] = '\0';
+
+	return (dupstr);
 }
 
 /**
