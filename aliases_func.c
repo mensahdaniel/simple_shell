@@ -56,9 +56,9 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 					{
 						char *output = malloc(_strlen(token) + _strlen(alias_value) + 4); // Length of the output string
 						_strcpy(output, token);
-						outptut = str_cat(output, "='");
-						str_cat(output, alias_value);
-						str_cat(output, "'\n");
+						output = str_cat(output, "='");
+						output = str_cat(output, alias_value);
+						output = str_cat(output, "'\n");
 						PRINT(output);
 					}
 				}
