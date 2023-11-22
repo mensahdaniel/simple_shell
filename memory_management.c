@@ -48,7 +48,9 @@ void free_array_dup(char **array, char *dup)
 	}
 	free(array[i]);
 	free(array);
-	free(dup);
+
+	if (dup)
+		free(dup);
 }
 /**
  * free_environ - frees all the environ[i] used in the function _setenv
