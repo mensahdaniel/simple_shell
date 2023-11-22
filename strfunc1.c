@@ -109,38 +109,20 @@ int _strcmp(const char *s1, const char *s2)
 }
 
 /**
- * _atoi - converts string to an integer
- * @s: string
+ * _strchr - Find the first occurrence of a character in a string
  *
- * Return: an integer
+ * @str: The string to be searched
+ * @c: The character to search for
+ * Return: char* The pointer to the first occurrence of the character
  */
-int _atoi(char *s)
+char *_strchr(const char *str, char c)
 {
-	char c;
-	unsigned int i, n = 0, j = _strlen(s) - 1, null = -1;
-	int flag = 0, sign = 1;
-
-	for (i = 0; i <= j; i++)
+	for (; *str != '\0'; str++)
 	{
-		c = s[i];
-		if (c == '-')
-			sign *= -1;
-		if (c >= 48 && c <= 57)
+		if (*str == c)
 		{
-			n = n * 10 + (c - '0');
-			flag = 1;
-		}
-		if (flag == 1)
-		{
-			if (!(c >= 48 && c <= 57))
-				break;
+			return ((char *)(str));
 		}
 	}
-	if (sign == -1)
-	{
-		n *= -1;
-	}
-	if (j == null)
-		return (0);
-	return (n);
+	return (NULL);
 }
