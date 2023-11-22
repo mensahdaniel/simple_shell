@@ -21,7 +21,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		if (buffer[0] == '\0')
 		{
 			// If 'alias' command was entered without arguments, print all aliases
-			print_all_aliases(*aliases);
+			print_all_alias(*aliases);
 			return 1; // Return 1 to indicate alias command handled
 		}
 		else
@@ -139,7 +139,7 @@ char *get_alias(alias_t *head, char *name)
  *
  * @head: Pointer to the start of the alias list
  */
-void print_all_aliases(alias_t *head)
+void print_all_alias(alias_t *head)
 {
 	char header[] = "Current aliases:\n";
 	PRINT(header);
@@ -147,13 +147,7 @@ void print_all_aliases(alias_t *head)
 	alias_t *current = head;
 	while (current != NULL)
 	{
-		char *output = malloc(_strlen(current->name) + _strlen(current->value) + 4); // Length of the output string
-		_strcpy(output, current->name);
-		_strcat(output, "=");
-		_strcat(output, current->value);
-		_strcat(output, "\n");
-		PRINT(output);
-
+		print_alias(current->name, current->value);
 		current = current->next;
 	}
 }
@@ -175,12 +169,18 @@ void free_aliases(alias_t *head)
 	}
 }
 
-void print_alliases(char *token, char *value)
+/**
+ * print_allias - prints an alias name and value
+ *
+ * @token: alias name
+ * @value: alias value
+ */
+void print_alias(char *name, char *value)
 {
-	char *output = malloc(_strlen(token) + _strlen(alias_value) + 4); // Length of the output string
-	_strcpy(output, token);
+	char *output = malloc(_strlen(name) + _strlen(value) + 4); // Length of the output string
+	_strcpy(output, name);
 	_strcat(output, "=");
-	_strcat(output, alias_value);
+	_strcat(output, value);
 	_strcat(output, "\n");
 
 	char *ptr = output;
