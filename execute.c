@@ -47,7 +47,7 @@ int execute(char *buffer, int builtin, alias_t *aliases)
 	if (child_pid != 0)
 		waitAndFree(status, argv, dup);
 
-	if (builtin != 1)
-		free_array_dup(argv, dup);
+	// if (builtin != 1)
+	// 	free_array_dup(argv, dup);
 	return (0);
 }
