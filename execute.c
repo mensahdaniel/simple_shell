@@ -1,6 +1,6 @@
 #include "main.h"
 
-int alias_value_execute(char *buffer, int builtIn, alias_t *aliases)
+int execute(char *buffer, int builtIn, alias_t *aliases)
 {
 	pid_t child_pid;
 	int status = 0;
