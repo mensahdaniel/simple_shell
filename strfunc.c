@@ -111,3 +111,21 @@ int _strncmp(char *str1, char *str2, size_t count)
 	}
 	return (0);
 }
+
+/**
+ * _strcat - Concatenates two strings
+ *
+ * @dest: Destination string
+ * @src: Source string
+ * Return: Returns the concatenated string
+ */
+char *_strcat(char *dest, const char *src)
+{
+	char *ptr = dest + _strlen(dest);
+	while (*src != '\0')
+	{
+		*ptr++ = *src++;
+	}
+	*ptr = '\0';
+	return dest;
+}

@@ -92,10 +92,10 @@ char *create_variable(char *name, char *value)
 {
 	char *var = NULL, *aux = NULL;
 
-	aux = str_cat(name, "=");
+	aux = _strcat(name, "=");
 	if (!aux)
 		return (NULL);
-	var = str_cat(aux, value);
+	var = _strcat(aux, value);
 	if (!var)
 		return (NULL);
 	free(aux);
