@@ -59,7 +59,7 @@ char *get_alias(alias_t *head, char *name)
 					*ptr = '\0';
 				++ptr;
 			}
-			return (current->value);
+			return (current->value + 1);
 		}
 		current = current->next;
 	}
