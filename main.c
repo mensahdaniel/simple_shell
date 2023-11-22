@@ -8,7 +8,7 @@
 int main(void)
 {
 	size_t i = 0;
-	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0,  child_pid= 0;
 	char *buffer = NULL, **argv = NULL, *dup = NULL;
 	alias_t *aliases = NULL;
 
@@ -35,42 +35,7 @@ int main(void)
 		}
 		else
 		{
-			dup = _strdup(buffer);
-			argv = tokenizer(dup, builtIn);
-			char *alias_value = get_alias(aliases, argv[0]);
-			if (alias_value != NULL)
-			{
-				// If the command matches an alias, execute the alias value as a command
-				free_array_dup(argv, dup);
-				argv = tokenizer(alias_value, 0);
-				builtIn = _checkBuiltIn(alias_value); // Check if it's a built-in command
 
-				// Execute the alias value
-				child_pid = child_fork(child_pid, argv[0]);
-				if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
-				{
-					perror(argv[0]);
-					break;
-				}
-				// if (child_pid != 0)
-				// {
-				// 	waitAndFree(status, argv, dup);
-				// }
-			}
-			else
-			{
-				// If not an alias, execute the command normally
-				child_pid = child_fork(child_pid, argv[0]);
-				if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
-				{
-					perror(argv[0]);
-					break;
-				}
-			}
-			if (child_pid != 0)
-			{
-				waitAndFree(status, argv, dup);
-			}
 		}
 	}
 	if (builtIn != 1)
