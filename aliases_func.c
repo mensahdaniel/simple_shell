@@ -48,8 +48,9 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 
 					if (alias_value == NULL)
 					{
-						char msg[] = "alias: not found\n";
-						PRINT(msg);
+						char msg[] = "alias: ", token_msg[] = " not found\n";
+						PRINT(str_cat(msg, token));
+						PRINT(token_msg);
 					}
 					else
 					{
