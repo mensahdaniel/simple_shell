@@ -49,13 +49,17 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 					if (alias_value == NULL)
 					{
 						char msg[] = "alias: not found\n";
-						write(STDOUT_FILENO, msg, _strlen(msg));
+						PRINT(msg);
 					}
 					else
 					{
 						char output[256];
-						snprintf(output, sizeof(output), "%s='%s'\n", token, alias_value);
-						write(STDOUT_FILENO, output, _strlen(output));
+						int len = _strlen(token) + _strlen(alias_value) + 4; // Length of the output string
+						_strcpy(output, token);
+						_strcat(output, "='");
+						_strcat(output, alias_value);
+						_strcat(output, "'\n");
+						PRINT(output);
 					}
 				}
 				token = _strtok(NULL, ' ');
