@@ -8,7 +8,7 @@
 int main(void)
 {
 	size_t i = 0;
-	int counter = 0, builtIn = 0, status = 0, exitValue = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
 	char *buffer = NULL;
 	alias_t *aliases = NULL;
 
@@ -35,7 +35,7 @@ int main(void)
 		}
 		else
 		{
-			if (execute(buffer, builtIn, aliases) == -1)
+			if (execute(buffer,builtIn, aliases) == -1)
 				break;
 		}
 	}
