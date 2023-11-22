@@ -54,22 +54,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 					}
 					else
 					{
-						char *output = malloc(_strlen(token) + _strlen(alias_value) + 4); // Length of the output string
-						_strcpy(output, token);
-						_strcat(output, "=");
-						_strcat(output, alias_value);
-						_strcat(output, "\n");
-
-						char *ptr = output;
-						while (*ptr != '\0')
-						{
-							if (*ptr == '"')
-							{
-								*ptr = '\''; // Replace double quotes with single quotes
-							}
-							++ptr;
-						}
-						PRINT(output);
+						print_alias(token, alias_value);
 					}
 				}
 				token = _strtok(NULL, ' ');
@@ -139,7 +124,7 @@ char *get_alias(alias_t *head, char *name)
  *
  * @head: Pointer to the start of the alias list
  */
-void print_all_alias(alias_t *head)
+int print_all_alias(alias_t *head)
 {
 	char header[] = "Current aliases:\n";
 	PRINT(header);
@@ -150,6 +135,7 @@ void print_all_alias(alias_t *head)
 		print_alias(current->name, current->value);
 		current = current->next;
 	}
+	return (1);
 }
 
 /**
@@ -175,7 +161,7 @@ void free_aliases(alias_t *head)
  * @token: alias name
  * @value: alias value
  */
-void print_alias(char *name, char *value)
+int print_alias(char *name, char *value)
 {
 	char *output = malloc(_strlen(name) + _strlen(value) + 4); // Length of the output string
 	_strcpy(output, name);
@@ -193,4 +179,6 @@ void print_alias(char *name, char *value)
 		++ptr;
 	}
 	PRINT(output);
+
+	return (1);
 }

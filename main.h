@@ -87,7 +87,7 @@ int handle_alias_command(char *buffer, alias_t **aliases);
 void add_alias(alias_t **head, char *name, char *value);
 char *get_alias(alias_t *head, char *name);
 void free_aliases(alias_t *head);
-void print_alias(char *name, char *value);
-void print_all_alias(alias_t *head);
+int print_alias(char *name, char *value);
+int print_all_alias(alias_t *head);
 
 #endif /* MAIN_H */
