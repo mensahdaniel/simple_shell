@@ -33,20 +33,20 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 			char *token = _strtok(buffer, ' ');
 			while (token != NULL)
 			{
-				// Check if the token contains an equal sign (=) to differentiate name=value pairs
+				/* Check if the token contains an equal sign (=) to differentiate name=value pairs */
 				char *equal_sign = _strchr(token, '=');
 				if (equal_sign != NULL)
 				{
-					*equal_sign = '\0'; // Terminate the alias name at the equal sign
+					*equal_sign = '\0'; /* Terminate the alias name at the equal sign */
 
 					char *alias_name = token;
-					char *alias_value = (char *)(equal_sign + 1); // Points to the value after '='
+					char *alias_value = (char *)(equal_sign + 1); /* Points to the value after '=' */
 
 					add_alias(aliases, alias_name, alias_value);
 				}
 				else
 				{
-					// If no equal sign, print the value of the alias
+					/*If no equal sign, print the value of the alias */
 					char *alias_value = get_alias(*aliases, token);
 
 					if (alias_value == NULL)
@@ -62,8 +62,8 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 				}
 				token = _strtok(NULL, ' ');
 			}
-			return 1; // Return 1 to indicate alias command handled
+			return 1; /* Return 1 to indicate alias command handled*/
 		}
 	}
-	return 0; // Return 0 for commands not related to alias
+	return 0; /* Return 0 for commands not related to alias */
 }

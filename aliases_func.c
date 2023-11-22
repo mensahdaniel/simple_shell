@@ -12,7 +12,7 @@ void add_alias(alias_t **head, char *name, char *value)
 	alias_t *new_alias = malloc(sizeof(alias_t));
 	if (!new_alias)
 	{
-		// Handle allocation failure
+		/* Handle allocation failure */
 		return;
 	}
 
@@ -100,7 +100,8 @@ void free_aliases(alias_t *head)
  */
 int print_alias(char *name, char *value)
 {
-	char *output = malloc(_strlen(name) + _strlen(value) + 4); // Length of the output string
+	/*Length of the output string */
+	char *output = malloc(_strlen(name) + _strlen(value) + 4);
 	_strcpy(output, name);
 	_strcat(output, "=");
 	_strcat(output, value);
