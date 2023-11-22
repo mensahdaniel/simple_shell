@@ -65,7 +65,7 @@ int _strlen(const char *s)
  * @str: The string to be duplicated
  * Return: char* The duplicated string
  */
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 	char *dupstr = NULL;
 	int i;
@@ -121,12 +121,13 @@ int _strncmp(char *str1, char *str2, size_t count)
 char *_strcat(char *dest, const char *src)
 {
 	char *ptr = dest + _strlen(dest);
+
 	while (*src != '\0')
 	{
 		*ptr++ = *src++;
 	}
 	*ptr = '\0';
-	return dest;
+	return (dest);
 }
 
 /**
