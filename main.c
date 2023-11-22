@@ -42,6 +42,6 @@ int main(int ac, char **argv)
 	}
 	free_aliases(aliases);
 	free_buff_and_env(buffer);
-	free_array_dup(argv, dup);
+	free_array_dup(argv, (void *)dup);
 	return (exitValue);
 }
