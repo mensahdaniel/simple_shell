@@ -28,7 +28,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		else
 		{
 			/* Return 1 to indicate alias command handled*/
-      add_get_alias(buffer, aliases);
+			add_get_alias(buffer, aliases);
 		}
 	}
 	return 0; /* Return 0 for commands not related to alias */
@@ -37,7 +37,9 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 /**
  * add_get_alias - add or get alias
  *
- *
+ * @buffer: alias command
+ * @aliases: array of aliases (list)
+ * Return: 1 on run
  */
 int add_get_alias(char *buffer, alias_t **aliases)
 {
