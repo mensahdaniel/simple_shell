@@ -8,9 +8,9 @@
  * @aliases: aliases list
  * Return: success 0
  */
-int execute(char *buffer, int builtin, alias_t *aliases)
+int execute(char **args, char *buffer, int builtin, alias_t *aliases, int count)
 {
-	int status = 0, child_pid;
+	int status = 0, child_pid = 0;
 	char *dup = NULL, **argv = NULL;
 
 	dup = _strdup(buffer);
@@ -39,7 +39,7 @@ int execute(char *buffer, int builtin, alias_t *aliases)
 		child_pid = child_fork(child_pid, argv[0]);
 		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
 		{
-			perror(argv[0]);
+			_perror(args, argv[0], count );
 			free_array_dup(argv, dup);
 			return (-1);
 		}

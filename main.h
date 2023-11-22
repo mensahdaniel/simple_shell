@@ -96,6 +96,7 @@ void free_aliases(alias_t *head);
 int print_alias(char *name, char *value);
 int print_all_alias(alias_t *head);
 
-int execute(char *buffer, int builtIn, alias_t *aliases);
+int execute(char **args, char *buffer, int builtIn, alias_t *aliases, int c);
+int _perror(char **args, char *cmd, int count);
 
 #endif /* MAIN_H */

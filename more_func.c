@@ -136,8 +136,12 @@ int _atoi(char *s)
 /**
  * _perror -
  *
+ * @args: argument vector name
+ * @cmd: input name
+ * @count: program execution count
+ * Return: 0 on success
  */
-int _perror(char *cmd, char **args, int count)
+int _perror(char **args, char *cmd, int count)
 {
 	char *num = _itoa(count);
 

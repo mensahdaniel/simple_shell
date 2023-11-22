@@ -5,25 +5,26 @@
  *
  * Return: 0 If succeed, or the number of the error
  */
-int main(void)
+int main(int ac, char **argv)
 {
 	size_t i = 0;
-	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
+	int counter = 0, builtIn = 0, status = 0, exitValue = 0, n_chars = 0;
 	char *buffer = NULL;
 	alias_t *aliases = NULL;
 
 	while (1)
 	{
+		counter++;
 		_isattyAndSignal();
-		counter = getline(&buffer, &i, stdin);
-		if (counter == -1)
+		n_chars = getline(&buffer, &i, stdin);
+		if (n_chars == -1)
 			free_and_exit(buffer);
 		if (_checkChars(buffer) == -1)
 			continue;
 		/*Check for alias commands separately */
 		if (handle_alias_command(buffer, &aliases) == 1)
 			continue;
-		buffer = clearBuffer(buffer, counter);
+		buffer = clearBuffer(buffer, n_chars);
 		builtIn = _checkBuiltIn(buffer);
 
 		if (builtIn == 1)
@@ -35,7 +36,7 @@ int main(void)
 		}
 		else
 		{
-			if (execute(buffer, builtIn, aliases) == -1)
+			if (execute(argv, buffer, builtIn, aliases, counter) == -1)
 				break;
 		}
 	}
