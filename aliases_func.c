@@ -1,11 +1,6 @@
 #include "main.h"
-#include <stddef.h>
 
 /* Helper function to handle alias commands */
-#include "main.h"
-#include <stddef.h>
-#include <unistd.h>
-
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
 	char *alias_prefix = "alias";
