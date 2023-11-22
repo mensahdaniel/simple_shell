@@ -39,8 +39,7 @@ int main(void)
 				break;
 		}
 	}
-	if (builtIn != 1)
-		free_array_dup(argv, dup);
+
 	free_aliases(aliases);
 	free_buff_and_env(buffer);
 	return (exitValue);
