@@ -12,7 +12,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		buffer += (alias_prefix_len + 1); // Move buffer past "alias "
 
 		// Remove trailing newline character if present
-		char *newline = strchr(buffer, '\n');
+		char *newline = _strchr(buffer, '\n');
 		if (newline != NULL)
 			*newline = '\0'; // Terminate the buffer string at the newline character
 
@@ -28,7 +28,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 			while (token != NULL)
 			{
 				// Check if the token contains an equal sign (=) to differentiate name=value pairs
-				char *equal_sign = strchr(token, '=');
+				char *equal_sign = _strchr(token, '=');
 				if (equal_sign != NULL)
 				{
 					*equal_sign = '\0'; // Terminate the alias name at the equal sign

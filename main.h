@@ -20,6 +20,7 @@ extern char **environ;
 int _strlen(const char *s);
 char *_strdup(const char *str);
 int _strcmp(const char *s1, const char *s2);
+char *_strchr(char *s, char c);
 char *str_cat(char *s1, char *s2);
 char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, char *src);
