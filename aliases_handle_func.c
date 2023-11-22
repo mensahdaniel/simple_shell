@@ -30,7 +30,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		else
 		{
 			/* Return 1 to indicate alias command handled*/
-			add_get_alias(buffer, aliases);
+			return (add_get_alias(buffer, aliases));
 		}
 	}
 	return (0); /* Return 0 for commands not related to alias */
