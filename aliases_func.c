@@ -127,11 +127,20 @@ char *get_alias(alias_t *head, char *name)
  */
 void print_aliases(alias_t *head)
 {
-	printf("Current aliases:\n");
+	char header[] = "Current aliases:\n";
+	PRINT(header);
+
 	alias_t *current = head;
 	while (current != NULL)
 	{
-		printf("%s='%s'\n", current->name, current->value);
+		char output[256];
+		int len = _strlen(current->name) + _strlen(current->value) + 5; // Length of the output string
+		_strcpy(output, current->name);
+		_strcat(output, "='");
+		_strcat(output, current->value);
+		_strcat(output, "'\n");
+		PRINT(output);
+
 		current = current->next;
 	}
 }
