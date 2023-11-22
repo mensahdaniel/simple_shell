@@ -49,16 +49,16 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 					if (alias_value == NULL)
 					{
 						char msg[] = "alias: ", token_msg[] = " not found\n";
-						PRINT(str_cat(msg, token));
+						PRINT(_strcat(msg, token));
 						PRINT(token_msg);
 					}
 					else
 					{
 						char *output = malloc(_strlen(token) + _strlen(alias_value) + 4); // Length of the output string
 						_strcpy(output, token);
-						output = str_cat(output, "=");
-						output = str_cat(output, alias_value);
-						output = str_cat(output, "\n");
+						_strcat(output, "=");
+						_strcat(output, alias_value);
+						_strcat(output, "\n");
 						PRINT(output);
 					}
 				}
@@ -139,9 +139,9 @@ void print_aliases(alias_t *head)
 	{
 		char *output = malloc(_strlen(current->name) + _strlen(current->value) + 4); // Length of the output string
 		_strcpy(output, current->name);
-		output = str_cat(output, "=");
-		output = str_cat(output, current->value);
-		output = str_cat(output, "\n");
+		_strcat(output, "=");
+		_strcat(output, current->value);
+		_strcat(output, "\n");
 		PRINT(output);
 
 		current = current->next;
