@@ -137,12 +137,11 @@ void print_aliases(alias_t *head)
 	alias_t *current = head;
 	while (current != NULL)
 	{
-		char output[256];
-		int len = _strlen(current->name) + _strlen(current->value) + 5; // Length of the output string
+		char *output = malloc(_strlen(current->name) + _strlen(current->value) + 4); // Length of the output string
 		_strcpy(output, current->name);
-		str_cat(output, "='");
-		str_cat(output, current->value);
-		str_cat(output, "'\n");
+		output = str_cat(output, "=");
+		output = str_cat(output, current->value);
+		output = str_cat(output, "\n");
 		PRINT(output);
 
 		current = current->next;
