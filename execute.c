@@ -38,6 +38,6 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 	{
 		waitAndFree(status, argv, dup);
 	}
-
-
+	if (builtIn != 1)
+		free_array_dup(argv, dup);
 }
