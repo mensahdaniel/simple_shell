@@ -52,10 +52,10 @@ int main(void)
 					perror(argv[0]);
 					break;
 				}
-				if (child_pid != 0)
-				{
-					waitAndFree(status, argv, dup);
-				}
+				// if (child_pid != 0)
+				// {
+				// 	waitAndFree(status, argv, dup);
+				// }
 			}
 			else
 			{
@@ -66,10 +66,10 @@ int main(void)
 					perror(argv[0]);
 					break;
 				}
-				if (child_pid != 0)
-				{
-					waitAndFree(status, argv, dup);
-				}
+			}
+			if (child_pid != 0)
+			{
+				waitAndFree(status, argv, dup);
 			}
 		}
 	}
