@@ -23,15 +23,17 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 			*newline = '\0'; /* Terminate the buffer string at the newline character */
 
 		if (buffer[0] == '\0')
+		{
 			/*If 'alias' command was entered without arguments, print all aliases*/
 			return (print_all_alias(*aliases));
+		}
 		else
 		{
 			/* Return 1 to indicate alias command handled*/
 			add_get_alias(buffer, aliases);
 		}
 	}
-	return 0; /* Return 0 for commands not related to alias */
+	return (0); /* Return 0 for commands not related to alias */
 }
 
 /**

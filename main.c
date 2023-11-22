@@ -35,7 +35,7 @@ int main(void)
 		}
 		else
 		{
-			if (execute(buffer,builtIn, aliases) == -1)
+			if (execute(buffer, builtIn, aliases) == -1)
 				break;
 		}
 	}
