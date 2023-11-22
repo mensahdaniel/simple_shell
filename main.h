@@ -91,7 +91,7 @@ void free_aliases(alias_t *head);
 int print_alias(char *name, char *value);
 int print_all_alias(alias_t *head);
 
-int execute(int builtIn, char *buffer, char *dup, char **argv,
-            alias_t *aliases);
+int execute(char *buffer, int builtIn, alias_t *aliases);
+
 
 #endif /* MAIN_H */

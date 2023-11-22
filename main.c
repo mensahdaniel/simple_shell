@@ -9,7 +9,7 @@ int main(void)
 {
 	size_t i = 0;
 	int counter = 0, builtIn = 0, status = 0, exitValue = 0, child_pid = 0;
-	char *buffer = NULL, **argv = NULL, *dup = NULL;
+	char *buffer = NULL;
 	alias_t *aliases = NULL;
 
 	while (1)
@@ -35,12 +35,10 @@ int main(void)
 		}
 		else
 		{
-			if (execute(builtIn, buffer, dup, argv, aliases) == -1)
+			if (execute(buffer, builtIn, aliases) == -1)
 				break;
 		}
 	}
-	if (builtIn != 1)
-		free_array_dup(argv, dup);
 	free_aliases(aliases);
 	free_buff_and_env(buffer);
 	return (exitValue);
