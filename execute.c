@@ -5,7 +5,8 @@
  *
  * @buffer: user input
  * @builtin: integer
- * @aliases: al
+ * @aliases: aliases list
+ * Return: success 0
  */
 int execute(char *buffer, int builtin, alias_t *aliases)
 {
