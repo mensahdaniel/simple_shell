@@ -14,9 +14,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		// Remove trailing newline character if present
 		char *newline = strchr(buffer, '\n');
 		if (newline != NULL)
-		{
 			*newline = '\0'; // Terminate the buffer string at the newline character
-		}
 
 		if (buffer[0] == '\0')
 		{
