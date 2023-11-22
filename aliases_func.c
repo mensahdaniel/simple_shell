@@ -51,6 +51,14 @@ char *get_alias(alias_t *head, char *name)
 	{
 		if (_strcmp(current->name, name) == 0)
 		{
+			char *ptr = current->value;
+
+			while (*ptr != '\0')
+			{
+				if (*ptr == '"')
+					*ptr = '\0';
+				++ptr;
+			}
 			return (current->value);
 		}
 		current = current->next;
@@ -111,9 +119,9 @@ int print_alias(char *name, char *value)
 	char *output = malloc(_strlen(name) + _strlen(value) + 4);
 
 	_strcpy(output, name);
-	_strcat(output, "=");
+	_strcat(output, "='");
 	_strcat(output, value);
-	_strcat(output, "\n");
+	_strcat(output, "'\n");
 
 	/* Replace double quotes with single quotes*/
 	char *ptr = output;
