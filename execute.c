@@ -1,12 +1,12 @@
 #include "main.h"
 
-int execute(int builtIn, char *buffer, char *dup, char **argv, alias_t *aliases)
+int execute(int builtIn, char *buff, char *dup, char **argv, alias_t *aliases)
 {
 	pid_t child_pid;
 	int status = 0;
 	/*char *dup = NULL, **argv = NULL;*/
 
-	dup = _strdup(buffer);
+	dup = _strdup(buff);
 	argv = tokenizer(dup, builtIn);
 	char *alias_value = get_alias(aliases, argv[0]);
 	if (alias_value != NULL)
