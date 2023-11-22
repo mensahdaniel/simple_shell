@@ -84,6 +84,7 @@ typedef struct alias_s {
   struct alias_s *next;
 } alias_t;
 
+int add_get_alias(char *buffer, alias_t **aliases);
 int handle_alias_command(char *buffer, alias_t **aliases);
 void add_alias(alias_t **head, char *name, char *value);
 char *get_alias(alias_t *head, char *name);
@@ -92,6 +93,5 @@ int print_alias(char *name, char *value);
 int print_all_alias(alias_t *head);
 
 int execute(char *buffer, int builtIn, alias_t *aliases);
-
 
 #endif /* MAIN_H */
