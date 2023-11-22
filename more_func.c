@@ -148,7 +148,8 @@ int _perror(char **args, char *cmd, int count)
 	PRINT(args[0]);
 	PRINT(": ");
 	PRINT(num);
+	PRINT(": ");
 	PRINT(cmd);
-	PRINT(": not found");
+	PRINT(": not found\n");
 	return (0);
 }
