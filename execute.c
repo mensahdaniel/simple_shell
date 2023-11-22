@@ -20,6 +20,7 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 		child_pid = child_fork(child_pid, argv[0]);
 		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
 		{
+			free_array_dup(argv, dup);
 			perror(argv[0]);
 			return (-1);
 		}
