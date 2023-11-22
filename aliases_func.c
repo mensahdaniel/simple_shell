@@ -2,6 +2,10 @@
 #include <stddef.h>
 
 /* Helper function to handle alias commands */
+#include "main.h"
+#include <stddef.h>
+#include <unistd.h>
+
 int handle_alias_command(char *buffer, alias_t **aliases)
 {
 	char *alias_prefix = "alias";
@@ -49,11 +53,14 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 
 					if (alias_value == NULL)
 					{
-						printf("alias: %s not found\n", token);
+						char msg[] = "alias: not found\n";
+						write(STDOUT_FILENO, msg, _strlen(msg));
 					}
 					else
 					{
-						printf("%s='%s'\n", token, alias_value);
+						char output[256];
+						snprintf(output, sizeof(output), "%s='%s'\n", token, alias_value);
+						write(STDOUT_FILENO, output, _strlen(output));
 					}
 				}
 				token = _strtok(NULL, ' ');
