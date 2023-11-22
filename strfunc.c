@@ -139,12 +139,12 @@ char *_strcat(char *dest, const char *src)
  */
 char *_strchr(const char *str, char c)
 {
-        for (; *str != '\0'; str++)
-        {
-                if (*str == c)
-                {
-                        return ((char *)(str));
-                }
-        }
-        return (NULL);
+	for (; *str != '\0'; str++)
+	{
+		if (*str == c)
+		{
+			return ((char *)(str));
+		}
+	}
+	return (NULL);
 }
