@@ -21,8 +21,7 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		if (buffer[0] == '\0')
 		{
 			// If 'alias' command was entered without arguments, print all aliases
-			print_all_alias(*aliases);
-			return 1; // Return 1 to indicate alias command handled
+			return (print_all_alias(*aliases));
 		}
 		else
 		{
@@ -123,6 +122,7 @@ char *get_alias(alias_t *head, char *name)
  * print_aliases - Prints the alias list
  *
  * @head: Pointer to the start of the alias list
+ * Return: 1 always
  */
 int print_all_alias(alias_t *head)
 {
@@ -160,6 +160,7 @@ void free_aliases(alias_t *head)
  *
  * @token: alias name
  * @value: alias value
+ * Return: 1 always
  */
 int print_alias(char *name, char *value)
 {
