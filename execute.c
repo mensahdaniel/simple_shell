@@ -1,12 +1,19 @@
 #include "main.h"
 
-int execute(char *buffer, int builtIn, alias_t *aliases)
+/**
+ * execute - execute commands
+ *
+ * @buffer: user input
+ * @builtin: integer
+ * @aliases: al
+ */
+int execute(char *buffer, int builtin, alias_t *aliases)
 {
 	int status = 0, child_pid;
 	char *dup = NULL, **argv = NULL;
 
 	dup = _strdup(buffer);
-	argv = tokenizer(dup, builtIn);
+	argv = tokenizer(dup, builtin);
 	char *alias_value = get_alias(aliases, argv[0]);
 
 	if (alias_value != NULL)
@@ -14,7 +21,7 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 		/* If the command matches an alias, execute the alias value as a command*/
 		free_array_dup(argv, dup);
 		argv = tokenizer(alias_value, 0);
-		builtIn = _checkBuiltIn(alias_value); /* Check if it's a built-in command*/
+		builtin = _checkBuiltIn(alias_value); /* Check if it's a built-in command*/
 
 		/* Execute the alias value */
 		child_pid = child_fork(child_pid, argv[0]);
@@ -39,7 +46,7 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 	if (child_pid != 0)
 		waitAndFree(status, argv, dup);
 
-	if (builtIn != 1)
+	if (builtin != 1)
 		free_array_dup(argv, dup);
 	return (0);
 }
