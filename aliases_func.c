@@ -39,6 +39,7 @@ void add_alias(alias_t **head, char *name, char *value)
  *
  * @head: Pointer to the start of the alias list
  * @name: Name of the alias
+ * Return: alias value if found or NULL if alias name does not exist
  */
 char *get_alias(alias_t *head, char *name)
 {
