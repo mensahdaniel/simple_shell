@@ -26,7 +26,7 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 	}
 	else
 	{
-		// If not an alias, execute the command normally
+		/* If not an alias, execute the command normally*/
 		child_pid = child_fork(child_pid, argv[0]);
 		if (child_pid == 0 && execve(argv[0], argv, environ) == -1)
 		{
@@ -38,4 +38,6 @@ int execute(char *buffer, int builtIn, alias_t *aliases)
 	{
 		waitAndFree(status, argv, dup);
 	}
+
+
 }
