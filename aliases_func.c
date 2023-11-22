@@ -59,6 +59,17 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 						_strcat(output, "=");
 						_strcat(output, alias_value);
 						_strcat(output, "\n");
+						char *ptr = alias_msg;
+						while (*ptr != '\0')
+						{
+							if (*ptr == '"')
+							{
+								*ptr = '\''; // Replace double quotes with single quotes
+							}
+							++ptr;
+						}
+
+						PRINT(alias_msg);
 						PRINT(output);
 					}
 				}
