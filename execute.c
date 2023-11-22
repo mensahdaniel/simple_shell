@@ -1,10 +1,10 @@
 #include "main.h"
 
-int execute(char *buffer, int builtIn, alias_t *aliases)
+int execute(int builtIn, char *buffer, char *dup, char **argv, alias_t *aliases)
 {
 	pid_t child_pid;
 	int status = 0;
-	char *dup = NULL, **argv = NULL;
+	/*char *dup = NULL, **argv = NULL;*/
 
 	dup = _strdup(buffer);
 	argv = tokenizer(dup, builtIn);
