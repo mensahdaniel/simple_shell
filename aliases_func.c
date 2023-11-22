@@ -56,9 +56,9 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 						char output[256];
 						int len = _strlen(token) + _strlen(alias_value) + 4; // Length of the output string
 						_strcpy(output, token);
-						_strcat(output, "='");
-						_strcat(output, alias_value);
-						_strcat(output, "'\n");
+						str_cat(output, "='");
+						str_cat(output, alias_value);
+						str_cat(output, "'\n");
 						PRINT(output);
 					}
 				}
@@ -140,9 +140,9 @@ void print_aliases(alias_t *head)
 		char output[256];
 		int len = _strlen(current->name) + _strlen(current->value) + 5; // Length of the output string
 		_strcpy(output, current->name);
-		_strcat(output, "='");
-		_strcat(output, current->value);
-		_strcat(output, "'\n");
+		str_cat(output, "='");
+		str_cat(output, current->value);
+		str_cat(output, "'\n");
 		PRINT(output);
 
 		current = current->next;
