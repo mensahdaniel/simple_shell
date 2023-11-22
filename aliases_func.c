@@ -27,35 +27,38 @@ int handle_alias_command(char *buffer, alias_t **aliases)
 		}
 		else
 		{
-			// Check if the input contains only an alias name (without '=value')
-			char *equal_sign = strchr(buffer, '=');
-			if (equal_sign != NULL)
+			// Tokenize the input to handle multiple aliases at once
+			char *token = _strtok(buffer, ' ');
+			while (token != NULL)
 			{
-				*equal_sign = '\0'; // Terminate the alias name at the equal sign
-
-				char *alias_name = buffer;
-				char *alias_value = (char *)(equal_sign + 1); // Points to the value after '='
-
-				add_alias(aliases, alias_name, alias_value);
-				return 1; // Return 1 to indicate alias command handled
-			}
-			else
-			{
-				// Check if the input contains an alias name
-				char *alias_name = buffer;
-				char *alias_value = get_alias(*aliases, alias_name);
-
-				if (alias_value == NULL)
+				// Check if the token contains an equal sign (=) to differentiate name=value pairs
+				char *equal_sign = strchr(token, '=');
+				if (equal_sign != NULL)
 				{
-					printf("alias: %s not found\n", alias_name);
-					return 1; // Return 1 to indicate alias command handled
+					*equal_sign = '\0'; // Terminate the alias name at the equal sign
+
+					char *alias_name = token;
+					char *alias_value = (char *)(equal_sign + 1); // Points to the value after '='
+
+					add_alias(aliases, alias_name, alias_value);
 				}
 				else
 				{
-					printf("%s='%s'\n", alias_name, alias_value);
-					return 1; // Return 1 to indicate alias command handled
+					// If no equal sign, print the value of the alias
+					char *alias_value = get_alias(*aliases, token);
+
+					if (alias_value == NULL)
+					{
+						printf("alias: %s not found\n", token);
+					}
+					else
+					{
+						printf("%s='%s'\n", token, alias_value);
+					}
 				}
+				token = _strtok(NULL, ' ');
 			}
+			return 1; // Return 1 to indicate alias command handled
 		}
 	}
 	return 0; // Return 0 for commands not related to alias
