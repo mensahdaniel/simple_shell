@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * list_len - determines length of linked list
@@ -53,7 +53,6 @@ char **list_to_strings(list_t *head)
 	strs[i] = NULL;
 	return (strs);
 }
-
 
 /**
  * print_list - prints all elements of a list_t linked list
