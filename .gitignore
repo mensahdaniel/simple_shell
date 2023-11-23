@@ -2,3 +2,5 @@
 build/
 automated_checker/
 code
+./code.pn
+*.pn
